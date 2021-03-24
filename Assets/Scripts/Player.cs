@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     //Player 정보
     public bool run = false;
-    public float speed = 1.0f;
+    public float speed = 10.0f;
     public float stamina = 1.0f;
 
     void Start()
@@ -36,17 +36,17 @@ public class Player : MonoBehaviour
         if (run) //달리는 상태
         {
             stamina -= Time.deltaTime;
-            speed = 2.0f;
+            speed = 20.0f;
             if (stamina <= 0.0f) //스태미나 부족
             {
                 stamina = 0.0f;
-                speed = 1.0f;
+                speed = 10.0f;
             }
         }
         else
         {
             stamina += Time.deltaTime / 3.0f;
-            speed = 1.0f;
+            speed = 10.0f;
             if (stamina >= 1.0f) //스태미나 100%
                 stamina = 1.0f;
         }
@@ -54,14 +54,14 @@ public class Player : MonoBehaviour
 
     public void Move(Vector2 inputDirection)
     {
-        Vector2 moveInput = inputDirection * speed;
+        Vector2 moveInput = inputDirection;
         if (moveInput.magnitude != 0)
         {
             Vector3 lookForward = new Vector3(cameraTransform.forward.x, 0f, cameraTransform.forward.z).normalized; // 카메라가 바라보는 방향
             Vector3 lookRight = new Vector3(cameraTransform.right.x, 0f, cameraTransform.right.z).normalized; // 카메라의 오른쪽 방향
             Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x; // 이동 방향
 
-            transform.position += moveDir * Time.deltaTime * 10f; // 이동
+            transform.position += moveDir * Time.deltaTime * speed; // 이동
         }
     }
 
