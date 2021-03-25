@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
         if (run) //달리는 상태
         {
-            stamina -= Time.deltaTime;
+            stamina -= Time.deltaTime / 2.0f;
             speed = 20.0f;
             if (stamina <= 0.0f) //스태미나 부족
             {

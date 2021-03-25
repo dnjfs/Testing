@@ -18,10 +18,16 @@ public class SceneChange : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void ChangeStartScene()
+    {
+        //start 버튼을 누르면 start 씬으로 이동
+        SceneManager.LoadScene("Start");
+    }
+
+    public void ChangePlayingScene()
     {
         //start 버튼을 누르면 start 씬으로 이동
         SceneManager.LoadScene ("Playing");
