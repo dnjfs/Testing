@@ -14,9 +14,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         capsuleColor = gameObject.GetComponent<Renderer>();
-        target = GameObject.Find("Player").transform;
-
-        velocity *= Time.deltaTime;
     }
 
     void Update()
@@ -24,7 +21,7 @@ public class Enemy : MonoBehaviour
         if (isNear)
         {
             this.transform.rotation = Quaternion.Euler(new Vector3(0, Quaternion.LookRotation(direction).eulerAngles.y, 0)); //움직이는 방향을 바라보기
-            this.transform.position += new Vector3(direction.x, 0, direction.z) * velocity; //이동
+            this.transform.position += new Vector3(direction.x, 0, direction.z) * (velocity * Time.deltaTime); //이동
         }
     }
 
@@ -32,6 +29,7 @@ public class Enemy : MonoBehaviour
     {
         if (coll.tag == "Player")
         {
+            target = coll.transform;
             isNear = true;
             capsuleColor.material.color = Color.red;
         }

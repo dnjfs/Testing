@@ -12,8 +12,8 @@ public class PlayerStart : MonoBehaviour
     float YPosition = 12.92469f;
     float[] ZPosition = {38f, -65f};
 
-    // Start is called before the first frame update
-    void Start()
+    // Start()가 실행되기 전 실행
+    void Awake()
     {
         //X와 Z의 인덱스 랜덤으로 설정
         int XIndex = Random.Range(0, 2);

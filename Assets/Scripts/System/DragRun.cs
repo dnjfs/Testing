@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class DragRun : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField]
     private Player player;
 
     [SerializeField]
@@ -19,6 +18,7 @@ public class DragRun : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         rectTransform = GetComponent<RectTransform>();
     }
 

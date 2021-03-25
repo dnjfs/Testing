@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Stamina : MonoBehaviour
 {
-    public Player player;
+    private Player player;
 
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
