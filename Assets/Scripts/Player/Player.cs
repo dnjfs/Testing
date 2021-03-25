@@ -15,10 +15,13 @@ public class Player : MonoBehaviour
     private Vector2 lookInput;
     private float cameraPitch; //pitch 시점
 
+    private AudioSource Heartbeat;
+
     //Player 정보
     public bool run = false;
     public float speed = 10.0f;
     public float stamina = 1.0f;
+    public int NearEnemyNum = 0;
 
     void Start()
     {
@@ -27,6 +30,8 @@ public class Player : MonoBehaviour
         this.rightFingerId = -1; //-1은 추적중이 아닌 손가락
         this.halfScreenWidth = Screen.width / 2;
         this.cameraPitch = 0f;
+
+        Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
     }
 
     void Update()
@@ -50,6 +55,14 @@ public class Player : MonoBehaviour
             if (stamina >= 1.0f) //스태미나 100%
                 stamina = 1.0f;
         }
+
+        if (NearEnemyNum > 0) //근처에 몬스터가 존재하면
+        {
+            if (!Heartbeat.isPlaying)
+                Heartbeat.Play(); //심장 박동소리 출력
+        }
+        else if (Heartbeat.isPlaying)
+            Heartbeat.Stop();
     }
 
     public void Move(Vector2 inputDirection)

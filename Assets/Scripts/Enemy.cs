@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
             target = coll.transform;
             isNear = true;
             capsuleColor.material.color = Color.red;
+
+            coll.GetComponent<Player>().NearEnemyNum++;
         }
     }
     void OnTriggerStay(Collider coll)
@@ -59,6 +61,8 @@ public class Enemy : MonoBehaviour
         {
             isNear = false;
             capsuleColor.material.color = Color.white;
+
+            coll.GetComponent<Player>().NearEnemyNum--;
         }
     }
 
