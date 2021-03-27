@@ -16,12 +16,14 @@ public class Player : MonoBehaviour
     private float cameraPitch; //pitch 시점
 
     private AudioSource Heartbeat;
+    private Rigidbody body; //이동을 위한 Rigidbody
 
     //Player 정보
     public bool run = false;
     public float speed = 10.0f;
     public float stamina = 1.0f;
     public int NearEnemyNum = 0;
+    public int CloseEnemyNum = 0;
 
     void Start()
     {
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
         this.halfScreenWidth = Screen.width / 2;
         this.cameraPitch = 0f;
 
+        body = GetComponent<Rigidbody>();
         Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
     }
 
@@ -58,6 +61,11 @@ public class Player : MonoBehaviour
 
         if (NearEnemyNum > 0) //근처에 몬스터가 존재하면
         {
+            if (CloseEnemyNum > 0) //가까이에 몬스터가 존재하면
+                Heartbeat.pitch = 2.0f; //오디오 출력속도 2배
+            else
+                Heartbeat.pitch = 1.0f;
+
             if (!Heartbeat.isPlaying)
                 Heartbeat.Play(); //심장 박동소리 출력
         }
@@ -74,8 +82,12 @@ public class Player : MonoBehaviour
             Vector3 lookRight = new Vector3(cameraTransform.right.x, 0f, cameraTransform.right.z).normalized; // 카메라의 오른쪽 방향
             Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x; // 이동 방향
 
-            transform.position += moveDir * Time.deltaTime * speed; // 이동
+            //transform.position += moveDir * Time.deltaTime * speed; // 이동
+            //transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            body.velocity = moveDir * speed; //이동
         }
+        else
+            body.velocity = Vector3.zero;
     }
 
     private void GetTouchInput()
