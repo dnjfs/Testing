@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 1222732441141516211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 7.358053}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 3, z: 2}
   m_Children:
   - {fileID: 1222732440985259034}
   m_Father: {fileID: 0}
@@ -217,6 +217,7 @@ MonoBehaviour:
   speed: 1
   stamina: 1
   NearEnemyNum: 0
+  CloseEnemyNum: 0
 --- !u!82 &-6437486342070619294
 AudioSource:
   m_ObjectHideFlags: 0

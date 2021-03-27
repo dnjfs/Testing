@@ -32,8 +32,6 @@ public class PlayerStart : MonoBehaviour
         {
             GameObject player = (GameObject)Instantiate(Player, new Vector3(XPosition[XIndex], YPosition, ZPosition[ZIndex]), Quaternion.Euler(0f, 90f, 0f));
         }
-
-
     }
 
     // Update is called once per frame

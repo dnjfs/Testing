@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
-
+    //출력할 메시지
     public Text startDialog;
+    public Image BackGround;
+
+    //페이드인 효과 연출에 쓸 검정색 이미지
+    public Image BlackImage;
 
     //게임 시작시 메시지
     private string[] startDialogText = {"미로의 모든 길을 지나는 즉시 출구가 열릴 것입니다.",
@@ -16,17 +20,29 @@ public class DialogManager : MonoBehaviour
 
     void Start()
     {
+        //Fade In 효과 실행(Player 오브젝트가 갖고 있는 FadeEffects.cs의 Fade In 함수 실행)
+        GameObject.FindWithTag("GameSystem").GetComponent<FadeEffects>().FadeIn(BlackImage);
+
         //게임 시작 메시지 출력
         StartCoroutine(_typing());
     }
 
     IEnumerator _typing()
     {
+        //첫 딜레이 설정(3초)
+        yield return new WaitForSeconds(3f);
+
+        //출력할 메시지의 배경 이미지 페이드 아웃 효과 연출(GameSystem 오브젝트의 FadeEffects 스크립트의 FadeOut 함수)
+        GameObject.FindWithTag("GameSystem").GetComponent<FadeEffects>().FadeOut(BackGround);
+
+        //시스템 메시지 오브젝트 활성화
+        //BackGround.gameObject.SetActive(true);
+        startDialog.gameObject.SetActive(true);
+
         //메시지의 개수만큼 메시지 출력
         for (int j = 0; j < startDialogText.Length; j++)
         {
-            //첫 딜레이 설정(2초)
-            yield return new WaitForSeconds(3f);
+            
 
             //타이핑 효과는 각 text의 길이만큼 반복
             for (int i = 0; i <= startDialogText[j].Length; i++)
@@ -37,12 +53,18 @@ public class DialogManager : MonoBehaviour
                 //한 번에 표현되지 않도록 딜레이를 줌
                 yield return new WaitForSeconds(0.15f);
             }
+
+            //다음 메시지 딜레이 설정(3초)
+            yield return new WaitForSeconds(3f);
         }
 
-        //딜레이 설정
-        yield return new WaitForSeconds(3f);
+        //출력할 메시지의 배경 이미지 페이드 인 효과 연출(GameSystem 오브젝트의 FadeEffects 스크립트의 FadeOut 함수)
+        GameObject.FindWithTag("GameSystem").GetComponent<FadeEffects>().FadeIn(BackGround);
 
-        //메시지 지우기
-        startDialog.text = "";
+        //시스템 메시지 오브젝트 비활성화
+        //BackGround.gameObject.SetActive(false);
+        startDialog.gameObject.SetActive(false);
+
+        yield return null;
     }
 }
