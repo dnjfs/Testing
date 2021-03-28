@@ -218,7 +218,7 @@ MonoBehaviour:
   stamina: 1
   NearEnemyNum: 0
   CloseEnemyNum: 0
-  StaminaBar: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+  staminaBar: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
 --- !u!82 &-6437486342070619294
 AudioSource:
   m_ObjectHideFlags: 0

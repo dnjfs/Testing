@@ -26,13 +26,16 @@ public class Player : MonoBehaviour
     public int NearEnemyNum = 0;
     public int CloseEnemyNum = 0;
 
-    //스태미나 슬라이더 오브젝트
-    public Slider StaminaBar;
+    public Slider staminaBar;   //스태미나를 표시할 UI 슬라이더
 
     void Start()
     {
         stamina = 1.0f;
-        StaminaBar.value = stamina;
+        staminaBar = GameObject.Find("StaminaBar").GetComponent<Slider>();
+        staminaBar.gameObject.SetActive(true);
+ 
+        staminaBar.maxValue = stamina;  //슬라이더의 최대값을 기본 스테미나 값으로 변경
+        staminaBar.value = stamina;     //츨라이더의 값을 현재 스테미나 값으로 변경
 
         this.rightFingerId = -1; //-1은 추적중이 아닌 손가락
         this.halfScreenWidth = Screen.width / 2;
@@ -44,12 +47,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        staminaBar.value = stamina;
+
         GetTouchInput();
 
         if (run) //달리는 상태
         {
             stamina -= Time.deltaTime / 2.0f;
-            StaminaBar.value = stamina;
+            staminaBar.value = stamina;
             speed = 20.0f;
             if (stamina <= 0.0f) //스태미나 부족
             {
@@ -60,7 +65,7 @@ public class Player : MonoBehaviour
         else
         {
             stamina += Time.deltaTime / 3.0f;
-            StaminaBar.value = stamina;
+            staminaBar.value = stamina;
             speed = 10.0f;
             if (stamina >= 1.0f) //스태미나 100%
                 stamina = 1.0f;
