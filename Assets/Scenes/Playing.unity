@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -898,7 +898,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185626892}
-  m_Material: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -917,7 +917,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185626894}
-  m_Material: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -936,7 +936,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185626896}
-  m_Material: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -2226,6 +2226,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3661622478310259488, guid: 258f1a5f329a0aa4a8e09504c2c6a031, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: 3661622478310259489, guid: 258f1a5f329a0aa4a8e09504c2c6a031, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: 3661622478310259490, guid: 258f1a5f329a0aa4a8e09504c2c6a031, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: 3661622478310259491, guid: 258f1a5f329a0aa4a8e09504c2c6a031, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: 3661622478310259494, guid: 258f1a5f329a0aa4a8e09504c2c6a031, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
     - target: {fileID: 3844397614572887278, guid: 258f1a5f329a0aa4a8e09504c2c6a031, type: 3}
       propertyPath: m_RootOrder
       value: 6
