@@ -19,7 +19,7 @@ public class SceneChange : MonoBehaviour
     public void ChangeStartScene()
     {
         //start 버튼을 누르면 start 씬으로 이동
-        Time.timescale = 1f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Start");
     }
 
