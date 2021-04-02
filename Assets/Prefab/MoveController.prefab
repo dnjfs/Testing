@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058728e189d480648bd2ea66e3e0e826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1222732441141516173, guid: 4599ba16f071bd14483a73c869f4110c, type: 3}
   lever: {fileID: 6389238863667044062}
   leverRange: 150
 --- !u!1 &6389238863667044063
@@ -157,7 +156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 132b0cbac09b111448905bbe55c53c46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dae430d205620bf4c90dd2290e774ab6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
