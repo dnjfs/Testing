@@ -41,10 +41,20 @@ public class SceneChange : MonoBehaviour
         Application.Quit();
     }
 
-    public void ChangeSettingPanel()
+    public void OpenSettingPanel()
     {
         //Setting 버튼을 누르면 게임 설정 패널 활성화
         settingPanel.SetActive(true);
+        //메인 화면 버튼들(start, lanking, exit, setting) 비활성화
+        
+    }
+
+    public void CloseSettingPanel()
+    {
+        //Close 버튼을 누르면 게임 설정 패널 비활성화
+        settingPanel.SetActive(false);
+        //메인 화면 버튼들(start, lanking, exit, setting) 활성화
+        
     }
 
     public void PauseGame()
@@ -62,11 +72,5 @@ public class SceneChange : MonoBehaviour
         settingPanel.SetActive(false);
         //시간 흐름
         Time.timeScale = 1f;
-    }
-
-    public void CloseSettingPanel()
-    {
-        //메인화면을 누르면 게임 설정 패널 비활성화
-        settingPanel.SetActive(false);
     }
 }
