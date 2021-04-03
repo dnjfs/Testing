@@ -38,7 +38,7 @@ public class FadeEffects : MonoBehaviour
 
         while (tempColor.a > 0f)
         {
-            Fadingtime += Time.deltaTime / FadeTime;
+            Fadingtime += (Time.timeScale * Time.deltaTime) / FadeTime;
 
             //투명도 설정
             tempColor.a = Mathf.Lerp(1, 0, Fadingtime);
@@ -70,7 +70,7 @@ public class FadeEffects : MonoBehaviour
 
         while (tempColor.a < 1f)
         {
-            Fadingtime += Time.deltaTime / FadeTime;
+            Fadingtime += (Time.timeScale * Time.deltaTime) / FadeTime;
 
             //투명도 설정
             tempColor.a = Mathf.Lerp(0, 1, Fadingtime);

@@ -12,6 +12,7 @@ public class DialogManager : MonoBehaviour
     //페이드인 효과 연출에 쓸 검정색 이미지
     public Image BlackImage;
 
+
     //게임 시작시 메시지
     private string[] startDialogText = {"미로의 모든 길을 지나는 즉시 출구가 열릴 것입니다.",
                                     "괴물들을 피해 열린 출구로 탈출하십시오.",
@@ -27,8 +28,10 @@ public class DialogManager : MonoBehaviour
         StartCoroutine(_typing());
     }
 
+
     IEnumerator _typing()
     {
+
         //첫 딜레이 설정(3초)
         yield return new WaitForSeconds(3f);
 
@@ -42,8 +45,6 @@ public class DialogManager : MonoBehaviour
         //메시지의 개수만큼 메시지 출력
         for (int j = 0; j < startDialogText.Length; j++)
         {
-            
-
             //타이핑 효과는 각 text의 길이만큼 반복
             for (int i = 0; i <= startDialogText[j].Length; i++)
             {
