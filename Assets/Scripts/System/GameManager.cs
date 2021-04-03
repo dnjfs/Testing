@@ -26,5 +26,7 @@ public class GameManager : MonoBehaviour
         //유일한 인스턴스로 만든다
         instance = this;
         DontDestroyOnLoad(gameObject);  //씬이 바뀌어도 계속 유지시킴
+
+        nickName = null;
     }
 }
