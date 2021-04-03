@@ -1,0 +1,26 @@
+[
+  {
+    "renderSetupLayer": {
+      "collections": [
+        {
+          "collection": {
+            "children": [], 
+            "isolateSelected": false, 
+            "name": "collection1", 
+            "selector": {
+              "simpleSelector": {
+                "customFilterValue": "", 
+                "pattern": "", 
+                "staticSelection": "|group1|aiAreaLight10\n|group1|aiAreaLight12\n|group1|aiAreaLight13\n|group1|aiAreaLight15\n|group1|aiAreaLight14\n|group1|aiAreaLight7\n|group1|aiAreaLight8\n|group1|aiAreaLight6\n|group1|aiAreaLight5\n|group1|aiAreaLight3\n|group1|aiAreaLight4\n|group1|aiAreaLight2\n|group1|aiAreaLight11\n|group1|aiAreaLight1\n|group1|aiAreaLight9\n|group1|aiAreaLight16", 
+                "typeFilter": 1
+              }
+            }, 
+            "selfEnabled": true
+          }
+        }
+      ], 
+      "isVisible": false, 
+      "name": "renderSetupLayer1"
+    }
+  }
+]
