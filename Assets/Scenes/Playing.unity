@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -375,6 +375,10 @@ PrefabInstance:
     - target: {fileID: 6389238863444560370, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_Sprite
       value: 
+      objectReference: {fileID: 21300000, guid: 0500ba01512c3be4baf5cc5bfa1fb163, type: 3}
+    - target: {fileID: 6389238863444560370, guid: 31d8115669307f641aaa989a9436c806, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_Pivot.x
@@ -406,11 +410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_LocalPosition.x
@@ -442,11 +446,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1797,10 +1801,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6986341467779650797, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: -6953853721563765177, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: -4542514000665093501, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: -2647023547688729323, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
     - target: {fileID: 919132149155446097, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
       propertyPath: m_Name
       value: maze_li_V01
       objectReference: {fileID: 0}
+    - target: {fileID: 1583115395543524004, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
+    - target: {fileID: 3488915755421650319, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92591af2a2c5a8d4ca058cb361557717, type: 3}
 --- !u!1 &1971348166

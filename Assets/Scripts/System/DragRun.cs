@@ -12,6 +12,7 @@ public class DragRun : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     [SerializeField, Range(100, 200)]
     private float leverRange; //레버 이동 범위
+    private Vector3 moveDir; //플레이어 이동 방향
 
     private RectTransform rectTransform;
     private bool isInput;
@@ -49,21 +50,25 @@ public class DragRun : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void ControlJoystickLever(PointerEventData eventData)
     {
-        var inputPos = eventData.position - rectTransform.anchoredPosition;
-        var inputVector = inputPos.magnitude < leverRange ? inputPos : inputPos.normalized * leverRange;
-        inputVector.x = 0; //x좌표 고정
-        if (inputVector.y < 0) //아래로는 레버 이동불가
-            inputVector.y = 0;
-        lever.anchoredPosition = inputVector;
+        var inputVector = eventData.position - rectTransform.anchoredPosition;
 
-        if (lever.anchoredPosition.y > leverRange * 0.9f) //레버를 90%이상 당겼을 때 달리기
+        player.run = false;
+        if (inputVector.y > leverRange + 80.0f) //레버를 위로 많이 당겼을 때 달리기
+        {
             player.run = true;
-        else
-            player.run = false;
+            inputVector.x = 0; //x좌표 고정
+            if (inputVector.y > leverRange + 150.0f) //y좌표 제한
+                inputVector.y = leverRange + 150.0f;
+        }
+        else if (inputVector.magnitude > leverRange) //레버의 범위 제한
+            inputVector = inputVector.normalized * leverRange;
+
+        lever.anchoredPosition = inputVector; //레버 이미지의 위치 조정
+        moveDir = inputVector.normalized; //이동 방향 설정, 벡터 normalized로 이동속도는 일정하게
     }
 
     private void InputControlVector()
     {
-        player.Move(Vector2.up);
+        player.Move(moveDir);
     }
 }
