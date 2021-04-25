@@ -71,6 +71,8 @@ public class Enemy : MonoBehaviour
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("Die"); //사망
+            //플레이 타임 저장
+            GameManager.instance.timeScore = GameManager.instance.playTime;
             SceneManager.LoadScene("GameOver");
         }
     }

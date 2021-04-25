@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
     //싱글톤 패턴을 사용하기 위한 전역 변수
     public static GameManager instance;
 
-    //플레이어 닉네임
-    public string nickName;
+    public string nickName; //플레이어 닉네임
+    public float playTime;  //플레이 시간
+    public float timeScore; //최종 플레이 시간
 
 
     // 게임 시작과 동시에 싱글톤 구성
@@ -28,5 +29,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);  //씬이 바뀌어도 계속 유지시킴
 
         nickName = null;
+        playTime = timeScore = 0f;
+    }
+
+    void Update()
+    {
+        //타이머 증가
+        playTime += Time.deltaTime;
     }
 }
