@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public string nickName; //플레이어 닉네임
+
     public float playTime;  //플레이 시간
     public float timeScore; //최종 플레이 시간
 
+    public string gameLevel; //게임 난이도
+    public float sound_BGLevel; //배경음악 사운드 크기
+    public float sound_EFLevel; //효과음 사운드 크기
 
     // 게임 시작과 동시에 싱글톤 구성
     void Awake()
@@ -28,8 +32,10 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);  //씬이 바뀌어도 계속 유지시킴
 
+        //변수 초기화
         nickName = null;
-        playTime = timeScore = 0f;
+        playTime = timeScore = sound_BGLevel = sound_EFLevel = 0f;
+        gameLevel = "normal";   //게임 난이도 normal로 설정
     }
 
     void Update()

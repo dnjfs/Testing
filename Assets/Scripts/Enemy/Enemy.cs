@@ -7,15 +7,14 @@ public class Enemy : MonoBehaviour
 {
     private Transform target;
     private Vector3 direction; //이동방향
-    public float velocity = 5f; //이동속도
+    public float velocity; //이동속도
 
     private bool isNear; //근처에 플레이어가 있는지
     Renderer capsuleColor; //플레이어 발견 시 색깔 변경(임시)
 
     void Start()
-    {
+    { 
         capsuleColor = gameObject.GetComponent<Renderer>();
-
         Invoke("Think", 3f);
     }
 
@@ -71,9 +70,21 @@ public class Enemy : MonoBehaviour
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("Die"); //사망
+
             //플레이 타임 저장
             GameManager.instance.timeScore = GameManager.instance.playTime;
             SceneManager.LoadScene("GameOver");
         }
+    }
+
+    public void SetEnemyLevel()
+    {
+        //게임 난이도에 따라 Enemy 속도 조절
+        if (GameManager.instance.gameLevel == "easy")  //게임 난이도가 easy면
+            velocity = 3f;  //Enemy의 속도는 3f
+        else if (GameManager.instance.gameLevel == "normal")   //게임 난이도가 normal면
+            velocity = 5f;  //Enemy의 속도는 5f
+        else if (GameManager.instance.gameLevel == "hard") //게임 난이도가 hard면
+            velocity = 7f;  //Enemy의 속도는 7f
     }
 }

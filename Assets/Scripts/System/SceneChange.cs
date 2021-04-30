@@ -18,7 +18,8 @@ public class SceneChange : MonoBehaviour
     {
         //start 버튼을 누르면 play 씬으로 이동
         SceneManager.LoadScene ("Playing");
-        GameManager.instance.playTime = 0f;
+        GameManager.instance.playTime = 0f; //플레이 시간 초기화
+       
     }
 
     public void ChangeLankingScene()

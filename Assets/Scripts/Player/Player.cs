@@ -21,21 +21,27 @@ public class Player : MonoBehaviour
 
     //Player 정보
     public bool run = false;
-    public float speed = 10.0f;
-    public float stamina = 1.0f;
+    public float speed; //플레이어의 기본 속도
+    public float currentSpeed;  //현재 속도
     public int NearEnemyNum = 0;
     public int CloseEnemyNum = 0;
 
+    //스태미나 정보
     public Slider staminaBar;   //스태미나를 표시할 UI 슬라이더
+    public float stamina;   //플레이어의 스태미나
+    public float maxStamina;    //스태미나의 최댓값
+    public float increasingStamina;    //스테미나 회복 속도
+    public float decreasingStamina; //스태미나 감소 속도
 
     void Start()
     {
-        stamina = 1.0f;
-        staminaBar = GameObject.Find("StaminaBar").GetComponent<Slider>();
-        staminaBar.gameObject.SetActive(true);
- 
-        staminaBar.maxValue = stamina;  //슬라이더의 최대값을 기본 스테미나 값으로 변경
-        staminaBar.value = stamina;     //츨라이더의 값을 현재 스테미나 값으로 변경
+        //스테미너 초기 설정
+        staminaBar = GameObject.Find("StaminaBar").GetComponent<Slider>();  //스테미나바 오브젝트의 슬라이더 가져옴
+        staminaBar.gameObject.SetActive(true);  //스테미나바 슬라이더 활성화
+        stamina = maxStamina = 1.0f; //Player의 스테미나는 1.0f
+        staminaBar.maxValue = maxStamina;  //슬라이더의 최대값을 최대 스테미나 값으로 변경
+        staminaBar.value = maxStamina;     //츨라이더의 값을 최대 스테미나 값으로 변경
+        
 
         this.rightFingerId = -1; //-1은 추적중이 아닌 손가락
         this.halfScreenWidth = Screen.width / 2;
@@ -43,6 +49,9 @@ public class Player : MonoBehaviour
 
         body = GetComponent<Rigidbody>();
         Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
+
+        SetPlayerLevel();   //플레이어 난이도 설정
+
     }
 
     void Update()
@@ -53,22 +62,22 @@ public class Player : MonoBehaviour
 
         if (run) //달리는 상태
         {
-            stamina -= Time.deltaTime / 2.0f;
+            stamina -= Time.deltaTime / decreasingStamina;
             staminaBar.value = stamina;
-            speed = 20.0f;
+            currentSpeed = speed * 2; //달리는 상태일 때 플레이어의 속도는 기존의 두 배로 증가
             if (stamina <= 0.0f) //스태미나 부족
             {
                 stamina = 0.0f;
-                speed = 10.0f;
+                currentSpeed = speed;   //플레이어 속도는 기본 속도
             }
         }
         else
         {
-            stamina += Time.deltaTime / 3.0f;
+            stamina += Time.deltaTime / increasingStamina;
             staminaBar.value = stamina;
-            speed = 10.0f;
-            if (stamina >= 1.0f) //스태미나 100%
-                stamina = 1.0f;
+            currentSpeed = speed;   //플레이어의 속도는 기본 속도
+            if (stamina >= maxStamina) //스태미나 100%
+                stamina = maxStamina;
         }
 
         if (NearEnemyNum > 0) //근처에 몬스터가 존재하면
@@ -96,7 +105,7 @@ public class Player : MonoBehaviour
 
             //transform.position += moveDir * Time.deltaTime * speed; // 이동
             //transform.Translate(Vector3.forward * Time.deltaTime * speed);
-            body.velocity = moveDir * speed; //이동
+            body.velocity = moveDir * currentSpeed; //이동
         }
         else
             body.velocity = Vector3.zero;
@@ -163,6 +172,29 @@ public class Player : MonoBehaviour
                     }
                     break;
             }
+        }
+    }
+
+    public void SetPlayerLevel()
+    {
+        //게임 난이도에 따라 Player 속도 및 스테미나 증가 감소 속도 조절
+        if (GameManager.instance.gameLevel == "easy")  //게임 난이도가 easy면
+        {
+            speed = currentSpeed = 10f;  //Player의 속도는 10f
+            increasingStamina = 4.0f;   //스태미나 회복 속도 4.0f
+            decreasingStamina = 1.5f;   //스태미나 감소 속도 1.5f
+        }
+        else if (GameManager.instance.gameLevel == "normal")   //게임 난이도가 normal면
+        {
+            speed = currentSpeed = 7f;  //Player의 속도는 7f
+            increasingStamina = 3.0f;   //스태미나 회복 속도 3.0f
+            decreasingStamina = 2.0f;   //스태미나 감소 속도 2.0f
+        }
+        else if (GameManager.instance.gameLevel == "hard") //게임 난이도가 hard면
+        {
+            speed = currentSpeed = 5f;  //Player의 속도는 5f
+            increasingStamina = 2.0f;   //스태미나 회복 속도 2.0f
+            decreasingStamina = 3.0f;   //스태미나 감소 속도 3.0f
         }
     }
 }
