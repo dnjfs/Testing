@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class HeartAnim : MonoBehaviour
 {
-    Player player;
     Animator anim; //심장 애니메이션
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
     {
-        if (player.isChased) //플레이어가 쫓기는 상태
-            anim.SetBool("Chasing", true);
-        else
-            anim.SetBool("Chasing", false);
+    }
+
+    public void SetChasingParam(bool value)
+    {
+        anim.SetBool("Chasing", value); //파라미터 값 설정
+    }
+
+    public void SetAnimSpeed(float inSpeed)
+    {
+        anim.speed = inSpeed; //애니메이션의 속도 설정
     }
 }

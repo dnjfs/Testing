@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     private AudioSource Heartbeat;
     private Rigidbody body; //이동을 위한 Rigidbody
+    private HeartAnim heart; //하트 애니메이션 객체
 
     //Player 정보
     public bool run = false;
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
 
         body = GetComponent<Rigidbody>();
         Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
+        heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
 
         SetPlayerLevel();   //플레이어 난이도 설정
 
@@ -87,21 +89,27 @@ public class Player : MonoBehaviour
         if (NearEnemyNum > 0) //근처에 몬스터가 존재하면
         {
             if (CloseEnemyNum > 0) //가까이에 몬스터가 존재하면
+            {
                 Heartbeat.pitch = 2.0f; //오디오 출력속도 2배
+                heart.SetAnimSpeed(2.0f); //심장박동 애니메이션 2배
+            }
             else
+            {
                 Heartbeat.pitch = 1.0f;
+                heart.SetAnimSpeed(1.0f);
+            }
 
             if (!Heartbeat.isPlaying)
                 Heartbeat.Play(); //심장 박동소리 출력
 
-            isChased = true;
+            heart.SetChasingParam(true); //심장 애니메이터의 Chasing 파라미터값을 true로 설정
         }
         else
         {
             if (Heartbeat.isPlaying)
                 Heartbeat.Stop();
 
-            isChased = false;
+            heart.SetChasingParam(false);
         }
     }
 
@@ -188,6 +196,14 @@ public class Player : MonoBehaviour
 
     public void SetPlayerLevel()
     {
+        if(GameManager.instance == null) //Playing 씬에서 바로 테스트하기 위한 임시 코드
+        {
+            speed = currentSpeed = 15f;
+            increasingStamina = 1.0f;
+            decreasingStamina = 10.0f;
+            return;
+        }
+
         //게임 난이도에 따라 Player 속도 및 스테미나 증가 감소 속도 조절
         if (GameManager.instance.gameLevel == "easy")  //게임 난이도가 easy면
         {
