@@ -18,18 +18,28 @@ public class DialogManager : MonoBehaviour
                                     "괴물들을 피해 열린 출구로 탈출하십시오.",
                                     "그럼 행운을 빕니다."};
 
+    //모든 길을 다 돌았을 때 시스템 메시지
+    private string[] createElevatorText = { "출구가 열렸습니다." };
 
-    void Start()
+    
+    public void StartMessage()
     {
+        //게임 시작 시스템 메시지
+
         //Fade In 효과 실행(Player 오브젝트가 갖고 있는 FadeEffects.cs의 Fade In 함수 실행)
         GameObject.FindWithTag("GameSystem").GetComponent<FadeEffects>().FadeIn(BlackImage);
 
         //게임 시작 메시지 출력
-        StartCoroutine(_typing());
+        StartCoroutine(_typing(startDialogText));
+    }
+    
+    public void CreateElevatorMessage()
+    {
+        //엘리베이터 생성 메시지
+        StartCoroutine(_typing(createElevatorText));
     }
 
-
-    IEnumerator _typing()
+    IEnumerator _typing(string[] Dialog)
     {
 
         //첫 딜레이 설정(3초)
@@ -43,13 +53,13 @@ public class DialogManager : MonoBehaviour
         startDialog.gameObject.SetActive(true);
 
         //메시지의 개수만큼 메시지 출력
-        for (int j = 0; j < startDialogText.Length; j++)
+        for (int j = 0; j < Dialog.Length; j++)
         {
             //타이핑 효과는 각 text의 길이만큼 반복
-            for (int i = 0; i <= startDialogText[j].Length; i++)
+            for (int i = 0; i <= Dialog[j].Length; i++)
             {
                 //Substing(start index, 표현할 글자 개수) -> index부터 i까지의 글자를 표현 == 타이핑 효과
-                startDialog.text = startDialogText[j].Substring(0, i);
+                startDialog.text = Dialog[j].Substring(0, i);
 
                 //한 번에 표현되지 않도록 딜레이를 줌
                 yield return new WaitForSeconds(0.15f);

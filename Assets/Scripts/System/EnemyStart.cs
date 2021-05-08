@@ -12,6 +12,7 @@ public class EnemyStart : MonoBehaviour
         //생성 좌표 수정 필요(플레이어 근처 문 좌표로)
         //지금은 임시로 랜덤 좌표 지정해서 생성
 
+        
         int ranInt = Random.Range(0, 3);    //랜덤 int
         if (ranInt == 0)
         {
@@ -25,5 +26,6 @@ public class EnemyStart : MonoBehaviour
         {
             GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(50f, 16f, -17f), Quaternion.identity);
         }
+        
     }
 }

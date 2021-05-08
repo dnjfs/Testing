@@ -5,7 +5,6 @@ using System.Linq;  //Max()를 사용하기 위해 명시
 
 public class Repetition : MonoBehaviour
 {
-    //public GameObject[] Block = new GameObject[78]; //중복 검사할 블록 배열
     public int[] Count = new int[79];   //블록별 중복 횟수를 저장할 배열
 
     //배열의 처음부터 끝까지 계산하는 것을 반복하는 것은 비효율적인 것 같아, 지나가지 않은 길을 저장해놓고 지나가면 없애는 방식으로 계산
@@ -16,19 +15,15 @@ public class Repetition : MonoBehaviour
     public double ProgressRate;  //진행률
     public int EnemyCount;  //Enemy의 수
 
+    public bool isCreateElevator;   //엘리베이터 생성 여부
+
 
     void Start()
     {
-        /*
-        //카운트할 블록 가져옴
-        for (int i = 0; i < 78; i++)
-        {
-            Block[i] = GameObject.Find(("Cube (" + i + ")").ToString()); 
-        }*/
-
         MaxValue = 0; //최댓값 초기화
         ProgressRate = 0f;  //진행률 초기화
         EnemyCount = 0; //Enemy수 초기화
+        isCreateElevator = false;   //엘리베이터 생성 여부 초기화
         
         for (int i = 0; i < 79; i++)    //지나가지 않은 길 리스트 추가(초기화)
             leftBlock.Add(i);
@@ -114,11 +109,15 @@ public class Repetition : MonoBehaviour
         }
 
 
-        if (ProgressRate == 100)    //만약 현재 진행률이 100퍼센트라면 == 모든 길을 다 돌았다면
-            {
-                //GameManager의 isFinished를 true로 설정
-                GameManager.instance.isFinished = true;
-            }
+        if (ProgressRate == 100 && isCreateElevator == false)    //만약 현재 진행률이 100퍼센트라면 == 모든 길을 다 돌았다면
+        { 
+            //GameManager의 isFinished를 true로 설정
+            //GameManager.instance.isFinished = true;
+
+            //엘리베이터 생성 메시지 출력
+            this.gameObject.GetComponent<DialogManager>().CreateElevatorMessage();
+            isCreateElevator = true; //엘리베이터 생성 완료
+        }
     }
 
 }

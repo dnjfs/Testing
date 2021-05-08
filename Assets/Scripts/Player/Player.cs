@@ -52,6 +52,9 @@ public class Player : MonoBehaviour
 
         SetPlayerLevel();   //플레이어 난이도 설정
 
+        //플레이어 생성되면 시스템 시작메시지 출력
+        GameObject.FindWithTag("GameSystem").GetComponent<DialogManager>().StartMessage();
+
     }
 
     void Update()
