@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1222732441141516208}
   - component: {fileID: 1222732441141516173}
   - component: {fileID: -6437486342070619294}
+  - component: {fileID: 8031332857632172110}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -215,10 +216,14 @@ MonoBehaviour:
   cameraSensitivity: 3
   run: 0
   speed: 1
-  stamina: 1
+  currentSpeed: 0
   NearEnemyNum: 0
   CloseEnemyNum: 0
   staminaBar: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+  stamina: 1
+  maxStamina: 0
+  increasingStamina: 0
+  decreasingStamina: 0
 --- !u!82 &-6437486342070619294
 AudioSource:
   m_ObjectHideFlags: 0
@@ -315,3 +320,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8031332857632172110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222732441141516211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65910262546715c4790b0e59bd93b7f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splitText: []

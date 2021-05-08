@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public float sound_BGLevel; //배경음악 사운드 크기
     public float sound_EFLevel; //효과음 사운드 크기
 
+    public int repetitionCount;   //길 중복도(가장 높은 중복 횟수)
+
     // 게임 시작과 동시에 싱글톤 구성
     void Awake()
     {
@@ -34,8 +36,9 @@ public class GameManager : MonoBehaviour
 
         //변수 초기화
         nickName = null;
-        playTime = timeScore = sound_BGLevel = sound_EFLevel = 0f;
+        playTime = timeScore = sound_BGLevel = sound_EFLevel  = 0f;
         gameLevel = "normal";   //게임 난이도 normal로 설정
+        repetitionCount = 0;    //길 중복횟수 초기화
     }
 
     void Update()
