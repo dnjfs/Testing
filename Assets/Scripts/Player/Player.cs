@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     //Player 정보
     public bool run = false;
+    public bool isChased = false; //쫓기는 상태
     public float speed; //플레이어의 기본 속도
     public float currentSpeed;  //현재 속도
     public int NearEnemyNum = 0;
@@ -92,9 +93,16 @@ public class Player : MonoBehaviour
 
             if (!Heartbeat.isPlaying)
                 Heartbeat.Play(); //심장 박동소리 출력
+
+            isChased = true;
         }
-        else if (Heartbeat.isPlaying)
-            Heartbeat.Stop();
+        else
+        {
+            if (Heartbeat.isPlaying)
+                Heartbeat.Stop();
+
+            isChased = false;
+        }
     }
 
     public void Move(Vector2 inputDirection)
