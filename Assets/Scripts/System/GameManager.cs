@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public float sound_EFLevel; //효과음 사운드 크기
 
     public int repetitionCount;   //길 중복도(가장 높은 중복 횟수)
+    public bool isFinished; //모든 길을 다 돌았는지 여부
 
     // 게임 시작과 동시에 싱글톤 구성
     void Awake()
@@ -39,11 +40,17 @@ public class GameManager : MonoBehaviour
         playTime = timeScore = sound_BGLevel = sound_EFLevel  = 0f;
         gameLevel = "normal";   //게임 난이도 normal로 설정
         repetitionCount = 0;    //길 중복횟수 초기화
+        isFinished = false; //모든 길을 다 돌지 않았음
     }
 
     void Update()
     {
         //타이머 증가
         playTime += Time.deltaTime;
+
+        if (isFinished) //모든 길을 다 돌았다면
+        {
+
+        }
     }
 }

@@ -6,18 +6,24 @@ public class EnemyStart : MonoBehaviour
 {
     public GameObject Enemy;
 
-    // Start is called before the first frame update
-    void Start()
+    //Enemy 생성 함수(이 함수 호출시 Enemy 생성됨
+    public void CreateEnemy()
     {
-        //해당 인덱스 번째의 좌표의 위치에 Enemy 생성
-        GameObject enemy1 = (GameObject)Instantiate(Enemy, new Vector3(0f, 16f, 37f), Quaternion.identity);
-        GameObject enemy2 = (GameObject)Instantiate(Enemy, new Vector3(14f, 16f, -65f), Quaternion.identity);
-        GameObject enemy3 = (GameObject)Instantiate(Enemy, new Vector3(50f, 16f, -17f), Quaternion.identity);
-    }
+        //생성 좌표 수정 필요(플레이어 근처 문 좌표로)
+        //지금은 임시로 랜덤 좌표 지정해서 생성
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int ranInt = Random.Range(0, 3);    //랜덤 int
+        if (ranInt == 0)
+        {
+            GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(0f, 16f, 37f), Quaternion.identity);
+        }
+        else if (ranInt == 1)
+        {
+            GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(14f, 16f, -65f), Quaternion.identity);
+        }
+        else if(ranInt == 2)
+        {
+            GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(50f, 16f, -17f), Quaternion.identity);
+        }
     }
 }
