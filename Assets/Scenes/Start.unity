@@ -3663,7 +3663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGSlider: {fileID: 1019856161}
   EFSlider: {fileID: 982698247}
-  StartBG: {fileID: 1406838170}
+  BGSound: {fileID: 1406838170}
 --- !u!82 &1406838170
 AudioSource:
   m_ObjectHideFlags: 0
