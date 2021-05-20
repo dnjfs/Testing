@@ -7,6 +7,17 @@ public class PlayingPause : MonoBehaviour
     //일시정지 패널
     public GameObject pausePanel;
 
+    //일시정지할 오디오
+    private AudioSource BGAudio;
+    private AudioSource EFAudio;
+
+    void Start()
+    {
+        //배경음악과 효과음의 오디오 소스 컴포넌트를 가져옴
+        BGAudio = GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>();
+        EFAudio = GameObject.FindWithTag("Player").GetComponent<AudioSource>();
+    }
+
     public void GamePause()
     {
         //만약 게임 일시정지 버튼을 눌렀다면
@@ -14,6 +25,9 @@ public class PlayingPause : MonoBehaviour
         pausePanel.SetActive(true);
         //시간 멈춤
         Time.timeScale = 0f;
+        //배경음악, 효과음 일시정지
+        BGAudio.Pause();
+        EFAudio.Pause();
     }
 
     public void GameResume()
@@ -23,5 +37,8 @@ public class PlayingPause : MonoBehaviour
         pausePanel.SetActive(false);
         //시간 흐름
         Time.timeScale = 1f;
+        //배경음악, 효과음 다시 재생
+        BGAudio.UnPause();
+        EFAudio.UnPause();
     }
 }
