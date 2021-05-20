@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public float timeScore; //최종 플레이 시간
 
     public string gameLevel; //게임 난이도
-    public float sound_BGLevel; //배경음악 사운드 크기
-    public float sound_EFLevel; //효과음 사운드 크기
+    //public float sound_BGLevel; //배경음악 사운드 크기
+    //public float sound_EFLevel; //효과음 사운드 크기
 
     public int repetitionCount;   //길 중복도(가장 높은 중복 횟수)
 
@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
 
         //변수 초기화
         nickName = null;
-        playTime = timeScore = sound_BGLevel = sound_EFLevel  = 0f;
+        playTime = timeScore = 0f;
+        //sound_BGLevel = sound_EFLevel  = 1f;    //사운드의 크기는 최대로 설정
         gameLevel = "normal";   //게임 난이도 normal로 설정
         repetitionCount = 0;    //길 중복횟수 초기화
     }
