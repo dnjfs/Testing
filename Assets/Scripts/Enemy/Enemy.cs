@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private bool isNear; //근처에 플레이어가 있는지
     //private bool isNeedTurn;
-    Renderer capsuleColor; //플레이어 발견 시 색깔 변경(임시)
+    //Renderer capsuleColor; //플레이어 발견 시 색깔 변경(임시)
     NavMeshAgent agent; //자신의 agent
     Rigidbody rigid;
 
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     { 
-        capsuleColor = gameObject.GetComponent<Renderer>();
+        //capsuleColor = gameObject.GetComponent<Renderer>();
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = velocity * 2f; //추격 속도 설정
@@ -157,7 +157,7 @@ public class Enemy : MonoBehaviour
         if (coll.tag == "Player")
         {
             isNear = true;
-            capsuleColor.material.color = Color.red;
+            //capsuleColor.material.color = Color.red;
 
             coll.GetComponent<Player>().NearEnemyNum++;
         }
@@ -176,7 +176,7 @@ public class Enemy : MonoBehaviour
         {
             isNear = false;
             //플레이어가 괴물에게서 벗어나도 마지막 목적지 도착 후 다시 랜덤이동 하도록 구현
-            capsuleColor.material.color = Color.white;
+            //capsuleColor.material.color = Color.white;
 
             coll.GetComponent<Player>().NearEnemyNum--;
         }
