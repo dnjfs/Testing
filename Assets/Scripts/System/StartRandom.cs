@@ -6,9 +6,16 @@ public class StartRandom : MonoBehaviour
 {
     //Player Prefab을 받을 public 변수
     public GameObject Player;
+
+    //Maze Prefab을 받을 public 변수
     public GameObject T_Map;
     public GameObject E_Map;
     public GameObject S_Map;
+
+    //맵 별 중복도 검사 블록
+    public GameObject T_Block;
+    public GameObject E_Block;
+    public GameObject S_Block;
 
     //플레이어가 생성될 좌표(X, Z 좌표가 모두 54, -54 중 하나)
     float[] XZPosition = {54f, -54f};
@@ -21,18 +28,21 @@ public class StartRandom : MonoBehaviour
         int mapIndex = Random.Range(0, 3);
         if (mapIndex == 0)
         {
-            GameObject maze = (GameObject)Instantiate(T_Map, new Vector3(0f, 0f, 0f), Quaternion.identity);
-            GameManager.instance.mazeType = "T";
+            GameObject maze = (GameObject)Instantiate(T_Map, new Vector3(0f, 0f, 0f), Quaternion.identity); //T맵 생성
+            GameManager.instance.mazeType = "T";    //T맵 정보 저장
+            GameObject Repetition = (GameObject)Instantiate(T_Block, new Vector3(-28.05f, -7.17f, -42.78f), Quaternion.identity); //T맵 중복성 검사 블록 생성
         }
         else if (mapIndex == 1)
         {
-            GameObject maze = (GameObject)Instantiate(E_Map, new Vector3(0f, 0f, 0f), Quaternion.identity);
-            GameManager.instance.mazeType = "E";
+            GameObject maze = (GameObject)Instantiate(E_Map, new Vector3(0f, 0f, 0f), Quaternion.identity); //E맵 생성
+            GameManager.instance.mazeType = "E";    //E맵 정보 저장
+            GameObject Repetition = (GameObject)Instantiate(E_Block, new Vector3(-28.05f, -7.17f, -42.78f), Quaternion.identity); //E맵 중복성 검사 블록 생성
         }
         else
         {
-            GameObject maze = (GameObject)Instantiate(S_Map, new Vector3(0f, 0f, 0f), Quaternion.identity);
-            GameManager.instance.mazeType = "S";
+            GameObject maze = (GameObject)Instantiate(S_Map, new Vector3(0f, 0f, 0f), Quaternion.identity); //S맵 생성
+            GameManager.instance.mazeType = "S";    //S맵 정보 저장
+            GameObject Repetition = (GameObject)Instantiate(S_Block, new Vector3(-28.05f, -7.17f, -42.78f), Quaternion.identity); //S맵 중복성 검사 블록 생성
         }
         
 

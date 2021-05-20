@@ -5,9 +5,9 @@ using System.Linq;  //Max()를 사용하기 위해 명시
 
 public class Repetition : MonoBehaviour
 {
-    public int[] Count = new int[79];   //블록별 중복 횟수를 저장할 배열
+    public int[] Count;   //블록별 중복 횟수를 저장할 배열
 
-    //배열의 처음부터 끝까지 계산하는 것을 반복하는 것은 비효율적인 것 같아, 지나가지 않은 길을 저장해놓고 지나가면 없애는 방식으로 계산
+    //지나가지 않은 길을 저장해놓고 지나가면 없애는 방식으로 계산
     //지나가지 않은 길을 저장할 리스트
     public List<int> leftBlock = new List<int>();
 
@@ -17,6 +17,9 @@ public class Repetition : MonoBehaviour
 
     public bool isCreateElevator;   //엘리베이터 생성 여부
 
+    //T맵은 중복성 체크 블록 47개
+    //E, S맵은 중복성 체크 블록 65개
+    int NumberOfBlock;  //중복성 체크 블록의 개수
 
     void Start()
     {
@@ -24,8 +27,13 @@ public class Repetition : MonoBehaviour
         ProgressRate = 0f;  //진행률 초기화
         EnemyCount = 0; //Enemy수 초기화
         isCreateElevator = false;   //엘리베이터 생성 여부 초기화
-        
-        for (int i = 0; i < 79; i++)    //지나가지 않은 길 리스트 추가(초기화)
+
+        if (GameManager.instance.mazeType == "T")
+            NumberOfBlock = 47;
+        else
+            NumberOfBlock = 65;
+
+        for (int i = 0; i < NumberOfBlock; i++)    //지나가지 않은 길 리스트 추가(초기화)
             leftBlock.Add(i);
     }
 
@@ -49,15 +57,6 @@ public class Repetition : MonoBehaviour
 
     }
 
-    public int MaxCount()
-    {
-        //가장 많은 중복 카운트값을 구하는 함수
-        //배열 중 가장 높은 값을 구하여 반환
-        return MaxValue;
-
-        //실시간으로 GameManager 싱글톤 값 변경하는게 나을까? 아니면 죽거나 게임 끝났을 때 값 변경하는게 나을까?
-    }
-
     //현재 진행률을 반환하는 함수
     public double Progress()
     {
@@ -65,8 +64,8 @@ public class Repetition : MonoBehaviour
 
         int left = leftBlock.Count();   //남은 길의 수
         
-        double temp1 = 79 - left;
-        double temp2 = temp1 / 79;
+        double temp1 = NumberOfBlock - left;
+        double temp2 = temp1 / NumberOfBlock;
         double temp3 = temp2 * 100;
         ProgressRate = temp3; //현재 진행률 계산
         
