@@ -4,28 +4,64 @@ using UnityEngine;
 
 public class EnemyStart : MonoBehaviour
 {
-    public GameObject Enemy;
+    public GameObject Enemy;    //Enemy 오브젝트
+    Transform playerTransform;   //Enemy 생성 좌표의 기준이 될 Player의 좌표
 
-    //Enemy 생성 함수(이 함수 호출시 Enemy 생성됨
+    //Enemy가 나올 수 있는 문 좌표 리스트
+    public List<Vector3> doors = new List<Vector3>();
+    
+    void Start()
+    {
+        //Player의 좌표를 가져올 컴포넌트
+        playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+
+
+        //맵 타입에 따라 Enemy가 나올 수 있는 문 좌표 추가
+        if (GameManager.instance.mazeType == "T")
+        {
+            doors.Add(new Vector3(-32f, -4f, 1.5f));
+            doors.Add(new Vector3(-34f, -4f, 34f));
+            doors.Add(new Vector3(-36f, -4f, -55f));
+            doors.Add(new Vector3(55f, -4f, -30f));
+            doors.Add(new Vector3(25f, -4f, 55f));
+            doors.Add(new Vector3(-55f, -4f, 19f));
+            doors.Add(new Vector3(35f, -4f, 3f));
+            doors.Add(new Vector3(35f, -4f, 22f));
+        }
+        else //E와 S의 문 좌표는 같음
+        {
+            doors.Add(new Vector3(-27f, -4f, 8f));
+            doors.Add(new Vector3(-27f, -4f, 40f));
+            doors.Add(new Vector3(-36f, -4f, -58f));
+            doors.Add(new Vector3(55f, -4f, -30f));
+            doors.Add(new Vector3(25f, -4f, 52f));
+            doors.Add(new Vector3(27f, -4f, -14f));
+            doors.Add(new Vector3(27f, -4f, -45f));
+            doors.Add(new Vector3(-55f, -4f, 31f));
+        }
+    }
+
+    //Enemy 생성 함수(이 함수 호출시 Enemy 생성됨)
     public void CreateEnemy()
     {
-        //생성 좌표 수정 필요(플레이어 근처 문 좌표로)
-        //지금은 임시로 랜덤 좌표 지정해서 생성
+        //플레이어 근처 문에서 Enemy 생성
 
-        
-        int ranInt = Random.Range(0, 3);    //랜덤 int
-        if (ranInt == 0)
+        //기준 거리(첫번째 벡터의 거리)
+        float shortDis = Vector3.Distance(playerTransform.position, doors[0]);
+        Vector3 shortDoor = doors[0];   //가장 가까운 문의 좌표를 기준 좌표로 설정
+
+        foreach (Vector3 EnemyPosition in doors)
         {
-            GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(0f, 16f, 37f), Quaternion.identity);
+            float distance = Vector3.Distance(playerTransform.position, EnemyPosition);
+
+            if (distance < shortDis) //기준 거리보다 거리가 가까우면
+            {
+                shortDis = distance;    //가장 가까운 거리 갱신
+                shortDoor = EnemyPosition;  //가장 가까운 문의 좌표 갱신
+            }
         }
-        else if (ranInt == 1)
-        {
-            GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(14f, 16f, -65f), Quaternion.identity);
-        }
-        else if(ranInt == 2)
-        {
-            GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(50f, 16f, -17f), Quaternion.identity);
-        }
-        
+
+        //가장 가까운 문의 좌표에 몬스터 생성
+        GameObject enemy = (GameObject)Instantiate(Enemy, shortDoor, Quaternion.identity);
     }
 }

@@ -21,15 +21,18 @@ public class StartRandom : MonoBehaviour
         int mapIndex = Random.Range(0, 3);
         if (mapIndex == 0)
         {
-            GameObject maze = (GameObject)Instantiate(T_Map, new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            GameObject maze = (GameObject)Instantiate(T_Map, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            GameManager.instance.mazeType = "T";
         }
         else if (mapIndex == 1)
         {
-            GameObject maze = (GameObject)Instantiate(E_Map, new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            GameObject maze = (GameObject)Instantiate(E_Map, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            GameManager.instance.mazeType = "E";
         }
         else
         {
-            GameObject maze = (GameObject)Instantiate(S_Map, new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            GameObject maze = (GameObject)Instantiate(S_Map, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            GameManager.instance.mazeType = "S";
         }
         
 
@@ -49,7 +52,7 @@ public class StartRandom : MonoBehaviour
         }
         else
         {
-            GameObject player = (GameObject)Instantiate(Player, new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]), Quaternion.Euler(0f, 0f, 0f));
+            GameObject player = (GameObject)Instantiate(Player, new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]), Quaternion.identity);
         }
     }
 }

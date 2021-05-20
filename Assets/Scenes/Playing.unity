@@ -707,7 +707,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a57e06a4bbe496b4489d824bf7d68185, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a57e06a4bbe496b4489d824bf7d68185, type: 3}
       propertyPath: m_LocalPosition.x
@@ -749,7 +749,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8633757517338795095, guid: a57e06a4bbe496b4489d824bf7d68185, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -3852341972610935857, guid: a57e06a4bbe496b4489d824bf7d68185, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3011811704370746016, guid: a57e06a4bbe496b4489d824bf7d68185, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5940,7 +5948,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4176287818234658185, guid: 1800f8cdc4438c640964e7291c3b6876, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4176287818234658185, guid: 1800f8cdc4438c640964e7291c3b6876, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7079,7 +7087,7 @@ Transform:
   - {fileID: 990774107}
   - {fileID: 778119344}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1520404748
 GameObject:
@@ -7318,7 +7326,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b736efeaa06432446b37672a3c2a52a9, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b736efeaa06432446b37672a3c2a52a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7481,6 +7489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 2379192465100413543, guid: 2bd52b3b4a5b7d14588873a4f08ebde9, type: 3}
+  doors: []
 --- !u!114 &1586769809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7611,7 +7620,7 @@ RectTransform:
   - {fileID: 1472275501}
   - {fileID: 2034177974}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8252,7 +8261,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1822247830
 GameObject:
