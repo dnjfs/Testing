@@ -22,10 +22,10 @@ public class SceneChange : MonoBehaviour
         
     }
 
-    public void ChangeLankingScene()
+    public void ChangeRankingScene()
     {
-        //Lanking 버튼을 누르면 Lanking 씬으로 이동
-        SceneManager.LoadScene("Lanking");
+        //Ranking 버튼을 누르면 Ranking 씬으로 이동
+        SceneManager.LoadScene("Ranking");
     }
 
     public void Exit()
