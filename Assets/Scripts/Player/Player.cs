@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
         heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
 
-        SetPlayerLevel();   //플레이어 난이도 설정
+        //SetPlayerLevel();   //DialogManager에서 처리
 
         //플레이어 생성되면 시스템 시작메시지 출력
         //GameObject.FindWithTag("GameSystem").GetComponent<DialogManager>().StartMessage();

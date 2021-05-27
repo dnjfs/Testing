@@ -69,8 +69,9 @@ public class DialogManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
         }
 
-        //출력할 메시지의 배경 이미지 페이드 인 효과 연출(GameSystem 오브젝트의 FadeEffects 스크립트의 FadeOut 함수)
+        //출력할 메시지의 배경 이미지 페이드 인 효과 연출(GameSystem 오브젝트의 FadeEffects 스크립트의 FadeIn 함수)
         GameObject.FindWithTag("GameSystem").GetComponent<FadeEffects>().FadeIn(BackGround);
+        GameObject.FindWithTag("Player").GetComponent<Player>().SetPlayerLevel();   //난이도에 따른 플레이어 속도 설정
 
         //시스템 메시지 오브젝트 비활성화
         //BackGround.gameObject.SetActive(false);

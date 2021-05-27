@@ -59,10 +59,10 @@ public class FadeEffects : MonoBehaviour
     //투명한 이미지를 불투명하게 만드는 코루틴 함수 -> Fade Out 효과를 나타내는 코루틴 함수
     IEnumerator coFadeOut(Image FadeOutImg)
     {
-        //Fade In 효과를 낼 이미지 활성화
+        //Fade Out 효과를 낼 이미지 활성화
         FadeOutImg.gameObject.SetActive(true);
 
-        //Fade In 중인 시간 초기화
+        //Fade Out 중인 시간 초기화
         Fadingtime = 0f;
 
         //임시로 색깔을 저장할 변수
