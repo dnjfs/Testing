@@ -9,6 +9,8 @@ public class EnemyStart : MonoBehaviour
 
     //Enemy가 나올 수 있는 문 좌표 리스트
     public List<Vector3> doors = new List<Vector3>();
+
+    private float YPosition = -3.8f;    //Y좌표는 동일
     
     void Start()
     {
@@ -19,25 +21,25 @@ public class EnemyStart : MonoBehaviour
         //맵 타입에 따라 Enemy가 나올 수 있는 문 좌표 추가
         if (GameManager.instance.mazeType == "T")
         {
-            doors.Add(new Vector3(-32f, -4f, 1.5f));
-            doors.Add(new Vector3(-34f, -4f, 34f));
-            doors.Add(new Vector3(-36f, -4f, -55f));
-            doors.Add(new Vector3(55f, -4f, -30f));
-            doors.Add(new Vector3(25f, -4f, 55f));
-            doors.Add(new Vector3(-55f, -4f, 19f));
-            doors.Add(new Vector3(35f, -4f, 3f));
-            doors.Add(new Vector3(35f, -4f, 22f));
+            doors.Add(new Vector3(-32f, YPosition, 1.5f));
+            doors.Add(new Vector3(-34f, YPosition, 34f));
+            doors.Add(new Vector3(-36f, YPosition, -55f));
+            doors.Add(new Vector3(55f, YPosition, -30f));
+            doors.Add(new Vector3(25f, YPosition, 55f));
+            doors.Add(new Vector3(-55f, YPosition, 19f));
+            doors.Add(new Vector3(35f, YPosition, 3f));
+            doors.Add(new Vector3(35f, YPosition, 22f));
         }
         else //E와 S의 문 좌표는 같음
         {
-            doors.Add(new Vector3(-27f, -4f, 8f));
-            doors.Add(new Vector3(-27f, -4f, 40f));
-            doors.Add(new Vector3(-36f, -4f, -58f));
-            doors.Add(new Vector3(55f, -4f, -30f));
-            doors.Add(new Vector3(25f, -4f, 52f));
-            doors.Add(new Vector3(27f, -4f, -14f));
-            doors.Add(new Vector3(27f, -4f, -45f));
-            doors.Add(new Vector3(-55f, -4f, 31f));
+            doors.Add(new Vector3(-27f, YPosition, 0f));
+            doors.Add(new Vector3(-27f, YPosition, 32f));
+            doors.Add(new Vector3(-36f, YPosition, -66f));
+            doors.Add(new Vector3(64f, YPosition, -29f));
+            doors.Add(new Vector3(25f, YPosition, 52f));
+            doors.Add(new Vector3(27f, YPosition, -14f));
+            doors.Add(new Vector3(27f, YPosition, -45f));
+            doors.Add(new Vector3(-55f, YPosition, 31f));
         }
     }
 

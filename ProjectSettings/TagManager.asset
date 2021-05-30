@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Monster
   - GameSystem
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX
