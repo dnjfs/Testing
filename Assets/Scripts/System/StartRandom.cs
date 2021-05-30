@@ -17,6 +17,11 @@ public class StartRandom : MonoBehaviour
     public GameObject E_Block;
     public GameObject S_Block;
 
+    //중복도 검사 블록 그룹 좌표(미로 셋 다 동일)
+    private float mazeX = -28.05f;
+    private float maxeY = -7.17f;
+    private float mazeZ = -42.78f;
+
     //플레이어가 생성될 좌표(X, Z 좌표가 모두 54, -54 중 하나)
     float[] XZPosition = {54f, -54f};
     float YPosition = -1f;
@@ -30,19 +35,19 @@ public class StartRandom : MonoBehaviour
         {
             GameObject maze = (GameObject)Instantiate(T_Map, new Vector3(0f, 0f, 0f), Quaternion.identity); //T맵 생성
             GameManager.instance.mazeType = "T";    //T맵 정보 저장
-            GameObject Repetition = (GameObject)Instantiate(T_Block, new Vector3(-28.05f, -7.17f, -42.78f), Quaternion.identity); //T맵 중복성 검사 블록 생성
+            GameObject Repetition = (GameObject)Instantiate(T_Block, new Vector3(mazeX, maxeY, mazeZ), Quaternion.identity); //T맵 중복성 검사 블록 생성
         }
         else if (mapIndex == 1)
         {
             GameObject maze = (GameObject)Instantiate(E_Map, new Vector3(0f, 0f, 0f), Quaternion.identity); //E맵 생성
             GameManager.instance.mazeType = "E";    //E맵 정보 저장
-            GameObject Repetition = (GameObject)Instantiate(E_Block, new Vector3(-28.05f, -7.17f, -42.78f), Quaternion.identity); //E맵 중복성 검사 블록 생성
+            GameObject Repetition = (GameObject)Instantiate(E_Block, new Vector3(mazeX, maxeY, mazeZ), Quaternion.identity); //E맵 중복성 검사 블록 생성
         }
         else
         {
             GameObject maze = (GameObject)Instantiate(S_Map, new Vector3(0f, 0f, 0f), Quaternion.identity); //S맵 생성
             GameManager.instance.mazeType = "S";    //S맵 정보 저장
-            GameObject Repetition = (GameObject)Instantiate(S_Block, new Vector3(-28.05f, -7.17f, -42.78f), Quaternion.identity); //S맵 중복성 검사 블록 생성
+            GameObject Repetition = (GameObject)Instantiate(S_Block, new Vector3(mazeX, maxeY, mazeZ), Quaternion.identity); //S맵 중복성 검사 블록 생성
         }
         
 
@@ -58,11 +63,11 @@ public class StartRandom : MonoBehaviour
         //X좌표가 양수이면 180도 회전 / X좌표가 음수이면 회전하지 않은 채로 생성
         if (XZPosition[ZIndex] > 0)
         {
-            GameObject player = (GameObject)Instantiate(Player, new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]), Quaternion.Euler(0f, 180f, 0f));
+            GameObject player = (GameObject)Instantiate(Player, new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]), Quaternion.Euler(0f, 180f, 0f));    //플레이어 회전해서 생성
         }
         else
         {
-            GameObject player = (GameObject)Instantiate(Player, new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]), Quaternion.identity);
+            GameObject player = (GameObject)Instantiate(Player, new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]), Quaternion.identity);   //플레이어 기본 생성
         }
     }
 }

@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         playTime = timeScore = 0f;
         gameLevel = "normal";   //게임 난이도 normal로 설정
         repetitionCount = 0;    //길 중복횟수 초기화
+
     }
 
     void Update()

@@ -1311,14 +1311,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586769803}
-  - component: {fileID: 1586769805}
-  - component: {fileID: 1586769804}
   - component: {fileID: 1586769808}
   - component: {fileID: 1586769806}
   - component: {fileID: 1586769807}
   - component: {fileID: 1586769809}
   - component: {fileID: 1586769810}
   - component: {fileID: 1586769811}
+  - component: {fileID: 1586769805}
+  - component: {fileID: 1586769804}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: GameSystem
@@ -1371,9 +1371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23b285e784a102458f461303fed9a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDialog: {fileID: 1029242373}
-  BackGround: {fileID: 765495401}
-  BlackImage: {fileID: 1296112603}
+  messageText: {fileID: 1029242373}
+  backGround: {fileID: 765495401}
 --- !u!114 &1586769806
 MonoBehaviour:
   m_ObjectHideFlags: 0

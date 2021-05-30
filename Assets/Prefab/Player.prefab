@@ -211,7 +211,6 @@ GameObject:
   - component: {fileID: -6437486342070619294}
   - component: {fileID: 8031332857632172110}
   - component: {fileID: 7655995996184996777}
-  - component: {fileID: 889285911192468679}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -460,15 +459,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EFSound: {fileID: -6437486342070619294}
---- !u!114 &889285911192468679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222732441141516211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afdaa4a5d209e1741b9cd844c06e8c89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
