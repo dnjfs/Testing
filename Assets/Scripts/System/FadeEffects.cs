@@ -2,86 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FadeEffects : MonoBehaviour
 {
-    //Fade In, Fade Out 효과를 내는 스크립트
+    public static float fadeTime = 1f; //Fade 효과 총 재생 시간  
 
-    //Fade 효과 총 재생 시간  
-    public float FadeTime = 2f;
-    //Fade 효과 재생중인 시간
-    public float Fadingtime = 0f;
-
-    public void FadeIn(Image FadeInImg)
+    public static void FadeIn(Image fadeImage)
     {
-        //페이드인 함수 실행
-        StartCoroutine(coFadeIn(FadeInImg));
-    }
-
-    public void FadeOut(Image FadeOutImg)
-    {
-        //페이드아웃 함수 실행
-        StartCoroutine(coFadeOut(FadeOutImg));
-    }
-
-    //불투명한 이미지를 투명하게 만드는 코루틴 함수 -> Fade In 효과를 내는 코루틴 함수
-    IEnumerator coFadeIn(Image FadeInImg)
-    {
-        //Fade In 효과를 낼 이미지 활성화
-        FadeInImg.gameObject.SetActive(true);
-
-        //Fade In 중인 시간 초기화
-        Fadingtime = 0f;
-        
-        //임시로 색깔을 저장할 변수
-        Color tempColor = FadeInImg.color;
-
-        while (tempColor.a > 0f)
+        //페이드인 함수 실행(어둡다가 밝아짐)
+        Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성
+        seq.OnStart(() =>
         {
-            Fadingtime += (Time.timeScale * Time.deltaTime) / FadeTime;
+            fadeImage.gameObject.SetActive(true); //이미지 활성화
+        });
+        seq.Append(fadeImage.DOFade(0f, fadeTime));  //0f 색깔로 2f동안 변경
 
-            //투명도 설정
-            tempColor.a = Mathf.Lerp(1, 0, Fadingtime);
-
-            //기본 이미지에 바뀐 색깔 저장
-            FadeInImg.color = tempColor;
-
-            yield return null;
-        }
-
-        //Fade In 효과를 낸 이미지 비활성화
-        FadeInImg.gameObject.SetActive(false);
-
-        //코루틴 종료
-        yield return null;
-    }
-
-    //투명한 이미지를 불투명하게 만드는 코루틴 함수 -> Fade Out 효과를 나타내는 코루틴 함수
-    IEnumerator coFadeOut(Image FadeOutImg)
-    {
-        //Fade Out 효과를 낼 이미지 활성화
-        FadeOutImg.gameObject.SetActive(true);
-
-        //Fade Out 중인 시간 초기화
-        Fadingtime = 0f;
-
-        //임시로 색깔을 저장할 변수
-        Color tempColor = FadeOutImg.color;
-
-        while (tempColor.a < 1f)
+        seq.OnComplete(() =>
         {
-            Fadingtime += (Time.timeScale * Time.deltaTime) / FadeTime;
-
-            //투명도 설정
-            tempColor.a = Mathf.Lerp(0, 1, Fadingtime);
-
-            //기본 이미지에 바뀐 색깔 저장
-            FadeOutImg.color = tempColor;
-
-            yield return null;
-        }
-
-        //코루틴 종료
-        yield return null;
+            fadeImage.gameObject.SetActive(false); //이미지 비활성화
+        });        
     }
+    
+    public static void FadeOut(Image fadeImage)
+    {
+        //페이드아웃 함수 실행(밝다가 어두워짐)
+        Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성
+        seq.OnStart(() =>
+        {
+            fadeImage.gameObject.SetActive(true); //이미지 활성화
+        });
+        seq.Append(fadeImage.DOFade(1f, fadeTime));  //1f 색깔로 2f동안 변경
+
+        seq.OnComplete(() =>
+        {
+            fadeImage.gameObject.SetActive(false); //이미지 비활성화
+        });
+    }
+
+
+    //페이드 아웃 후 바로 씬 이동하는 함수(자연스러운 페이드 아웃을 위해 임시로 생성)
+    public static void FadeOutAndLoadScene(Image fadeImage, string sceneName)
+    {
+        //페이드아웃 함수 실행(밝다가 어두워짐)
+        Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성
+        seq.OnStart(() =>
+        {
+            fadeImage.gameObject.SetActive(true); //이미지 활성화
+        });
+        seq.Append(fadeImage.DOFade(1f, fadeTime));  //1f 색깔로 2f동안 변경
+
+        seq.OnComplete(() =>
+        {
+            LoadingManager.LoadScene(sceneName);
+            //blackImage.gameObject.SetActive(false); //이미지 비활성화
+        });
+    }
+
 }

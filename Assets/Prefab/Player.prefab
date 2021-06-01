@@ -207,10 +207,10 @@ GameObject:
   - component: {fileID: 1222732441141516174}
   - component: {fileID: 1222732441141516209}
   - component: {fileID: 1222732441141516208}
-  - component: {fileID: 1222732441141516173}
   - component: {fileID: -6437486342070619294}
   - component: {fileID: 8031332857632172110}
   - component: {fileID: 7655995996184996777}
+  - component: {fileID: -9136306870597245094}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -312,31 +312,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1222732441141516173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222732441141516211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0868d8b5fe1bb9343978e507b9de3e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 1222732440985259034}
-  cameraSensitivity: 3
-  run: 0
-  isChased: 0
-  speed: 0
-  currentSpeed: 0
-  NearEnemyNum: 0
-  CloseEnemyNum: 0
-  staminaBar: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
-  stamina: 1
-  maxStamina: 0
-  increasingStamina: 0
-  decreasingStamina: 0
 --- !u!82 &-6437486342070619294
 AudioSource:
   m_ObjectHideFlags: 0
@@ -459,3 +434,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EFSound: {fileID: -6437486342070619294}
+--- !u!114 &-9136306870597245094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222732441141516211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0868d8b5fe1bb9343978e507b9de3e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1222732440985259034}
+  cameraSensitivity: 0
+  run: 0
+  isChased: 0
+  speed: 0
+  currentSpeed: 0
+  NearEnemyNum: 0
+  CloseEnemyNum: 0
+  staminaBar: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+  stamina: 0
+  maxStamina: 0
+  increasingStamina: 0
+  decreasingStamina: 0
+  fadeImg: {fileID: 7958489047437074781, guid: ee0c6f0cfb9ec72428b556827aacaa10, type: 3}

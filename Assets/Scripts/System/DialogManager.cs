@@ -19,6 +19,7 @@ public class DialogManager : MonoBehaviour
     private string[] createElevatorText = { "출구가 열렸습니다." };
 
 
+
     public void StartMessage()
     {
         //게임 시작 시스템 메시지
@@ -55,6 +56,7 @@ public class DialogManager : MonoBehaviour
         seq.OnComplete(() => {
             backGround.gameObject.SetActive(false); //텍스트 배경 비활성화
             messageText.gameObject.SetActive(false);    //텍스트 비활성화
+
         });
     }
 

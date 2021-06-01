@@ -32,10 +32,10 @@ public class EnemyStart : MonoBehaviour
         }
         else //E와 S의 문 좌표는 같음
         {
-            doors.Add(new Vector3(-27f, YPosition, 0f));
-            doors.Add(new Vector3(-27f, YPosition, 32f));
-            doors.Add(new Vector3(-36f, YPosition, -66f));
-            doors.Add(new Vector3(64f, YPosition, -29f));
+            doors.Add(new Vector3(-27f, YPosition, 8f));
+            doors.Add(new Vector3(-27f, YPosition, 40f));
+            doors.Add(new Vector3(-36f, YPosition, -58f));
+            doors.Add(new Vector3(55f, YPosition, -30f));
             doors.Add(new Vector3(25f, YPosition, 52f));
             doors.Add(new Vector3(27f, YPosition, -14f));
             doors.Add(new Vector3(27f, YPosition, -45f));
