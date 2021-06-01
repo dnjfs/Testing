@@ -15,7 +15,7 @@ public class SceneChange : MonoBehaviour
 
     void Awake()
     {
-        FadeEffects.FadeIn(blackImage);
+        FadeEffects.FadeIn(blackImage, 1f);
     }
 
     public void ChangeStartScene()
@@ -24,7 +24,7 @@ public class SceneChange : MonoBehaviour
         //(LoadManager.LoadScene이 아니라 LoadingManager 스크립트의 LoadScene)
 
         Time.timeScale = 1f;
-        FadeEffects.FadeOutAndLoadScene(clearImage, "Start");
+        FadeEffects.FadeOutAndLoadScene(clearImage, "Start", 0.5f);
         //LoadingManager.LoadScene("Start");
     }
 
@@ -33,7 +33,7 @@ public class SceneChange : MonoBehaviour
         //loading씬 후 play 씬으로 이동
         //(LoadManager.LoadScene이 아니라 LoadingManager 스크립트의 LoadScene)
 
-        FadeEffects.FadeOutAndLoadScene(clearImage, "Playing");
+        FadeEffects.FadeOutAndLoadScene(clearImage, "Playing", 0.5f);
         //LoadingManager.LoadScene("Playing");
     }
 
@@ -42,7 +42,7 @@ public class SceneChange : MonoBehaviour
         //loading씬 후 Ranking 씬으로 이동
         //(LoadManager.LoadScene이 아니라 LoadingManager 스크립트의 LoadScene)
 
-        FadeEffects.FadeOutAndLoadScene(clearImage, "Ranking");
+        FadeEffects.FadeOutAndLoadScene(clearImage, "Ranking", 0.5f);
         //LoadingManager.LoadScene("Ranking");
     }
 
@@ -77,7 +77,7 @@ public class SceneChange : MonoBehaviour
     void OnLevelWasLoade(int level)
     {
         //씬이 로드될 때마다 Fade In 효과
-        FadeEffects.FadeIn(blackImage);
+        FadeEffects.FadeIn(blackImage, 0.5f);
     }
     
 
