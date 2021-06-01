@@ -1295,7 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea8cec3a5c5633498b67a53976b95cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 2379192465100413543, guid: 2bd52b3b4a5b7d14588873a4f08ebde9, type: 3}
+  Enemy: {fileID: 4634533778592988930, guid: 6da9f1bba262d174bbdbe0641f38158d, type: 3}
   doors: []
 --- !u!114 &1586769810
 MonoBehaviour:
