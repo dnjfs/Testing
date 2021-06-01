@@ -289,7 +289,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222732441141516211}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ff208fb0a9148964189dcb74f5528ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -457,6 +457,3 @@ MonoBehaviour:
   staminaBar: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
   stamina: 0
   maxStamina: 0
-  increasingStamina: 0
-  decreasingStamina: 0
-  fadeImg: {fileID: 7958489047437074781, guid: ee0c6f0cfb9ec72428b556827aacaa10, type: 3}
