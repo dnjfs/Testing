@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] //이 키워드를 추가하여 에디터에서 접근 가능
     private Transform cameraTransform;
-    public float cameraSensitivity;
 
     private float halfScreenWidth; //오른쪽 화면 절반만 터치하여 시점 전환
     private int rightFingerId;
@@ -160,8 +159,8 @@ public class Player : MonoBehaviour
 
 
                             //수직
-                            this.lookInput = t.deltaPosition * this.cameraSensitivity * Time.deltaTime;
-                            this.cameraPitch = Mathf.Clamp(this.cameraPitch - this.lookInput.y, -20f, 30f); //Pitch의 각도는 위로 10도 ~ 아래로 35도까지
+                            this.lookInput = t.deltaPosition * Time.deltaTime * 3.0f;
+                            this.cameraPitch = Mathf.Clamp(this.cameraPitch - this.lookInput.y, -20f, 30f); //Pitch의 각도는 위로 20도 ~ 아래로 30도까지
                             this.cameraTransform.localRotation = Quaternion.Euler(this.cameraPitch, 0, 0);
                         }
                     }
