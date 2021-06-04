@@ -6,8 +6,9 @@ TagManager:
   tags:
   - Monster
   - GameSystem
-  - Left
-  - Right
+  - Elevator_T
+  - Elevator_S
+  - Elevator_E
   layers:
   - Default
   - TransparentFX

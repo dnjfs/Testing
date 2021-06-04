@@ -69,7 +69,7 @@ public class Repetition : MonoBehaviour
         double temp3 = temp2 * 100;
         ProgressRate = temp3; //현재 진행률 계산
         
-        //ProgressRate = ((79 - left) / 79) * 100;  //한 번에 계산하면 계산이 안되고 따로 나눠서 계산하면 됨.. 왜지?
+        //ProgressRate = ((79 - left) / 79) * 100;  //한 번에 계산하면 계산이 안되고 따로 나눠서 계산하면 됨
 
         return ProgressRate;
     }

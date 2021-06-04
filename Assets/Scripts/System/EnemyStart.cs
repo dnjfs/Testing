@@ -7,7 +7,7 @@ public class EnemyStart : MonoBehaviour
     public GameObject Enemy;    //Enemy 오브젝트
     Transform playerTransform;   //Enemy 생성 좌표의 기준이 될 Player의 좌표
 
-    //Enemy가 나올 수 있는 문 좌표 리스트
+    //Enemy가 생성될 문 좌표 리스트
     public List<Vector3> doors = new List<Vector3>();
 
     private float YPosition = -3.8f;    //Y좌표는 동일
