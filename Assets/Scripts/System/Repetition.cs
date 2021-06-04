@@ -109,12 +109,17 @@ public class Repetition : MonoBehaviour
 
 
         if (ProgressRate == 100 && isCreateElevator == false)    //만약 현재 진행률이 100퍼센트라면 == 모든 길을 다 돌았다면
-        { 
+        {
             //GameManager의 isFinished를 true로 설정
-            //GameManager.instance.isFinished = true;
+            GameManager.instance.isFinished = true;
 
             //엘리베이터 생성 메시지 출력
             this.gameObject.GetComponent<DialogManager>().CreateElevatorMessage();
+
+            //엘리베이터 열고 10초 뒤 닫음
+            int elevatorIndex = GameManager.instance.elevatorIndex; //플레이어 엘리베이터 인덱스를 가져옴
+            this.GetComponent<DoorManager>().OpenDoor(elevatorIndex, elevatorIndex);    //엘리베이터 문을 열고 10초 뒤 닫는다.
+
             isCreateElevator = true; //엘리베이터 생성 완료
         }
     }
