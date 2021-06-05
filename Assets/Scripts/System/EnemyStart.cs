@@ -12,6 +12,7 @@ public class EnemyStart : MonoBehaviour
 
     private float YPosition = -3.8f;    //Y좌표는 동일
     
+    
     void Start()
     {
         //Player의 좌표를 가져올 컴포넌트
@@ -66,4 +67,5 @@ public class EnemyStart : MonoBehaviour
         //가장 가까운 문의 좌표에 몬스터 생성
         GameObject enemy = (GameObject)Instantiate(Enemy, shortDoor, Quaternion.identity);
     }
+    
 }

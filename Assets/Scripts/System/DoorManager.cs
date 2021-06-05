@@ -60,16 +60,8 @@ public class DoorManager : MonoBehaviour
     {
         if (!isMoving && isCloseDoor)  //지금 문이 닫혀있고 움직이지 않는 상태라면
         {
-            isMoving = true;    //문이 움직이는 중 설정
-            leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
-            rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
-
-            Invoke("isMoving = false", 3f);  //3초 뒤 문이 움직이지 않는 중으로 설정
-            Invoke("isCloseDoor = false", 3f);  //3초 뒤 문이 열려있음으로 설정
+            StartCoroutine(cOpenDoor(leftIndex, rightIndex));   //문 여는 코루틴 함수 실행
         }
-
-        Invoke("CloseDoor", 10f);   //10초 뒤 문 닫음
-        //만약 버튼으로 미리 닫으면 CloseDoor 함수 내의 조건문에 걸려 넘어갈 것.
     }
 
     //해당 인덱스 문 닫기
@@ -77,15 +69,44 @@ public class DoorManager : MonoBehaviour
     {
         if (!isMoving && !isCloseDoor)  //지금 문이 닫혀있지 않고 움직이지 않는 상태라면
         {
-            isMoving = true;    //문이 움직이는 중 설정
-            leftDoors[leftIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
-            rightDoors[rightIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
-
-            Invoke("isMoving = false", 3f);  //3초 뒤 문이 움직이지 않는 중으로 설정
-            Invoke("isCloseDoor = true", 3f);  //3초 뒤 문이 닫혀있음으로 설정
+            StartCoroutine(cCloseDoor(leftIndex, rightIndex));
         }
     }
 
+    //문 여는 코루틴 함수
+    IEnumerator cOpenDoor(int leftIndex, int rightIndex)
+    {
+        isMoving = true;    //문이 움직이는 중 설정
+        leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+
+        yield return new WaitForSeconds(3f);    //3초 뒤
+        isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
+        isCloseDoor = false;    //3초 뒤 문이 열려있음으로 설정
+
+        yield return new WaitForSeconds(7f);    //7초 뒤(==문이 열린지 10초 뒤)
+        CloseDoor(leftIndex, rightIndex);   //문 닫는 함수 실행
+        //만약 버튼으로 문을 미리 닫으면 CloseDoor 함수 내의 조건문에 걸려 그냥 넘어갈 것.
+
+        yield return null;
+
+    }
+
+    //문 닫는 코루틴 함수
+    IEnumerator cCloseDoor(int leftIndex, int rightIndex)
+    {
+        isMoving = true;    //문이 움직이는 중 설정
+        leftDoors[leftIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+
+        yield return new WaitForSeconds(3f);    //3초 뒤
+        isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
+        isCloseDoor = true;    //3초 뒤 문이 열려있음으로 설정
+
+        yield return null;
+    }
+
+    
     //플레이어 좌표에서 가장 가까운 탈출 엘리베이터 지정
     public void SetPlayerElevator(Vector3 playerPosition)
     {
