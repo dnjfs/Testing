@@ -81,6 +81,6 @@ public class StartRandom : MonoBehaviour
         //플레이어와 가장 가까운 엘리베이터 설정
         GameSystem.GetComponent<DoorManager>().SetPlayerElevator(new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]));
         //엘리베이터 버튼 생성
-        GameSystem.GetComponent<ElevatorButton>().CreateElevatorButton();
+        GameSystem.GetComponent<DoorManager>().CreateElevatorButton();
     }
 }

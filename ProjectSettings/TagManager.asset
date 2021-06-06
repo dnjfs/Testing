@@ -9,6 +9,10 @@ TagManager:
   - Elevator_T
   - Elevator_S
   - Elevator_E
+  - CountBlocks
+  - ElevatorOpenButton
+  - ElevatorCloseButton
+  - FirstFloorButton
   layers:
   - Default
   - TransparentFX

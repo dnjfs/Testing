@@ -19,20 +19,23 @@ public class CountBlock : MonoBehaviour
         system = GameObject.FindWithTag("GameSystem");
     }
 
-    //ºí·ÏÀÌ ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹Çß´Ù¸é(OnTriggerEnter·Î ÇØµµ ±¦ÂúÀ» µí)
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½æµ¹ï¿½ß´Ù¸ï¿½(OnTriggerEnterï¿½ï¿½ ï¿½Øµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
     void OnTriggerExit(Collider other)
     {
-        //ºí·ÏÀÇ ÀÌ¸§À» °¡Á®¿È
-        blockName = other.gameObject.name;
-        //ºí·ÏÀÌ ÇØ´çÇÏ´Â ºí·Ï ¹è¿­ÀÇ ÀÎµ¦½º¸¦ °¡Á®¿È(ÀÌ¸§¿¡¼­ °¡Á®¿È)
-        splitText = blockName.Split('(');   //'('¸¦ ±âÁØÀ¸·Î string ºÐÇÒ
+        if (other.tag == "CountBlocks")
+        {
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            blockName = other.gameObject.name;
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+            splitText = blockName.Split('(');   //'('ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ string ï¿½ï¿½ï¿½ï¿½
 
-        string indexChar = splitText[1].Substring(0, 2);  //ºÐÇÒÇÑ ¹®ÀÚ¿­ÀÇ Ã¹¹øÂ°, µÎ¹øÂ° °ª °¡Á®¿È
-        index = int.Parse(indexChar); //charÇü index¸¦ int·Î º¯È¯
+            string indexChar = splitText[1].Substring(0, 2);  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â°, ï¿½Î¹ï¿½Â° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            index = int.Parse(indexChar); //charï¿½ï¿½ indexï¿½ï¿½ intï¿½ï¿½ ï¿½ï¿½È¯
 
 
-        //ºí·Ïº° Áßº¹ È½¼ö¸¦ ÀúÀåÇÏ´Â ¹è¿­ÀÇ ÇØ´ç ÀÎµ¦½º¹øÂ°ÀÇ °ª 1 Áõ°¡
-        //GameObject.FindWithTag("GameSystem").GetComponent<Repetition>().addCount(index);
-        system.GetComponent<Repetition>().addCount(index);
+            //ï¿½ï¿½Ïºï¿½ ï¿½ßºï¿½ È½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½
+            //GameObject.FindWithTag("GameSystem").GetComponent<Repetition>().addCount(index);
+            system.GetComponent<Repetition>().addCount(index);
+        }
     }
 }
