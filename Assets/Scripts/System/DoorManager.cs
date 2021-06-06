@@ -107,7 +107,7 @@ public class DoorManager : MonoBehaviour
     }
 
     
-    //플레이어 좌표에서 가장 가까운 탈출 엘리베이터 지정
+    //플레이어 좌표에서 가장 가까운 탈출 엘리베이터 지정하는 함수
     public void SetPlayerElevator(Vector3 playerPosition)
     {
         //플레이어 엘리베이터 후보: 4, 6, 7, 9번 -> 인덱스: 3, 5, 6, 8

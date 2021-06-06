@@ -1202,6 +1202,7 @@ GameObject:
   - component: {fileID: 1586769806}
   - component: {fileID: 1586769807}
   - component: {fileID: 1586769809}
+  - component: {fileID: 1586769811}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: GameSystem
@@ -1353,6 +1354,19 @@ MonoBehaviour:
   ProgressRate: 0
   EnemyCount: 0
   isCreateElevator: 0
+--- !u!114 &1586769811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586769802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84771a81a026c1941b5fa8bac8adb2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 7522931191311935444, guid: fe3def2aabeed834d813379b45a17b73, type: 3}
 --- !u!1 &1593559836
 GameObject:
   m_ObjectHideFlags: 0

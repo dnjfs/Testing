@@ -26,7 +26,7 @@ public class StartRandom : MonoBehaviour
     float[] XZPosition = {54f, -54f};
     float YPosition = -1f;
 
-    GameObject GameSystem;   //DoorManager 스크립트를 가지고 있는 GameSystem 오브젝트
+    GameObject GameSystem;   //DoorManager, ElevatorButton 스크립트를 가지고 있는 GameSystem 오브젝트
 
     // Start()가 실행되기 전 실행
     void Awake()
@@ -78,7 +78,9 @@ public class StartRandom : MonoBehaviour
             GameObject player = (GameObject)Instantiate(Player, new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]), Quaternion.identity);   //플레이어 기본 생성
         }
 
-        //플레이어와 가장 가까운 엘리베이터 저장
+        //플레이어와 가장 가까운 엘리베이터 설정
         GameSystem.GetComponent<DoorManager>().SetPlayerElevator(new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]));
+        //엘리베이터 버튼 생성
+        GameSystem.GetComponent<ElevatorButton>().CreateElevatorButton();
     }
 }
