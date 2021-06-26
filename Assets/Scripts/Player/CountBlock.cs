@@ -7,7 +7,7 @@ public class CountBlock : MonoBehaviour
     string blockName;
     int index;
 
-    public string[] splitText;
+    public string[] splitText = new string[2];
 
     GameObject system;
 
@@ -19,21 +19,22 @@ public class CountBlock : MonoBehaviour
         system = GameObject.FindWithTag("GameSystem");
     }
 
-    //����� �÷��̾�� �浹�ߴٸ�(OnTriggerEnter�� �ص� ������ ��)
+    //충돌을 벗어나면
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "CountBlocks")
         {
-            //����� �̸��� ������
+            Debug.Log("충돌함");
+            //블록 이름을 가져옴
             blockName = other.gameObject.name;
-            //����� �ش��ϴ� ��� �迭�� �ε����� ������(�̸����� ������)
-            splitText = blockName.Split('(');   //'('�� �������� string ����
+            //블록 이름의 숫자를 저장함(블록 번호)
+            splitText = blockName.Split('(');  
 
-            string indexChar = splitText[1].Substring(0, 2);  //������ ���ڿ��� ù��°, �ι�° �� ������
-            index = int.Parse(indexChar); //char�� index�� int�� ��ȯ
+            string indexChar = splitText[1].Substring(0, 2);  //블록 번호는 두자릿수 인덱스
+            index = int.Parse(indexChar); //문자를 숫자로 바꿈
 
 
-            //��Ϻ� �ߺ� Ƚ���� �����ϴ� �迭�� �ش� �ε�����°�� �� 1 ����
+            //중복성 검사 스크립트의 addCount 함수에 충돌한 블록의 인덱스 전달
             //GameObject.FindWithTag("GameSystem").GetComponent<Repetition>().addCount(index);
             system.GetComponent<Repetition>().addCount(index);
         }

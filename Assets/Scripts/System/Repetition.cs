@@ -33,6 +33,8 @@ public class Repetition : MonoBehaviour
         else
             NumberOfBlock = 65;
 
+        Count = new int[NumberOfBlock]; //블록 개수 초기화
+
         for (int i = 0; i < NumberOfBlock; i++)    //지나가지 않은 길 리스트 추가(초기화)
             leftBlock.Add(i);
     }

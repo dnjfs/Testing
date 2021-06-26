@@ -64,7 +64,7 @@ public class StartRandom : MonoBehaviour
         int XIndex = Random.Range(0, 2);
         int ZIndex = Random.Range(0, 2);
 
-        //해당 인덱스 번째의 좌표의 위치에 Player 생성
+        //해당 인덱스 번째의 좌표의 위치에 Player 생성 코드
         //GameObject player = (GameObject)Instantiate(Player, new Vector3(XPosition[XIndex],YPosition, ZPosition[ZIndex]), Quaternion.identity);
 
         //시작 위치에 따라 시작 시야 방향 설정
