@@ -26,7 +26,10 @@ public class ElevatorButton : MonoBehaviour
 
     void Update()
     {
-        PushOpenButton();   //버튼 눌림 이벤트 항상 확인
+        //버튼 눌림 이벤트 매 프레임마다 체크
+        PushOpenButton(); 
+        PushCloseButton();
+        PushFirstFloorButton();
     }
 
     //엘리베이터 버튼을 누르면 문이 열리는 함수
@@ -38,20 +41,7 @@ public class ElevatorButton : MonoBehaviour
         /*
         if (GameManager.instance.isFinished)    //미로를 다 돌아서 엘리베이터가 생성되었다면
         {
-            if (Input.GetMouseButtonDown(0))    //엘리베이터 버튼을 터치하면
-            {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴
 
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                {
-                    if (hit.collider.tag == "ElevatorButton")   //터치한 오브젝트가 엘리베이터 버튼이라면
-                    {
-                        StartCoroutine(ButtonDown());   //버튼 들어갔다 나오는 움직임
-                        system.GetComponent<DoorManager>().OpenDoor(elevator, elevator);  //탈출구 엘리베이터 열기
-                    }
-                }
-            }
         }
         */
 
@@ -84,12 +74,12 @@ public class ElevatorButton : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, 3f))          //Mathf.Infinity를 사용하면 무한대 거리에서 측정(멀리서 눌러도 인식됨) -> 3f 거리에서 측정되도록 설정
             {
                 if (hit.collider.tag == "ElevatorOpenButton")   //터치한 오브젝트가 엘리베이터 버튼이라면
                 {
-                    StartCoroutine(ButtonDown(upButton));   //버튼 들어갔다 나오는 움직임
-                    system.GetComponent<DoorManager>().OpenDoor(elevator, elevator);  //탈출구 엘리베이터 열기
+                    StartCoroutine(ButtonDown());   //버튼 들어갔다 나오는 움직임
+                    system.GetComponent<DoorManager>().OpenDoor(elevator, elevator);  //탈출구 엘리베이터 1층으로 올라가기
                 }
             }
         }
@@ -98,55 +88,54 @@ public class ElevatorButton : MonoBehaviour
         
     }
     
-    //1층 버튼을 누르면 1층 버튼이 눌러졌음을 확인하는 함수
+    //1층 버튼을 누르고 문이 닫히면 엘리베이터가 위로 올라가도록 설정
     public void PushFirstFloorButton()
     {
-
-        /*
         //테스트를 위한 pc용(테스트를 위해 진행률 100프로 조건 없앰)
         if (Input.GetMouseButtonDown(0))    //엘리베이터 버튼을 터치하면
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, 3f))
             {
                 if (hit.collider.tag == "FirstFloorButton")   //터치한 오브젝트가 1층 버튼이라면
                 {
-                    StartCoroutine(ButtonDown());   //버튼 들어갔다 나오는 움직임
-                    system.GetComponent<DoorManager>().OpenDoor(elevator, elevator);  //탈출구 엘리베이터 열기
+                    //StartCoroutine(ButtonDown());   //버튼 들어갔다 나오는 움직임
+                    system.GetComponent<ElevatorUp>().UpToFirstFloor();  //탈출구 엘리베이터 열기
                 }
             }
         }
-        */
+        
     }
 
-    /*
+    
     //엘리베이터 안의 닫힘 버튼을 누르면 문이 닫히는 함수
     public void PushCloseButton()
-    {
-
+    { 
+        
         //엘리베이터 안의 버튼이라 진행률 100프로 조건 없음.
         if (Input.GetMouseButtonDown(0))    //엘리베이터 버튼을 터치하면
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, 3f))
             {
                 if (hit.collider.tag == "ElevatorCloseButton")   //터치한 오브젝트가 엘리베이터 버튼이라면
                 {
-                    upButton = hit;
-                    StartCoroutine(ButtonDown(closeButton));   //버튼 들어갔다 나오는 움직임
-                    system.GetComponent<DoorManager>().OpenDoor(elevator, elevator);  //탈출구 엘리베이터 열기
+                    //StartCoroutine(ButtonDown());   //버튼 들어갔다 나오는 움직임
+                    system.GetComponent<DoorManager>().CloseDoor(elevator, elevator);  //탈출구 엘리베이터 열기
                 }
             }
         }
+        
+        
     }
-    */
+    
 
     //버튼이 눌러졌다 나오는 모션
-    IEnumerator ButtonDown(GameObject button)
+    IEnumerator ButtonDown()
     {
         if (!isPushing)
         {
@@ -154,15 +143,15 @@ public class ElevatorButton : MonoBehaviour
 
             if (elevator == 3 || elevator == 8)
             {
-                button.transform.DOLocalMoveX(-0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 감소(상대적 값)
+                upButton.transform.DOLocalMoveX(-0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 감소(상대적 값)
                 yield return new WaitForSeconds(0.5f);    //0.5초 뒤
-                button.transform.DOLocalMoveX(0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 증가(상대적 값)
+                upButton.transform.DOLocalMoveX(0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 증가(상대적 값)
             }
             else
             {
-                button.transform.DOLocalMoveZ(-0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 감소(상대적 값)
+                upButton.transform.DOLocalMoveZ(-0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 감소(상대적 값)
                 yield return new WaitForSeconds(0.5f);    //0.5초 뒤
-                button.transform.DOLocalMoveZ(0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 증가(상대적 값)
+                upButton.transform.DOLocalMoveZ(0.02f, 0.5f).SetRelative();  //Z축 값 0.02 만큼 증가(상대적 값)
             }
 
             yield return new WaitForSeconds(0.5f);    //0.5초 뒤

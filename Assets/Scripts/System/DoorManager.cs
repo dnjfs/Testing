@@ -6,12 +6,12 @@ using DG.Tweening;  //DOTween을 사용하기 위해 임포트
 public class DoorManager : MonoBehaviour
 {
     //문 열림 스크립트
-    
-    public GameObject[] leftDoors = new GameObject [12];  //왼쪽 문을 저장할 배열
+
+    public GameObject[] leftDoors = new GameObject[12];  //왼쪽 문을 저장할 배열
     public GameObject[] rightDoors = new GameObject[12]; //오른쪽 문을 저장할 배열
 
-    bool isMoving;    //문이 열리고 있는 중인지 확인
-    bool isCloseDoor;  //마지막으로 열었는지 닫았는지 확인(열은 상태로 열을 수 없고, 닫은 상태로 닫을 수 없음)
+    public bool isMoving;    //문이 열리고 있는 중인지 확인
+    public bool isCloseDoor;  //마지막으로 열었는지 닫았는지 확인(열은 상태로 열을 수 없고, 닫은 상태로 닫을 수 없음)
 
     public GameObject Button;   //엘리베이터 버튼 프리팹을 저장할 변수
     float YPosition = 1f;   //버튼의 Y좌표는 동일
@@ -80,16 +80,17 @@ public class DoorManager : MonoBehaviour
     IEnumerator cOpenDoor(int leftIndex, int rightIndex)
     {
         isMoving = true;    //문이 움직이는 중 설정
+        isCloseDoor = false;    //문이 닫혀있지 않음으로 설정
         leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
         rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
 
         yield return new WaitForSeconds(3f);    //3초 뒤
         isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
-        isCloseDoor = false;    //3초 뒤 문이 열려있음으로 설정
+        //isCloseDoor = false;    //3초 뒤 문이 열려있음으로 설정
 
-        yield return new WaitForSeconds(7f);    //7초 뒤(==문이 열린지 10초 뒤)
+        yield return new WaitForSeconds(7f);    //7초 뒤(+위의 3초 웨이트 ==문이 열린지 10초 뒤)
         CloseDoor(leftIndex, rightIndex);   //문 닫는 함수 실행
-        //만약 버튼으로 문을 미리 닫으면 CloseDoor 함수 내의 조건문에 걸려 그냥 넘어갈 것.
+        //만약 버튼으로 문을 미리 닫았으면 CloseDoor 함수 내의 조건문에 걸려 그냥 넘어갈 것.
 
         yield return null;
 
@@ -109,14 +110,14 @@ public class DoorManager : MonoBehaviour
         yield return null;
     }
 
-    
+
     //플레이어 좌표에서 가장 가까운 탈출 엘리베이터 지정하는 함수
     public void SetPlayerElevator(Vector3 playerPosition)
     {
         //플레이어 엘리베이터 후보: 4, 6, 7, 9번 -> 인덱스: 3, 5, 6, 8
-        List <Vector3> Elevators = new List<Vector3>(); //플레이어 엘리베이터 후보들을 저장할 배열
+        List<Vector3> Elevators = new List<Vector3>(); //플레이어 엘리베이터 후보들을 저장할 배열
 
-        //플레이어 출구 엘리베이터 설정
+        //플레이어 출구 엘리베이터 설정(탈출구들의 오른쪽문과 거리 비교)
         Elevators.Add(rightDoors[3].transform.position);
         Elevators.Add(rightDoors[5].transform.position);
         Elevators.Add(rightDoors[6].transform.position);
