@@ -22,9 +22,8 @@ public class CountBlock : MonoBehaviour
     //충돌을 벗어나면
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "CountBlocks")
+        if (other.gameObject.tag == "CountBlocks")
         {
-            Debug.Log("충돌함");
             //블록 이름을 가져옴
             blockName = other.gameObject.name;
             //블록 이름의 숫자를 저장함(블록 번호)
