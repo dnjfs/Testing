@@ -1998,7 +1998,7 @@ GameObject:
   - component: {fileID: 5516982366051517007}
   - component: {fileID: 5516982366051517006}
   - component: {fileID: 5516982366051517005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: monster_ani_V02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

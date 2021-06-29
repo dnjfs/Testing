@@ -7,44 +7,40 @@ using UnityEngine.SceneManagement;
 public class Enemy : MonoBehaviour
 {
     enum Direction { Up, Right, Down, Left, None }; //이동방향 열거
-    //private Vector3 direction; //이동방향
     public float velocity; //이동속도
 
     private bool isNear; //근처에 플레이어가 있는지
-    //private bool isNeedTurn;
-    //Renderer capsuleColor; //플레이어 발견 시 색깔 변경(임시)
     NavMeshAgent agent; //자신의 agent
     Rigidbody rigid;
 
-    Direction direction;
+    Direction direction; //현재 바라보는 방향
     Direction nextDirection;
     Vector3 moveDirection; //실제 이동방향 벡터
 
     void Start()
     { 
-        //capsuleColor = gameObject.GetComponent<Renderer>();
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = velocity * 2f; //추격 속도 설정
+        agent.speed = 0;
 
-        Invoke("SetMoveDirection", 2f);
-        //Invoke("SetIsNeedTurn", 3f);
+        Invoke("SetMoveDirection", 2f); //생성되고 2초 후 이동
     }
 
     void Update()
     {
-        //if (isNear)
-        //    this.transform.position += new Vector3(direction.x, 0, direction.z) * (velocity*2 * Time.deltaTime); //이동
-        //else
-        //    this.transform.position += new Vector3(direction.x, 0, direction.z) * (velocity * Time.deltaTime);
-
         if (!isNear) //플레이어를 쫓고있지 않는 상태
         {
-            //if (isNeedTurn)
-            //    FindDirection();
+            float bound = 4.5f;
+            Debug.DrawRay(transform.position, moveDirection * bound, new Color(1, 0, 0));
 
-            bool hitFront = Physics.Raycast(transform.position, moveDirection, 4.5f, LayerMask.GetMask("Wall"));
-            Debug.DrawRay(transform.position, moveDirection * 4.5f, new Color(1, 0, 0));
+            RaycastHit enemyColl;
+            if (Physics.Raycast(transform.position, moveDirection, out enemyColl, bound, LayerMask.GetMask("Enemy"))) //적끼리 충돌한 경우
+            {
+                if(enemyColl.collider.GetType() == typeof(CapsuleCollider)) //레이캐스트에 닿은 콜라이더가 캡슐 콜라이더일 때
+                    TurnBack(); //뒤돌아보기
+            }
+
+            bool hitFront = Physics.Raycast(transform.position, moveDirection, bound, LayerMask.GetMask("Wall"));
             if (!hitFront) //전방에 벽이 없는 경우
             {
                 rigid.velocity = moveDirection * velocity + new Vector3(0, rigid.velocity.y, 0); //이동
@@ -57,27 +53,19 @@ public class Enemy : MonoBehaviour
                 Debug.Log("벽");
             }
         }
+        else if (Vector3.Distance(this.transform.position, agent.destination) < 1.0f) //마지막으로 발견된 플레이어의 위치만큼 이동 후 다시 랜덤이동
+        {
+            isNear = false;
+            agent.speed = 0;
+        }
     }
 
-    //void FindDirection()
-    //{
-    //    Vector3 center = transform.position;
-    //    float bound = 5f;
-    //    Debug.DrawRay(center, (transform.forward*2f-transform.right) * bound/2, new Color(1, 0, 0));
-    //    Debug.DrawRay(center, -transform.right * bound, new Color(1, 0, 0));
-    //    Debug.DrawRay(center, transform.forward * bound, new Color(1, 0, 0));
-    //    Debug.DrawRay(center, transform.right * bound, new Color(1, 0, 0));
-    //    bool hitLeft = Physics.Raycast(center, -transform.right, bound, LayerMask.GetMask("Wall"));
-    //    bool hitFront = Physics.Raycast(center, transform.forward, bound, LayerMask.GetMask("Wall"));
-    //    bool hitRight = Physics.Raycast(center, transform.right, bound, LayerMask.GetMask("Wall"));
-
-    //    if (!hitLeft)
-    //        Debug.Log("Turn Left");
-    //    if (!hitFront)
-    //        Debug.Log("Front");
-    //    if (!hitRight)
-    //        Debug.Log("Turn Right");
-    //}
+    void TurnBack()
+    {
+        Debug.Log("적끼리 충돌");
+        direction = (Direction)(Mathf.Repeat((int)direction + 2, 4)); //뒤로 돌기
+        moveDirection = Vector3FromEnum(direction);
+    }
 
     void SetMoveDirection()
     {
@@ -107,57 +95,57 @@ public class Enemy : MonoBehaviour
     
     IEnumerator SetMoveDirectionByTime()
     {
-        yield return new WaitForSeconds(Random.Range(5f, 10f)); //5~10초 후 방향 설정
+        yield return new WaitForSeconds(Random.Range(0.5f, 1f)); //0.5~1초 후 방향 설정
 
-        int dir = Random.Range(0, 4);
-        nextDirection = (Direction)dir;
-        //int dir = Random.Range(0, 2);
-        //if ((dir == 0 && (int)direction == 0) || (dir == 1 && (int)direction == 2))
-        //    Debug.Log("right");
-        //else
-        //    Debug.Log("left");
-        //nextDirection = (Direction)(dir * 2 + 1 - (int)direction % 2); //상.하 <-> 좌.우
+        int dir = Random.Range(0, 2);
+        nextDirection = (Direction)(dir * 2 + 1 - (int)direction % 2); //상.하 <-> 좌.우
         StartCoroutine("CheckBlockedNextMoveDirection");
+
+        StartCoroutine("NoTurnLongTime"); //5~10초동안 방향이동 한번도 안하면 방향 재설정
     }
 
     IEnumerator CheckBlockedNextMoveDirection()
     {
         while (true)
         {
-            Vector3 body = transform.position;
-            Vector3 leftRay = Vector3FromEnum(nextDirection)*2f + Vector3FromEnum((Direction)(Mathf.Repeat((int)nextDirection+1, 4)));
-            Vector3 rightRay = Vector3FromEnum(nextDirection)*2f + Vector3FromEnum((Direction)(Mathf.Repeat((int)nextDirection-1, 4)));
-            float bound = 5f;
-            Debug.DrawRay(body, leftRay * bound*2, new Color(1, 0, 0));
-            //Debug.DrawRay(body, Vector3FromEnum(nextDirection) * bound * 2, new Color(1, 0, 0));
-            Debug.DrawRay(body, rightRay * bound*2, new Color(1, 0, 0));
-            bool hitLeft = Physics.Raycast(body, leftRay, bound * 3/2, LayerMask.GetMask("Wall"));
-            //bool hitFront = Physics.Raycast(body, Vector3FromEnum(nextDirection) * 2f, bound * 2, LayerMask.GetMask("Wall"));
-            bool hitRight = Physics.Raycast(body, rightRay, bound * 3/2, LayerMask.GetMask("Wall"));
+            Vector3 rayDirection = Vector3FromEnum(nextDirection);
+            Vector3 leftBody = this.transform.position + Vector3FromEnum((Direction)(Mathf.Repeat((int)nextDirection - 1, 4)))*2f;
+            Vector3 rightBody = this.transform.position + Vector3FromEnum((Direction)(Mathf.Repeat((int)nextDirection + 1, 4)))*2f;
+            float bound = 10f;
+            Debug.DrawRay(leftBody, rayDirection * bound, new Color(0, 0, 1));
+            Debug.DrawRay(rightBody, rayDirection * bound, new Color(0, 0, 1));
+            bool hitLeft = Physics.Raycast(leftBody, rayDirection, bound, LayerMask.GetMask("Wall"));
+            bool hitRight = Physics.Raycast(rightBody, rayDirection, bound, LayerMask.GetMask("Wall"));
 
             if (!hitLeft && !hitRight) //벽이 뚫려 있다면
             {
                 Debug.Log("Turn");
+                direction = nextDirection; //방향 재설정
                 moveDirection = Vector3FromEnum(nextDirection);
                 nextDirection = Direction.None;
                 StartCoroutine("SetMoveDirectionByTime"); //일정 시간 이후 방향을 틀도록 코루틴 실행
+
+                StopCoroutine("NoTurnLongTime"); //방향이동 오랫동안 안했을때 실행되는 코루틴 종료
                 break;
             }
             yield return null;
         }
     }
 
-    //void SetIsNeedTurn()
-    //{
-    //    isNeedTurn = true;
-    //}
+    IEnumerator NoTurnLongTime()
+    {
+        yield return new WaitForSeconds(Random.Range(5f, 10f));
+
+        SetMoveDirection();
+    }
 
     void OnTriggerEnter(Collider coll)
     {
         if (coll.tag == "Player")
         {
+            StopAllCoroutines();
             isNear = true;
-            //capsuleColor.material.color = Color.red;
+            agent.speed = velocity * 2f;
 
             coll.GetComponent<Player>().NearEnemyNum++;
         }
@@ -167,17 +155,12 @@ public class Enemy : MonoBehaviour
         if (coll.tag == "Player")
         {
             agent.destination = coll.transform.position; //목적지 설정
-            //direction = (target.position - transform.position).normalized;
         }
     }
     void OnTriggerExit(Collider coll)
     {
         if (coll.tag == "Player")
         {
-            isNear = false;
-            //플레이어가 괴물에게서 벗어나도 마지막 목적지 도착 후 다시 랜덤이동 하도록 구현
-            //capsuleColor.material.color = Color.white;
-
             coll.GetComponent<Player>().NearEnemyNum--;
         }
     }
