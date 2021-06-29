@@ -372,6 +372,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1593559840}
     m_Modifications:
+    - target: {fileID: 787067570304870847, guid: 31d8115669307f641aaa989a9436c806, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201849898353867681, guid: 31d8115669307f641aaa989a9436c806, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4723705750057308929, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 250
@@ -383,10 +391,10 @@ PrefabInstance:
     - target: {fileID: 6389238863444560370, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: dae430d205620bf4c90dd2290e774ab6, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560370, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6389238863444560371, guid: 31d8115669307f641aaa989a9436c806, type: 3}
       propertyPath: m_Pivot.x
@@ -480,6 +488,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8784445b5fd12e54492f33f929a67368, type: 3}
+    - target: {fileID: 6389238863667044063, guid: 31d8115669307f641aaa989a9436c806, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31d8115669307f641aaa989a9436c806, type: 3}
 --- !u!1 &765495399
@@ -950,6 +962,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1593559840}
     m_Modifications:
+    - target: {fileID: 3048225243033492609, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048225243226207760, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3048225243226207761, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -957,6 +977,18 @@ PrefabInstance:
     - target: {fileID: 3048225243226207761, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048225243262767204, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048225243262767204, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048225243262767204, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3048225243427207634, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
       propertyPath: m_Pivot.x
@@ -1045,6 +1077,14 @@ PrefabInstance:
     - target: {fileID: 3048225243427207635, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
       propertyPath: m_Name
       value: StaminaBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048225243427207635, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
@@ -1953,7 +1993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
