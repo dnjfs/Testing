@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "789329052366",
+    "project_id": "testing-82a80",
+    "storage_bucket": "testing-82a80.appspot.com",
+    "firebase_url": "https://testing-82a80-default-rtdb.firebaseio.com/"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789329052366:android:aaeb39dc671c1854cc869f",
+        "android_client_info": {
+          "package_name": "com.HorroryYa.Testing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789329052366-04lngnj9q91c3c6cdm4uf6jbnn4d6mud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpWT16Z5MmOzZtsC37h5q2shOZGXf9Yrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789329052366-04lngnj9q91c3c6cdm4uf6jbnn4d6mud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
