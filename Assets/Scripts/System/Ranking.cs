@@ -16,11 +16,18 @@ public class Ranking : MonoBehaviour
     DatabaseReference reference;
     List<IDictionary> UserRank = new List<IDictionary>();
     int Page = 1;
+    bool isLoaded;
 
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
         DataLoad();
+    }
+
+    void Update()
+    {
+        if (isLoaded)
+            PageUpdate();
     }
 
     private void DataLoad() //파이어베이스의 랭킹 불러오기
@@ -64,7 +71,7 @@ public class Ranking : MonoBehaviour
                 foreach (IDictionary temp in UserRank)
                     Debug.Log(rank++ + "등 name: " + temp["username"] + ", score: " + temp["score"] + ", time: " + temp["time"]);
 
-                PageChange(); //쓰레드 밖에서 불러오기 (Task가 끝난 후)
+                isLoaded = true; //쓰레드가 끝나는 타이밍을 플래그로 설정
             }
         });
     }
@@ -75,7 +82,6 @@ public class Ranking : MonoBehaviour
             return;
 
         Page--;
-        PageChange();
         PageText.text = Page.ToString();
     }
     public void OnClickRight()
@@ -84,11 +90,10 @@ public class Ranking : MonoBehaviour
             return;
 
         Page++;
-        PageChange();
         PageText.text = Page.ToString();
     }
 
-    private void PageChange()
+    private void PageUpdate()
     {
         for (int i = 0; i < 5; i++)
         {
