@@ -69,7 +69,7 @@ public class ElevatorButton : MonoBehaviour
         
 
         //테스트를 위한 pc용
-        if (Input.GetMouseButtonDown(0) && GameManager.instance.isFinished)    //엘리베이터 버튼을 터치하면
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.isFinished)    //모든 미로를 다 돌았고 엘리베이터 버튼을 터치하면
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴

@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public int elevatorIndex;   //플레이어가 생성된 곳에서 가장 가까운 엘리베이터
     public bool isFinished;   //미로를 다 돌았는지 확인하는 변수
 
+    public float average;
+
     // 게임 시작과 동시에 싱글톤 구성
     void Awake()
     {
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
         gameLevel = "normal";   //게임 난이도 normal로 설정
         repetitionCount = 0;    //길 중복횟수 초기화
         isFinished = false;
+
+        average = 0f;   //평균 초기화
 
     }
 

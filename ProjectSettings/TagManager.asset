@@ -13,6 +13,7 @@ TagManager:
   - ElevatorOpenButton
   - ElevatorCloseButton
   - FirstFloorButton
+  - WhiteDoorOpenBlock
   layers:
   - Default
   - TransparentFX
