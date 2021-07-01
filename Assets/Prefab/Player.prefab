@@ -95,7 +95,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cbb7bc5da9d94914ca4f1d0c04cafaad, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4c4526bc41699494fa3ff3f38a8b355b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -447,6 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1222732440985259034}
+  WalkSound: {fileID: 8300000, guid: 3a1f0c74ec6b47f4d8e88833e8ee4edb, type: 3}
+  RunSound: {fileID: 8300000, guid: f285da5c1bd47b540873b23626cfec5f, type: 3}
   run: 0
   isChased: 0
   speed: 0

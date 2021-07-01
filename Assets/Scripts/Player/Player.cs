@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     private Vector2 lookInput;
     private float cameraPitch; //pitch 시점
 
-    private AudioSource Heartbeat;
+    public AudioClip WalkSound, RunSound;
+    private AudioSource Heartbeat, MoveAudio;
     private Rigidbody body; //이동을 위한 Rigidbody
     private HeartAnim heart; //하트 애니메이션 객체
 
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
 
         body = GetComponent<Rigidbody>();
         Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
+        MoveAudio = this.gameObject.AddComponent<AudioSource>(); //AudioSource 컴포넌트 추가
         heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
         fog = GameObject.Find("Fog").GetComponent<Image>();
 
@@ -127,6 +129,14 @@ public class Player : MonoBehaviour
             //transform.position += moveDir * Time.deltaTime * speed; // 이동
             //transform.Translate(Vector3.forward * Time.deltaTime * speed);
             body.velocity = moveDir * currentSpeed; //이동
+
+            if (body.velocity != Vector3.zero) //이동중
+            {
+                if (currentSpeed == speed * 2) //달리는 상태
+                    MoveSoundPlay(RunSound);
+                else //걷는 상태
+                    MoveSoundPlay(WalkSound);
+            }
         }
         else
             body.velocity = Vector3.zero;
@@ -217,5 +227,19 @@ public class Player : MonoBehaviour
             increasingStamina = 3.0f;   //스태미나 회복 속도 3s
             decreasingStamina = 2.0f;   //스태미나 감소 속도 2s
         }
+    }
+
+    private void MoveSoundPlay(AudioClip audio)
+    {
+        if (MoveAudio.clip != audio) //다른 발소리를 출력해야하는 경우
+        {
+            if (MoveAudio.isPlaying) //재생된 효과음이 끝날 때까지 대기
+                return;
+            
+            MoveAudio.clip = audio; //효과음 교체
+        }
+        
+        if (!MoveAudio.isPlaying)
+            MoveAudio.Play(); //효과음 재생
     }
 }
