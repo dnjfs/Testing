@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] //이 키워드를 추가하여 에디터에서 접근 가능
     private Transform cameraTransform;
+    private Image fog; //남은 스태미너를 보여주는 안개
 
     private float halfScreenWidth; //오른쪽 화면 절반만 터치하여 시점 전환
     private int rightFingerId;
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody>();
         Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
         heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
+        fog = GameObject.Find("Fog").GetComponent<Image>();
 
         //플레이어 생성되면 시스템 시작메시지 출력
         GameObject.FindWithTag("GameSystem").GetComponent<DialogManager>().StartMessage();
@@ -83,6 +85,8 @@ public class Player : MonoBehaviour
             if (stamina >= maxStamina) //스태미나 100%
                 stamina = maxStamina;
         }
+
+        fog.color = new Color(1f, 1f, 1f, 1f - stamina * 2); //남은 스태미너에 따라 안개의 투명도 조절 (스태미너가 절반 이하일 때부터 뿌옇게 됨)
 
         if (NearEnemyNum > 0) //근처에 몬스터가 존재하면
         {
