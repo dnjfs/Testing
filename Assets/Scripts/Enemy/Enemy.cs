@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -165,17 +164,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision coll) //충돌
-    {
-        if (coll.gameObject.tag == "Player")
-        {
-            Debug.Log("Die"); //사망
-
-            //플레이 타임 저장
-            GameManager.instance.timeScore = GameManager.instance.playTime;
-            SceneManager.LoadScene("GameOver");
-        }
-    }
+    //void OnCollisionEnter(Collision coll) //충돌
+    //{
+    //    if (coll.gameObject.tag == "Player")
+    //    {
+    //        Debug.Log("Die"); //사망
+    //        SceneManager.LoadScene("GameOver");
+    //    }
+    //}
 
     public void SetEnemyLevel()
     {

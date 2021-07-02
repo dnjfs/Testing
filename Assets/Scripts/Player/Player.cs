@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +22,8 @@ public class Player : MonoBehaviour
     private AudioSource Heartbeat, MoveAudio, BGAudio;
     private Rigidbody body; //이동을 위한 Rigidbody
     private HeartAnim heart; //하트 애니메이션 객체
+    private VideoPlayer AttackVideo;
+    private AudioSource AttackAudio;
 
     //Player 정보
     public bool run = false;
@@ -44,7 +48,7 @@ public class Player : MonoBehaviour
         stamina = maxStamina = 1.0f; //Player의 스테미나는 1.0f
         staminaBar.maxValue = maxStamina;  //슬라이더의 최대값을 최대 스테미나 값으로 변경
         staminaBar.value = maxStamina;     //츨라이더의 값을 최대 스테미나 값으로 변경
-        
+
 
         this.rightFingerId = -1; //-1은 추적중이 아닌 손가락
         this.halfScreenWidth = Screen.width / 2;
@@ -57,6 +61,9 @@ public class Player : MonoBehaviour
         BGAudio = GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>(); //배경음악
         heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
         fog = GameObject.Find("Fog").GetComponent<Image>();
+        AttackVideo = GameObject.Find("VideoPlayer").GetComponent<VideoPlayer>();
+        AttackAudio = GameObject.Find("VideoPlayer").GetComponent<AudioSource>();
+        AttackVideo.Prepare(); //영상 준비
 
         //플레이어 생성되면 시스템 시작메시지 출력
         GameObject.FindWithTag("GameSystem").GetComponent<DialogManager>().StartMessage();
@@ -239,11 +246,31 @@ public class Player : MonoBehaviour
         {
             if (MoveAudio.isPlaying) //재생된 효과음이 끝날 때까지 대기
                 return;
-            
+
             MoveAudio.clip = audio; //효과음 교체
         }
-        
+
         if (!MoveAudio.isPlaying)
             MoveAudio.Play(); //효과음 재생
+    }
+
+    void OnCollisionEnter(Collision coll) //충돌
+    {
+        if (coll.gameObject.tag == "Monster")
+        {
+            GameObject.Find("Canvas").transform.Find("VideoRender").gameObject.SetActive(true); //RawImage 활성화
+            AttackVideo.Play(); //괴물 공격 비디오 실행
+            if (!AttackAudio.isPlaying)
+                AttackAudio.Play(); //괴물 공격 효과음 실행
+            Heartbeat.volume = 0; //심장소리 음소거
+
+            GameManager.instance.timeScore = GameManager.instance.playTime; //플레이 타임 저장
+            //데이터베이스에 기록 저장
+            Invoke("ChangeGameoverScene", 1.2f); //1.2초 후 씬 전환
+        }
+    }
+    void ChangeGameoverScene()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }

@@ -744,7 +744,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6329158148709259305, guid: 766560b64d5d89045bb929bbf4ecd26d, type: 3}
 --- !u!1 &1494258559307162530
@@ -1823,7 +1823,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5597002278806442958, guid: 766560b64d5d89045bb929bbf4ecd26d, type: 3}
 --- !u!1 &4147539327778396404
@@ -1966,7 +1966,7 @@ GameObject:
   - component: {fileID: 5516982366051517005}
   m_Layer: 8
   m_Name: monster_ani_V02
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2088,7 +2088,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &5516982366051517005
 NavMeshAgent:
@@ -2524,7 +2524,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1445019624117990596
 Rigidbody:
