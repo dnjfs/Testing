@@ -122,7 +122,9 @@ public class Ranking : MonoBehaviour
             row.transform.Find("Rank").gameObject.GetComponent<Text>().text = (rank+1).ToString();
             row.transform.Find("UserName").gameObject.GetComponent<Text>().text = UserRank[rank]["username"].ToString();
             row.transform.Find("Score").gameObject.GetComponent<Text>().text = UserRank[rank]["score"].ToString();
-            row.transform.Find("Time").gameObject.GetComponent<Text>().text = UserRank[rank]["time"].ToString();
+
+            int time = int.Parse(UserRank[rank]["time"].ToString());
+            row.transform.Find("Time").gameObject.GetComponent<Text>().text = (time/60).ToString()+":"+(time%60).ToString();
         }
     }
 }
