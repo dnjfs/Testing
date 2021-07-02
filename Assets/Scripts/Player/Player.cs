@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private float cameraPitch; //pitch 시점
 
     public AudioClip WalkSound, RunSound;
-    private AudioSource Heartbeat, MoveAudio;
+    private AudioSource Heartbeat, MoveAudio, BGAudio;
     private Rigidbody body; //이동을 위한 Rigidbody
     private HeartAnim heart; //하트 애니메이션 객체
 
@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody>();
         Heartbeat = this.GetComponent<AudioSource>(); //Player의 AudioSource 컴포넌트
         MoveAudio = this.gameObject.AddComponent<AudioSource>(); //AudioSource 컴포넌트 추가
+        MoveAudio.volume = 0.4f;
+        BGAudio = GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>(); //배경음악
         heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
         fog = GameObject.Find("Fog").GetComponent<Image>();
 
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour
                 stamina = maxStamina;
         }
 
-        fog.color = new Color(1f, 1f, 1f, 1f - stamina * 2); //남은 스태미너에 따라 안개의 투명도 조절 (스태미너가 절반 이하일 때부터 뿌옇게 됨)
+        fog.color = new Color(1f, 1f, 1f, 0.5f - stamina); //남은 스태미너에 따라 안개의 투명도 조절 (스태미너가 절반 이하일 때부터 뿌옇게 됨)
 
         if (NearEnemyNum > 0) //근처에 몬스터가 존재하면
         {
@@ -106,6 +108,7 @@ public class Player : MonoBehaviour
             if (!Heartbeat.isPlaying)
                 Heartbeat.Play(); //심장 박동소리 출력
 
+            BGAudio.volume = 0; //BGAudio.mute = true;
             heart.SetChasingParam(true); //심장 애니메이터의 Chasing 파라미터값을 true로 설정
         }
         else
@@ -113,6 +116,7 @@ public class Player : MonoBehaviour
             if (Heartbeat.isPlaying)
                 Heartbeat.Stop();
 
+            BGAudio.volume = 1; //BGAudio.mute = false;
             heart.SetChasingParam(false);
         }
     }

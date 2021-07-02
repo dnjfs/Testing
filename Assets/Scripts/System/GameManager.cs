@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);  //씬이 바뀌어도 계속 유지시킴
 
         //변수 초기화
-        nickName = mazeType = null;
+        nickName = PlayerPrefs.GetString("Name");
+        mazeType = null;
         playTime = timeScore = 0f;
         gameLevel = "normal";   //게임 난이도 normal로 설정
         repetitionCount = 0;    //길 중복횟수 초기화
