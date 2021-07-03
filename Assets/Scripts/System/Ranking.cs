@@ -11,7 +11,6 @@ using Firebase.Unity;
 public class Ranking : MonoBehaviour
 {
     public Text PageText;
-    public bool isEnableChild, created;
 
     DatabaseReference reference;
     List<IDictionary> UserRank = new List<IDictionary>();
@@ -22,6 +21,10 @@ public class Ranking : MonoBehaviour
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
         DataLoad();
+
+        Debug.Log("이름: " + PlayerPrefs.GetString("Name"));
+        Debug.Log("점수: " + PlayerPrefs.GetInt("Score"));
+        Debug.Log("시간: " + PlayerPrefs.GetInt("Time"));
     }
 
     void Update()
@@ -42,11 +45,8 @@ public class Ranking : MonoBehaviour
             else if (task.IsCompleted) //task가 성공적이면
             {
                 DataSnapshot snapshot = task.Result; //DataSnapshot 변수를 선언하여 task의 결과 값을 받음
-
                 Debug.Log("저장된 데이터 수: " + snapshot.ChildrenCount);
-
-                //List<IDictionary> UserRank = new List<IDictionary>();
-                foreach (DataSnapshot data in snapshot.Children) //데이터베이스에서 값들을 불러와 personInfo에 저장
+                foreach (DataSnapshot data in snapshot.Children) //데이터베이스에서 값들을 불러와 UserRank 리스트에 저장
                     UserRank.Add((IDictionary)data.Value);
 
                 //점수와 시간으로 정렬

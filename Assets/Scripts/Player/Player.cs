@@ -258,14 +258,15 @@ public class Player : MonoBehaviour
     {
         if (coll.gameObject.tag == "Monster")
         {
+            if (AttackAudio.isPlaying) //괴물 공격 효과음이 재생되고 있다면 이미 죽은 상태
+                return;
+
             GameObject.Find("Canvas").transform.Find("VideoRender").gameObject.SetActive(true); //RawImage 활성화
             AttackVideo.Play(); //괴물 공격 비디오 실행
-            if (!AttackAudio.isPlaying)
-                AttackAudio.Play(); //괴물 공격 효과음 실행
+            AttackAudio.Play(); //괴물 공격 효과음 실행
             Heartbeat.volume = 0; //심장소리 음소거
 
             GameManager.instance.timeScore = GameManager.instance.playTime; //플레이 타임 저장
-            //데이터베이스에 기록 저장
             Invoke("ChangeGameoverScene", 1.2f); //1.2초 후 씬 전환
         }
     }

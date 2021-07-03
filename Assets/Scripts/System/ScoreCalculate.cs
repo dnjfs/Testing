@@ -10,7 +10,7 @@ public class ScoreCalculate : MonoBehaviour
     public char GetAgility()
     {
         char grade; //반환할 등급
-        float playTime = GameManager.instance.playTime;
+        float playTime = GameManager.instance.timeScore;
 
         if (playTime <= 600.0f)     //10분 이내면 A등급
         {
