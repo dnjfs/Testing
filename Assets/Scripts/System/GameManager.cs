@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public string mazeType;   //맵 타입(T, E, S)
     public int repetitionCount;   //길 중복도(가장 높은 중복 횟수)
+    public int chaseCount; //괴물의 시야에 들어온 횟수
 
     public int elevatorIndex;   //플레이어가 생성된 곳에서 가장 가까운 엘리베이터
     public bool isFinished;   //미로를 다 돌았는지 확인하는 변수
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         playTime = timeScore = 0f;
         gameLevel = "normal";   //게임 난이도 normal로 설정
         repetitionCount = 0;    //길 중복횟수 초기화
+        chaseCount = 0;
         isFinished = isPass = false;
         agility = accuracy = predictability = 'F';  //등급 F로 초기화
 

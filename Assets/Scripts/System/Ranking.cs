@@ -124,7 +124,7 @@ public class Ranking : MonoBehaviour
             row.transform.Find("Score").gameObject.GetComponent<Text>().text = UserRank[rank]["score"].ToString();
 
             int time = int.Parse(UserRank[rank]["time"].ToString());
-            row.transform.Find("Time").gameObject.GetComponent<Text>().text = (time/60).ToString()+":"+(time%60).ToString();
+            row.transform.Find("Time").gameObject.GetComponent<Text>().text = (time/60).ToString("00")+":"+(time%60).ToString("00"); //시간을 00:00 형식으로 표현
         }
     }
 }

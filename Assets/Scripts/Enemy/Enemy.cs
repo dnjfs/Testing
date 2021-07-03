@@ -146,7 +146,8 @@ public class Enemy : MonoBehaviour
             isNear = true;
             agent.speed = velocity * 2f;
 
-            coll.GetComponent<Player>().NearEnemyNum++;
+            coll.GetComponent<Player>().CloseEnemyNum++;
+            GameManager.instance.chaseCount++; //예측성 카운트
         }
     }
     void OnTriggerStay(Collider coll)
@@ -160,7 +161,7 @@ public class Enemy : MonoBehaviour
     {
         if (coll.tag == "Player")
         {
-            coll.GetComponent<Player>().NearEnemyNum--;
+            coll.GetComponent<Player>().CloseEnemyNum--;
         }
     }
 

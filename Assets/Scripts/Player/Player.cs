@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     public float currentSpeed;  //현재 속도
     public int NearEnemyNum = 0;
     public int CloseEnemyNum = 0;
-    public int numberOfCloseEnemy = 0;      //괴생명체가 가까이 온 횟수
 
     //스태미나 정보
     public Slider staminaBar;   //스태미나를 표시할 UI 슬라이더
@@ -104,7 +103,6 @@ public class Player : MonoBehaviour
         {
             if (CloseEnemyNum > 0) //가까이에 몬스터가 존재하면
             {
-                numberOfCloseEnemy++;
                 Heartbeat.pitch = 2.0f; //오디오 출력속도 2배
                 heart.SetAnimSpeed(2.0f); //심장박동 애니메이션 2배
             }
