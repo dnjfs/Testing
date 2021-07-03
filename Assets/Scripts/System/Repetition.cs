@@ -114,6 +114,7 @@ public class Repetition : MonoBehaviour
         {
             //GameManager의 isFinished를 true로 설정
             GameManager.instance.isFinished = true;
+            GameManager.instance.repetitionCount = MaxValue;
 
             //엘리베이터 생성 메시지 출력
             this.gameObject.GetComponent<DialogManager>().CreateElevatorMessage();
