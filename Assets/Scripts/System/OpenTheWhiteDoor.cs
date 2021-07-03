@@ -14,15 +14,15 @@ public class OpenTheWhiteDoor : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //하얀 방의 문 열림
-            whiteLeftDoor.transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
-            whiteRightDoor.transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+            whiteLeftDoor.transform.DOLocalMoveX(5f, 3f).SetRelative();  //3초간 X 방향으로 5만큼 이동
+            whiteRightDoor.transform.DOLocalMoveX(-6.5f, 3f).SetRelative();  //3초간 X 방향으로 -5만큼 이동
         }
     }
 
     //하얀 방의 문을 닫는 함수
     public void CloseTheWhiteDoor()
     {
-        whiteLeftDoor.transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
-        whiteRightDoor.transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        whiteLeftDoor.transform.DOLocalMoveX(-5f, 3f).SetRelative();  //3초간 X 방향으로 -5만큼 이동
+        whiteRightDoor.transform.DOLocalMoveX(6.5f, 3f).SetRelative();  //3초간 X 방향으로 5만큼 이동
     }
 }

@@ -37,6 +37,8 @@ public class ScoreCalculate : MonoBehaviour
             grade = 'F';
         }
 
+        GameManager.instance.agility = grade;   //점수 저장
+
         return grade;
     }
 
@@ -71,6 +73,8 @@ public class ScoreCalculate : MonoBehaviour
             grade = 'F';
         }
 
+        GameManager.instance.accuracy = grade;   //점수 저장
+
         return grade;
     }
 
@@ -78,7 +82,7 @@ public class ScoreCalculate : MonoBehaviour
     public char GetPredictability()
     {
         char grade; //반환할 등급
-        int mostRepetition = 11;    //임시로 C등급인 11로 지정.(괴생명체가 접근하면 예측성  증가하도록 해야함)
+        int mostRepetition = GameObject.FindWithTag("Player").GetComponent<Player>().numberOfCloseEnemy;    //플레이어 근처에 괴생명체가 접근한 횟수
 
         if (mostRepetition <= 5) //1~5번 접근: A등급
         {
@@ -104,6 +108,8 @@ public class ScoreCalculate : MonoBehaviour
         {
             grade = 'F';
         }
+
+        GameManager.instance.predictability = grade;     //점수 저장
 
         return grade;
     }
@@ -146,6 +152,8 @@ public class ScoreCalculate : MonoBehaviour
         int PredictabilityScore = GradeToScore(PredictabilityGrade);
 
         float average = ((float)(AgilityScore + AccuracyScore + PredictabilityScore)) / 3.0f;
+
+        //점수 저장
         GameManager.instance.average = average;
 
         return average;
