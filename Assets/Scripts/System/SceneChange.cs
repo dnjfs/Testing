@@ -52,27 +52,6 @@ public class SceneChange : MonoBehaviour
 
         Application.Quit();
     }
-
-    /*
-    //페이드 효과를 위한 델리게이트 체인
-    void OnEnable()
-    {
-        //델리게이트 체인 추가
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        //씬이 로드될 때마다 Fade In 효과
-        FadeEffects.FadeIn(blackImage);
-    }
-
-    void OnDisable()
-    {
-        //델리게이트 체인 제거
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-    */
     
     void OnLevelWasLoade(int level)
     {
