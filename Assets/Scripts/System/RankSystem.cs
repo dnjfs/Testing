@@ -55,7 +55,6 @@ public class RankSystem : MonoBehaviour
     }
     private void AddDatabase(string name, int score, int time, int turn) //파이어베이스에 기록
     {
-        Debug.Log("???");
         User user = new User(name, score, time);
         string json = JsonUtility.ToJson(user);
         Debug.Log("순번: " + turn);
