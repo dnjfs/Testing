@@ -219,25 +219,31 @@ public class Player : MonoBehaviour
 
     public void SetPlayerLevel()
     {
+        speed = 7f;  //Player의 속도는 7f
         //게임 난이도에 따라 Player 속도 및 스테미나 증가 감소 속도 조절
         if (GameManager.instance.gameLevel == "easy")  //게임 난이도가 easy면
         {
-            speed = 10f;  //Player의 속도는 10f
+            //speed = 10f;  //Player의 속도는 10f
             increasingStamina = 1.5f;   //스태미나 회복 속도 1.5s
             decreasingStamina = 4.0f;   //스태미나 감소 속도 4s
         }
         else if (GameManager.instance.gameLevel == "normal")   //게임 난이도가 normal면
         {
-            speed = 7f;  //Player의 속도는 7f
+            //speed = 7f;  //Player의 속도는 7f
             increasingStamina = 2.0f;   //스태미나 회복 속도 2s
             decreasingStamina = 3.0f;   //스태미나 감소 속도 3s
         }
         else if (GameManager.instance.gameLevel == "hard") //게임 난이도가 hard면
         {
-            speed = 5f;  //Player의 속도는 5f
+            //speed = 5f;  //Player의 속도는 5f
             increasingStamina = 3.0f;   //스태미나 회복 속도 3s
             decreasingStamina = 2.0f;   //스태미나 감소 속도 2s
         }
+    }
+
+    public void SpeedBoostPlayer()
+    {
+        speed *= 1.5f;
     }
 
     private void MoveSoundPlay(AudioClip audio)

@@ -165,23 +165,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //void OnCollisionEnter(Collision coll) //충돌
-    //{
-    //    if (coll.gameObject.tag == "Player")
-    //    {
-    //        Debug.Log("Die"); //사망
-    //        SceneManager.LoadScene("GameOver");
-    //    }
-    //}
-
     public void SetEnemyLevel()
     {
         //게임 난이도에 따라 Enemy 속도 조절
         if (GameManager.instance.gameLevel == "easy")  //게임 난이도가 easy면
             velocity = 3f;  //Enemy의 속도는 3f
         else if (GameManager.instance.gameLevel == "normal")   //게임 난이도가 normal면
-            velocity = 5f;  //Enemy의 속도는 5f
+            velocity = 4f;  //Enemy의 속도는 4f
         else if (GameManager.instance.gameLevel == "hard") //게임 난이도가 hard면
-            velocity = 7f;  //Enemy의 속도는 7f
+            velocity = 5f;  //Enemy의 속도는 5f
+    }
+
+    public void SpeedBoostEnemy()
+    {
+        velocity *= 1.5f;
     }
 }

@@ -125,6 +125,11 @@ public class Repetition : MonoBehaviour
             this.GetComponent<DoorManager>().OpenDoor(elevatorIndex, elevatorIndex);    //엘리베이터 문을 열고 10초 뒤 닫는다.
 
             isCreateElevator = true; //엘리베이터 생성 완료
+
+            //플레이어와 괴물의 속도 증가
+            GameObject.FindWithTag("Player").GetComponent<Player>().SpeedBoostPlayer();
+            foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Monster"))
+                obj.GetComponent<Enemy>().SpeedBoostEnemy();
         }
     }
 
