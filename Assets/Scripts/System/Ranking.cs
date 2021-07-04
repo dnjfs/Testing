@@ -86,7 +86,7 @@ public class Ranking : MonoBehaviour
     }
     public void OnClickRight()
     {
-        if (Page > UserRank.Count / 5)
+        if (Page > (UserRank.Count-1) / 5)
             return;
 
         Page++;
@@ -125,6 +125,37 @@ public class Ranking : MonoBehaviour
 
             int time = int.Parse(UserRank[rank]["time"].ToString());
             row.transform.Find("Time").gameObject.GetComponent<Text>().text = (time/60).ToString("00")+":"+(time%60).ToString("00"); //시간을 00:00 형식으로 표현
+
+            //최근 기록 하이라이트
+            if (PlayerPrefs.HasKey("Score") && PlayerPrefs.HasKey("Time")) //저장 이력이 있는 경우만
+            {
+                if (PlayerPrefs.GetString("Name") == UserRank[rank]["username"].ToString() &&
+                    PlayerPrefs.GetInt("Score") == int.Parse(UserRank[rank]["score"].ToString()) &&
+                    PlayerPrefs.GetInt("Time") == int.Parse(UserRank[rank]["time"].ToString()))
+                {
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                }
+                else
+                {
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                }
+            }
         }
     }
 }
