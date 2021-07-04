@@ -14,6 +14,7 @@ public class DoorManager : MonoBehaviour
     public bool isCloseDoor;  //마지막으로 열었는지 닫았는지 확인(열은 상태로 열을 수 없고, 닫은 상태로 닫을 수 없음)
 
     public GameObject Button;   //엘리베이터 버튼 프리팹을 저장할 변수
+    public GameObject Enter; //엘리베이터에 입장했는지 검사하는 트리거
     float YPosition = 1f;   //버튼의 Y좌표는 동일
 
     void Start()
@@ -193,5 +194,14 @@ public class DoorManager : MonoBehaviour
                 GameObject button = (GameObject)Instantiate(Button, new Vector3(-58.2f, YPosition, -27.65f), Quaternion.Euler(0f, 90f, 0f));    //버튼 회전해서 생성
             }
         }
+    }
+    public void CreateEnterTrigger() //엘리베이터에 탑승했는지 검사하는 트리거 생성
+    {
+        GameObject elevator = GameObject.FindWithTag("Elevator_"+GameManager.instance.mazeType).transform.GetChild(GameManager.instance.elevatorIndex).gameObject;
+        Debug.Log(elevator.name);
+        GameObject enter = Instantiate(Enter, elevator.transform.position, Quaternion.identity, elevator.transform);
+        //enter.transform.parent = elevator.transform; //Instantiate에서 설정됨
+        enter.transform.rotation = elevator.transform.rotation; //부모의 rotation과 맞춰야 로컬 좌표계의 rotation이 0,0,0으로 됨
+        enter.transform.Translate(new Vector3(0, 0, 4f));
     }
 }

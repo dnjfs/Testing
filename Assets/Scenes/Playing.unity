@@ -3759,6 +3759,7 @@ MonoBehaviour:
   isMoving: 0
   isCloseDoor: 0
   Button: {fileID: 7522931191311935444, guid: fe3def2aabeed834d813379b45a17b73, type: 3}
+  Enter: {fileID: 4872011787006404208, guid: 083ae48e482a29343a5c85643c33cb53, type: 3}
 --- !u!114 &1586769810
 MonoBehaviour:
   m_ObjectHideFlags: 0

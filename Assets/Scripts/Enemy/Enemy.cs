@@ -180,4 +180,13 @@ public class Enemy : MonoBehaviour
     {
         velocity *= 1.5f;
     }
+
+    public void ChasePlayer()
+    {
+        StopAllCoroutines();
+        isNear = true;
+        agent.destination = GameObject.FindWithTag("Player").transform.position;
+        if (agent.speed == 0)
+            agent.speed = velocity * 2f;
+    }
 }
