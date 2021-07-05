@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 SetMoveDirection();
-                Debug.Log("벽");
+                //Debug.Log("벽");
             }
         }
         else if (Vector3.Distance(this.transform.position, agent.destination) < 1.0f) //마지막으로 발견된 플레이어의 위치만큼 이동 후 다시 랜덤이동
@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 
     void TurnBack()
     {
-        Debug.Log("적끼리 충돌");
+        //Debug.Log("적끼리 충돌");
         direction = (Direction)(Mathf.Repeat((int)direction + 2, 4)); //뒤로 돌기
         moveDirection = Vector3FromEnum(direction);
     }
@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
 
             if (!hitLeft && !hitRight) //벽이 뚫려 있다면
             {
-                Debug.Log("Turn");
+                //Debug.Log("Turn");
                 direction = nextDirection; //방향 재설정
                 moveDirection = Vector3FromEnum(nextDirection);
                 nextDirection = Direction.None;

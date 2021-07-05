@@ -106,7 +106,7 @@ public class DoorManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);    //3초 뒤
         isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
-        isCloseDoor = true;    //3초 뒤 문이 열려있음으로 설정
+        isCloseDoor = true;    //3초 뒤 문이 닫혀있음으로 설정
 
         yield return null;
     }
@@ -202,6 +202,6 @@ public class DoorManager : MonoBehaviour
         GameObject enter = Instantiate(Enter, elevator.transform.position, Quaternion.identity, elevator.transform);
         //enter.transform.parent = elevator.transform; //Instantiate에서 설정됨
         enter.transform.rotation = elevator.transform.rotation; //부모의 rotation과 맞춰야 로컬 좌표계의 rotation이 0,0,0으로 됨
-        enter.transform.Translate(new Vector3(0, 0, 4f));
+        enter.transform.Translate(new Vector3(0, -4f, 4f));
     }
 }

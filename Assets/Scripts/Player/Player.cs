@@ -219,8 +219,8 @@ public class Player : MonoBehaviour
 
     public void SetPlayerLevel()
     {
-        speed = 7f;  //Player의 속도는 7f
-        //게임 난이도에 따라 Player 속도 및 스테미나 증가 감소 속도 조절
+        speed = 8f;  //Player의 속도는 8f
+        //게임 난이도에 따라 Player 스테미나 증가 감소 속도 조절
         if (GameManager.instance.gameLevel == "easy")  //게임 난이도가 easy면
         {
             //speed = 10f;  //Player의 속도는 10f

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4872011787006404208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 4}
-  m_LocalScale: {x: 2, y: 1, z: 0.5}
+  m_LocalScale: {x: 5, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,3 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09c126bb871689468106c1ef498715a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsters: []
+  InFrontOfDoor: 0
+  quake: {fileID: 8300000, guid: 261c5181c74d7b848a1f2320a074120d, type: 3}
