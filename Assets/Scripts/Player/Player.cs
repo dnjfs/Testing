@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public AudioClip WalkSound, RunSound;
     private AudioSource Heartbeat, MoveAudio, BGAudio;
     private Rigidbody body; //이동을 위한 Rigidbody
-    private HeartAnim heart; //하트 애니메이션 객체
+    //private HeartAnim heart; //하트 애니메이션 객체
     private VideoPlayer AttackVideo;
     private AudioSource AttackAudio;
 
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public int CloseEnemyNum = 0;
 
     //스태미나 정보
-    public Slider staminaBar;   //스태미나를 표시할 UI 슬라이더
+    //public Slider staminaBar;   //스태미나를 표시할 UI 슬라이더
     public float stamina;   //플레이어의 스태미나
     public float maxStamina;    //스태미나의 최댓값
     private float increasingStamina = 1f;    //스테미나 회복 속도
@@ -43,11 +43,11 @@ public class Player : MonoBehaviour
     void Start()
     {
         //스테미너 초기 설정
-        staminaBar = GameObject.Find("StaminaBar").GetComponent<Slider>();  //스테미나바 오브젝트의 슬라이더 가져옴
-        staminaBar.gameObject.SetActive(true);  //스테미나바 슬라이더 활성화
+        //staminaBar = GameObject.Find("StaminaBar").GetComponent<Slider>();  //스테미나바 오브젝트의 슬라이더 가져옴
+        //staminaBar.gameObject.SetActive(true);  //스테미나바 슬라이더 활성화
         stamina = maxStamina = 1.0f; //Player의 스테미나는 1.0f
-        staminaBar.maxValue = maxStamina;  //슬라이더의 최대값을 최대 스테미나 값으로 변경
-        staminaBar.value = maxStamina;     //츨라이더의 값을 최대 스테미나 값으로 변경
+        //staminaBar.maxValue = maxStamina;  //슬라이더의 최대값을 최대 스테미나 값으로 변경
+        //staminaBar.value = maxStamina;     //츨라이더의 값을 최대 스테미나 값으로 변경
 
 
         this.rightFingerId = -1; //-1은 추적중이 아닌 손가락
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         MoveAudio = this.gameObject.AddComponent<AudioSource>(); //AudioSource 컴포넌트 추가
         MoveAudio.volume = 0.4f;
         BGAudio = GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>(); //배경음악
-        heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
+        //heart = GameObject.Find("Heart").GetComponent<HeartAnim>();
         fog = GameObject.Find("Fog").GetComponent<Image>();
         AttackVideo = GameObject.Find("VideoPlayer").GetComponent<VideoPlayer>();
         AttackAudio = GameObject.Find("VideoPlayer").GetComponent<AudioSource>();
@@ -73,14 +73,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        staminaBar.value = stamina;
+        //staminaBar.value = stamina;
 
         GetTouchInput();
 
         if (run) //달리는 상태
         {
             stamina -= Time.deltaTime / decreasingStamina;
-            staminaBar.value = stamina;
+            //staminaBar.value = stamina;
             currentSpeed = speed * 2; //달리는 상태일 때 플레이어의 속도는 기존의 두 배로 증가
             if (stamina <= 0.0f) //스태미나 부족
             {
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         else
         {
             stamina += Time.deltaTime / increasingStamina;
-            staminaBar.value = stamina;
+            //staminaBar.value = stamina;
             currentSpeed = speed;   //플레이어의 속도는 기본 속도
             if (stamina >= maxStamina) //스태미나 100%
                 stamina = maxStamina;
@@ -104,19 +104,19 @@ public class Player : MonoBehaviour
             if (CloseEnemyNum > 0) //가까이에 몬스터가 존재하면
             {
                 Heartbeat.pitch = 2.0f; //오디오 출력속도 2배
-                heart.SetAnimSpeed(2.0f); //심장박동 애니메이션 2배
+                //heart.SetAnimSpeed(2.0f); //심장박동 애니메이션 2배
             }
             else
             {
                 Heartbeat.pitch = 1.0f;
-                heart.SetAnimSpeed(1.0f);
+                //heart.SetAnimSpeed(1.0f);
             }
 
             if (!Heartbeat.isPlaying)
                 Heartbeat.Play(); //심장 박동소리 출력
 
             BGAudio.volume = 0; //BGAudio.mute = true;
-            heart.SetChasingParam(true); //심장 애니메이터의 Chasing 파라미터값을 true로 설정
+            //heart.SetChasingParam(true); //심장 애니메이터의 Chasing 파라미터값을 true로 설정
         }
         else
         {
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
                 Heartbeat.Stop();
 
             BGAudio.volume = 1; //BGAudio.mute = false;
-            heart.SetChasingParam(false);
+            //heart.SetChasingParam(false);
         }
     }
 
