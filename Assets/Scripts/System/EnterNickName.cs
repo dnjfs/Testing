@@ -7,7 +7,7 @@ public class EnterNickName : MonoBehaviour
 {
     //닉네임 입력 함수
     private InputField InputName;
-    public string enterName;
+    //public string enterName;
 
     void Start()
     {

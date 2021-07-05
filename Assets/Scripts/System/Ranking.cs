@@ -11,7 +11,6 @@ using Firebase.Unity;
 public class Ranking : MonoBehaviour
 {
     public Text PageText;
-    public bool isEnableChild, created;
 
     DatabaseReference reference;
     List<IDictionary> UserRank = new List<IDictionary>();
@@ -22,6 +21,10 @@ public class Ranking : MonoBehaviour
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
         DataLoad();
+
+        Debug.Log("이름: " + PlayerPrefs.GetString("Name"));
+        Debug.Log("점수: " + PlayerPrefs.GetInt("Score"));
+        Debug.Log("시간: " + PlayerPrefs.GetInt("Time"));
     }
 
     void Update()
@@ -42,11 +45,8 @@ public class Ranking : MonoBehaviour
             else if (task.IsCompleted) //task가 성공적이면
             {
                 DataSnapshot snapshot = task.Result; //DataSnapshot 변수를 선언하여 task의 결과 값을 받음
-
                 Debug.Log("저장된 데이터 수: " + snapshot.ChildrenCount);
-
-                //List<IDictionary> UserRank = new List<IDictionary>();
-                foreach (DataSnapshot data in snapshot.Children) //데이터베이스에서 값들을 불러와 personInfo에 저장
+                foreach (DataSnapshot data in snapshot.Children) //데이터베이스에서 값들을 불러와 UserRank 리스트에 저장
                     UserRank.Add((IDictionary)data.Value);
 
                 //점수와 시간으로 정렬
@@ -86,7 +86,7 @@ public class Ranking : MonoBehaviour
     }
     public void OnClickRight()
     {
-        if (Page > UserRank.Count / 5)
+        if (Page > (UserRank.Count-1) / 5)
             return;
 
         Page++;
@@ -124,7 +124,38 @@ public class Ranking : MonoBehaviour
             row.transform.Find("Score").gameObject.GetComponent<Text>().text = UserRank[rank]["score"].ToString();
 
             int time = int.Parse(UserRank[rank]["time"].ToString());
-            row.transform.Find("Time").gameObject.GetComponent<Text>().text = (time/60).ToString()+":"+(time%60).ToString();
+            row.transform.Find("Time").gameObject.GetComponent<Text>().text = (time/60).ToString("00")+":"+(time%60).ToString("00"); //시간을 00:00 형식으로 표현
+
+            //최근 기록 하이라이트
+            if (PlayerPrefs.HasKey("Score") && PlayerPrefs.HasKey("Time")) //저장 이력이 있는 경우만
+            {
+                if (PlayerPrefs.GetString("Name") == UserRank[rank]["username"].ToString() &&
+                    PlayerPrefs.GetInt("Score") == int.Parse(UserRank[rank]["score"].ToString()) &&
+                    PlayerPrefs.GetInt("Time") == int.Parse(UserRank[rank]["time"].ToString()))
+                {
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().color = new Color(1, 1, 0);
+
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().fontStyle = FontStyle.Bold;
+                }
+                else
+                {
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+
+                    row.transform.Find("Rank").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    row.transform.Find("UserName").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    row.transform.Find("Score").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    row.transform.Find("Time").gameObject.GetComponent<Text>().fontStyle = FontStyle.Normal;
+                }
+            }
         }
     }
 }

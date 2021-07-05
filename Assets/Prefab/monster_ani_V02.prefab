@@ -2088,7 +2088,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &5516982366051517005
 NavMeshAgent:
@@ -2493,7 +2493,7 @@ GameObject:
   - component: {fileID: 1445019624117990596}
   - component: {fileID: 4324610678506052473}
   m_Layer: 0
-  m_Name: CloseByPlayer
+  m_Name: NearByPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2524,7 +2524,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1445019624117990596
 Rigidbody:

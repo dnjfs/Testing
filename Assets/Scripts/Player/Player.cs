@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     public float currentSpeed;  //현재 속도
     public int NearEnemyNum = 0;
     public int CloseEnemyNum = 0;
-    public int numberOfCloseEnemy = 0;      //괴생명체가 가까이 온 횟수
 
     //스태미나 정보
     public Slider staminaBar;   //스태미나를 표시할 UI 슬라이더
@@ -104,7 +103,6 @@ public class Player : MonoBehaviour
         {
             if (CloseEnemyNum > 0) //가까이에 몬스터가 존재하면
             {
-                numberOfCloseEnemy++;
                 Heartbeat.pitch = 2.0f; //오디오 출력속도 2배
                 heart.SetAnimSpeed(2.0f); //심장박동 애니메이션 2배
             }
@@ -221,25 +219,31 @@ public class Player : MonoBehaviour
 
     public void SetPlayerLevel()
     {
-        //게임 난이도에 따라 Player 속도 및 스테미나 증가 감소 속도 조절
+        speed = 8f;  //Player의 속도는 8f
+        //게임 난이도에 따라 Player 스테미나 증가 감소 속도 조절
         if (GameManager.instance.gameLevel == "easy")  //게임 난이도가 easy면
         {
-            speed = 10f;  //Player의 속도는 10f
+            //speed = 10f;  //Player의 속도는 10f
             increasingStamina = 1.5f;   //스태미나 회복 속도 1.5s
             decreasingStamina = 4.0f;   //스태미나 감소 속도 4s
         }
         else if (GameManager.instance.gameLevel == "normal")   //게임 난이도가 normal면
         {
-            speed = 7f;  //Player의 속도는 7f
+            //speed = 7f;  //Player의 속도는 7f
             increasingStamina = 2.0f;   //스태미나 회복 속도 2s
             decreasingStamina = 3.0f;   //스태미나 감소 속도 3s
         }
         else if (GameManager.instance.gameLevel == "hard") //게임 난이도가 hard면
         {
-            speed = 5f;  //Player의 속도는 5f
+            //speed = 5f;  //Player의 속도는 5f
             increasingStamina = 3.0f;   //스태미나 회복 속도 3s
             decreasingStamina = 2.0f;   //스태미나 감소 속도 2s
         }
+    }
+
+    public void SpeedBoostPlayer()
+    {
+        speed *= 1.5f;
     }
 
     private void MoveSoundPlay(AudioClip audio)
@@ -260,14 +264,15 @@ public class Player : MonoBehaviour
     {
         if (coll.gameObject.tag == "Monster")
         {
+            if (AttackAudio.isPlaying) //괴물 공격 효과음이 재생되고 있다면 이미 죽은 상태
+                return;
+
             GameObject.Find("Canvas").transform.Find("VideoRender").gameObject.SetActive(true); //RawImage 활성화
             AttackVideo.Play(); //괴물 공격 비디오 실행
-            if (!AttackAudio.isPlaying)
-                AttackAudio.Play(); //괴물 공격 효과음 실행
+            AttackAudio.Play(); //괴물 공격 효과음 실행
             Heartbeat.volume = 0; //심장소리 음소거
 
             GameManager.instance.timeScore = GameManager.instance.playTime; //플레이 타임 저장
-            //데이터베이스에 기록 저장
             Invoke("ChangeGameoverScene", 1.2f); //1.2초 후 씬 전환
         }
     }

@@ -82,5 +82,6 @@ public class StartRandom : MonoBehaviour
         GameSystem.GetComponent<DoorManager>().SetPlayerElevator(new Vector3(XZPosition[XIndex], YPosition, XZPosition[ZIndex]));
         //엘리베이터 버튼 생성
         GameSystem.GetComponent<DoorManager>().CreateElevatorButton();
+        GameSystem.GetComponent<DoorManager>().CreateEnterTrigger(); //엘리베이터 출입검사 트리거 생성
     }
 }

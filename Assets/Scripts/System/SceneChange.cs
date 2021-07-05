@@ -45,6 +45,11 @@ public class SceneChange : MonoBehaviour
         //LoadingManager.LoadScene("Ranking");
     }
 
+    public void ChangeGameOverScene()
+    {
+        FadeEffects.FadeOutAndLoadScene(clearImage, "GameOver", 0.5f);
+    }
+
     public void Exit()
     {
         //Exit 버튼을 누르면 게임 종료

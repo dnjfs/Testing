@@ -10,7 +10,7 @@ public class ScoreCalculate : MonoBehaviour
     public char GetAgility()
     {
         char grade; //반환할 등급
-        float playTime = GameManager.instance.playTime;
+        float playTime = GameManager.instance.timeScore;
 
         if (playTime <= 600.0f)     //10분 이내면 A등급
         {
@@ -82,7 +82,7 @@ public class ScoreCalculate : MonoBehaviour
     public char GetPredictability()
     {
         char grade; //반환할 등급
-        int mostRepetition = GameObject.FindWithTag("Player").GetComponent<Player>().numberOfCloseEnemy;    //플레이어 근처에 괴생명체가 접근한 횟수
+        int mostRepetition = GameManager.instance.chaseCount;    //플레이어 근처에 괴생명체가 접근한 횟수
 
         if (mostRepetition <= 5) //1~5번 접근: A등급
         {

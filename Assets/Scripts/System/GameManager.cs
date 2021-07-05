@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public string mazeType;   //맵 타입(T, E, S)
     public int repetitionCount;   //길 중복도(가장 높은 중복 횟수)
+    public int chaseCount; //괴물의 시야에 들어온 횟수
 
     public int elevatorIndex;   //플레이어가 생성된 곳에서 가장 가까운 엘리베이터
     public bool isFinished;   //미로를 다 돌았는지 확인하는 변수
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);  //씬이 바뀌어도 계속 유지시킴
 
-        ResetGameManager();
+        ResetGameManager(); //변수 초기화
     }
 
     void Update()

@@ -90,6 +90,7 @@ public class writtenOath : MonoBehaviour
 
         //점수 계산
         this.GetComponent<ScoreCalculate>().GetAverage();
+        GameObject.Find("GameSystem").GetComponent<RankSystem>().DataWrite(PlayerPrefs.GetString("Name"), (int)GameManager.instance.average, (int)GameManager.instance.timeScore);
         bool isPass = GameManager.instance.average >= 70 ? true : false;    //70점 이상이면 합격
         GameManager.instance.isPass = isPass;
 

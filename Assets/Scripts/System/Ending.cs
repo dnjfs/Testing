@@ -53,7 +53,7 @@ public class Ending : MonoBehaviour
     //불합격이라면 게임오버 씬으로 이동
     public void IsFail()
     {
-        //랭킹 씬으로 이동
-        this.GetComponent<SceneChange>().ChangeRankingScene();
+        //게임오버 씬으로 이동
+        this.GetComponent<SceneChange>().ChangeGameOverScene();
     }
 }
