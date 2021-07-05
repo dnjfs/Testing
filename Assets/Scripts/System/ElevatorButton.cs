@@ -37,15 +37,6 @@ public class ElevatorButton : MonoBehaviour
     {
         //pc용의 GetMouseButtonDown을 써도 모바일로 터치 가능한 걸로 알지만 혹시 모르니 둘 다 구현해봄. 확인 필요
 
-        //PC용
-        /*
-        if (GameManager.instance.isFinished)    //미로를 다 돌아서 엘리베이터가 생성되었다면
-        {
-
-        }
-        */
-
-
         //모바일용
         /*
         if (GameManager.instance.isFinished)    //미로를 다 돌아서 엘리베이터가 생성되었다면
@@ -85,7 +76,7 @@ public class ElevatorButton : MonoBehaviour
             }
         }
 
-        //테스트를 위한 모바일용 -> 빌드해서 확인 필요(블루스택으로)
+        //테스트를 위한 모바일용 -> 빌드해서 확인 필요
         
     }
     

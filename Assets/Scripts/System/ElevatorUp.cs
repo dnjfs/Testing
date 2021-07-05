@@ -56,6 +56,9 @@ public class ElevatorUp : MonoBehaviour
             //엘리베이터 문 열림(영구)
             exitElevator_leftDoor.transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
             exitElevator_rightDoor.transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+
+            //배경 음악 변경
+            player.transform.GetChild(0).gameObject.GetComponent<BGAudioPlay>().PlayWhiteRoomBG();
         });
     }
 
