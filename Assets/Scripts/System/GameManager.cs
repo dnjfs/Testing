@@ -45,23 +45,37 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);  //씬이 바뀌어도 계속 유지시킴
 
-        //변수 초기화
-        nickName = PlayerPrefs.GetString("Name");
-        mazeType = null;
-        playTime = timeScore = 0f;
-        gameLevel = "normal";   //게임 난이도 normal로 설정
-        repetitionCount = 0;    //길 중복횟수 초기화
-        chaseCount = 0;
-        isFinished = isPass = false;
-        agility = accuracy = predictability = 'F';  //등급 F로 초기화
-
-        average = 0f;   //평균 초기화
-
+        ResetGameManager(); //변수 초기화
     }
 
     void Update()
     {
         //타이머 증가
         playTime += Time.deltaTime;
+    }
+
+    //GameManager 변수 값 초기화
+    public void ResetGameManager()
+    {
+        //변수 초기화
+        nickName = PlayerPrefs.GetString("Name");
+        int level = PlayerPrefs.GetInt("Level", 1);   //게임 난이도
+        switch(level)
+        {
+            case 0:
+                gameLevel = "easy"; break;
+            case 1:
+                gameLevel = "normal"; break;
+            case 2:
+                gameLevel = "hard"; break;
+            default:
+                gameLevel = "normal"; break;
+        }
+
+        mazeType = null;
+        playTime = timeScore = average = 0f;
+        repetitionCount = 0;    //길 중복횟수 초기화
+        isFinished = isPass = false;
+        agility = accuracy = predictability = 'F';  //등급 F로 초기화
     }
 }

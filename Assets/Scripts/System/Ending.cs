@@ -13,8 +13,16 @@ public class Ending : MonoBehaviour
     public GameObject endingLeftDoor;   //탈출구 왼쪽 문
     public GameObject endingRightDoor;   //탈출구 오른쪽 문
 
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player").gameObject;
+    }
+
     public void FailOrPass()    //연구원 대화창 출력 후)
     {
+        //배경 음악 변경
+        player.transform.GetChild(0).gameObject.GetComponent<BGAudioPlay>().PlayEndingBG();
+
         //GameManager의 합격 여부를 가져옴
         if (GameManager.instance.isPass)    //합격이라면
         {
@@ -41,7 +49,6 @@ public class Ending : MonoBehaviour
         });
 
         //밖으로 이동(플레이어 조작 막음 -> 조작 이미지 비활성화)
-        player = GameObject.FindWithTag("Player").gameObject;
         player.transform.DOLocalMoveZ(30f, 5f).SetRelative(); //3초간 Z 방향으로 30만큼 이동
 
         seq.OnComplete(() => {
