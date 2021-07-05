@@ -8,8 +8,7 @@ using UnityEngine.UI;
 
 public class SceneChange : MonoBehaviour
 {
-
-    //후에 하나의 이미지로 수정할까 고민중
+    //씬 전환 스크립트
     public Image blackImage;    //페이드 효과에 사용할 이미지(검정->투명)
     public Image clearImage;    //페이드 효과에 사용할 이미지(투명->검정)
 
@@ -32,7 +31,7 @@ public class SceneChange : MonoBehaviour
     {
         //loading씬 후 play 씬으로 이동
         //(LoadManager.LoadScene이 아니라 LoadingManager 스크립트의 LoadScene)
-
+        GameManager.instance.ResetGameManager();    //게임 기록 초기화
         FadeEffects.FadeOutAndLoadScene(clearImage, "Playing", 0.5f);
         //LoadingManager.LoadScene("Playing");
     }
@@ -49,7 +48,6 @@ public class SceneChange : MonoBehaviour
     public void Exit()
     {
         //Exit 버튼을 누르면 게임 종료
-
         Application.Quit();
     }
     

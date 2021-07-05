@@ -5,63 +5,63 @@ using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
-    //스크롤뷰에서 레벨을 선택하는 함수 - 수정중
-    //코드 수정, 주석 추가해야함
-    //슬라이드 뿐만 아니라 버튼 클릭으로 이동도 가능하게? 아니면 슬라이드만이나 버튼으로만 이동하게 구현??
+    //스크롤뷰에서 레벨을 선택하는 함수
 
-    public GameObject scrollbar;
-    float scroll_pos = 0;
-    float[] pos;
-
-    void Update()
-    {
-        pos = new float[transform.childCount];
-        float distance = 1f / (pos.Length - 1f);
-        for (int i = 0; i < pos.Length; i++)
-        {
-            pos[i] = distance * i;
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
-        }
-        else
-        {
-            for (int i = 0; i < pos.Length; i++)
-            {
-                if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
-                {
-                    scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
-                }
-            }
-        }
-    }
-
-    /*
-    public string currentLevel; //현재 난이도
+    public Text levelBtnText;   //레벨 버튼 텍스트
+    public int currentLevelIndex; //현재 난이도
 
     void Start()
     {
-        //GameManager 싱글톤의 gameLevel 가져옴(현재 레벨)
+        currentLevelIndex = PlayerPrefs.GetInt("Level", 1);  //처음 저장된 난이도를 가져옴
 
+        ShowLevel();    //난이도를 저장하고 화면에 보여줌
     }
 
     public void LeftButton()
     {
-        //현재 레벨 텍스트를 가져옴
+        if (currentLevelIndex != 0)     //현재 난이도가 easy가 아니라면
+        {
+            currentLevelIndex--;    //인덱스 감소
+        }
 
-        //만약 현재 레벨이 hard나 nomal이라면 옆으로 이동
-        //else 이동 불가
-        //현재 레벨 텍스트 가져와서 GameManager 싱글톤의 gameLevel에 저장(string)
+        ShowLevel();    //난이도를 저장하고 화면에 보여줌
     }
 
     public void RightButton()
     {
-        //현재 레벨 텍스트를 가져옴
-        //만약 현재 레벨이 easy나 nomal이라면 옆으로 이동
-        //else 이동 불가
-        //현재 레벨 텍스트 가져와서 GameManager 싱글톤의 gameLevel에 저장(string)
-    }*/
+        if (currentLevelIndex != 2)     //현재 난이도가 hard 아니라면
+        {
+            currentLevelIndex++;    //인덱스 증가
+        }
 
+        ShowLevel();    //난이도를 저장하고 화면에 보여줌
+    }
+
+    //현재 인덱스의 난이도를 보여주고 저장하는 함수
+    public void ShowLevel()
+    {
+        switch(currentLevelIndex)
+        {
+            case 0:
+                levelBtnText.text = "EASY";
+                GameManager.instance.gameLevel = "easy";  //GameManager 싱글톤에 저장
+                PlayerPrefs.SetInt("Level", 0);
+                break;
+            case 1:
+                levelBtnText.text = "NORMAL";
+                GameManager.instance.gameLevel = "normal";  //GameManager 싱글톤에 저장
+                PlayerPrefs.SetInt("Level", 1);
+                break;
+            case 2:
+                levelBtnText.text = "HARD";
+                GameManager.instance.gameLevel = "hard";  //GameManager 싱글톤에 저장
+                PlayerPrefs.SetInt("Level", 2);
+                break;
+            default:
+                levelBtnText.text = "NORMAL";
+                GameManager.instance.gameLevel = "normal";  //GameManager 싱글톤에 저장
+                PlayerPrefs.SetInt("Level", 1);
+                break;
+        }
+    }
 }
