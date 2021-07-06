@@ -11,9 +11,9 @@ public class IsEnemyExitRoom : MonoBehaviour
         //충돌한 오브젝트가 Enemy라면
         if (other.tag == "Enemy")
         {
-            other.GetComponent<NavMeshAgent>().enabled = true; //NavMesh 활성화
-            GameObject.FindWithTag("System").GetComponent<EnemyStart>().ExitEnemyDoor();  //문을 닫는다
+            other.gameObject.GetComponent<NavMeshAgent>().enabled = true; //NavMesh 활성화
 
+            GameObject.FindWithTag("System").GetComponent<EnemyStart>().ExitEnemyDoor();  //문을 닫는다
         }
     }
 }

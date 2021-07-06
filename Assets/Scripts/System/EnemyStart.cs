@@ -24,14 +24,14 @@ public class EnemyStart : MonoBehaviour
         //맵 타입에 따라 Enemy가 나올 수 있는 문 좌표 추가
         if (GameManager.instance.mazeType == "T")
         {
-            doors.Add(new Vector3(-32f, YPosition, -8f));
-            doors.Add(new Vector3(-35f, YPosition, 25f));
-            doors.Add(new Vector3(-35f, YPosition, -63f));
-            doors.Add(new Vector3(63f, YPosition, -30f));
-            doors.Add(new Vector3(25f, YPosition, 63f));
-            doors.Add(new Vector3(-63f, YPosition, 19f));
-            doors.Add(new Vector3(35f, YPosition, 11f));
-            doors.Add(new Vector3(35f, YPosition, -13f));
+            doors.Add(new Vector3(-32f, YPosition, -8f));       //1번
+            doors.Add(new Vector3(-35f, YPosition, 25f));       //2번
+            doors.Add(new Vector3(-35f, YPosition, -63f));      //3번
+            doors.Add(new Vector3(63f, YPosition, -30f));        //5번
+            doors.Add(new Vector3(25f, YPosition, 63f));        //8번
+            doors.Add(new Vector3(-63f, YPosition, 19f));       //10번
+            doors.Add(new Vector3(35f, YPosition, 11f));        //11번
+            doors.Add(new Vector3(35f, YPosition, -13f));       //12번
         }
         else //E와 S의 문 좌표는 같음
         {
@@ -76,6 +76,24 @@ public class EnemyStart : MonoBehaviour
                 }
             }
         }
+
+        
+        switch (shortDoorIndex)
+        {
+            case 3:
+                shortDoorIndex++; break;
+            case 4:
+                shortDoorIndex  += 3; break;
+            case 5:
+                shortDoorIndex += 4; break;
+            case 6:
+                shortDoorIndex += 4;    break;
+            case 7:
+                shortDoorIndex += 4; break;
+            default:
+                break;
+        }
+
         openDoorIndex = shortDoorIndex;
 
         //플레이어와 가장 가까운 문 옆 문에 몬스터 생성(플레이어와 가장 가까운 문의 가장 가까운 문)

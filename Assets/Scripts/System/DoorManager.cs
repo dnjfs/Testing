@@ -30,8 +30,8 @@ public class DoorManager : MonoBehaviour
         {
             GameObject elevator = GameObject.FindWithTag("Elevator_T").transform.GetChild(i - 1).gameObject; //현재 맵의 엘리베이터를 설정
 
-            leftDoors[i - 1] = elevator.transform.GetChild(26).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장(26: 엘리베이터 오브젝트의 왼쪽문 자식 인덱스)
-            rightDoors[i - 1] = elevator.transform.GetChild(38).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장(38: 엘리베이터 오브젝트의 오른쪽문 자식 인덱스)
+            leftDoors[i - 1] = elevator.transform.GetChild(0).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장(26: 엘리베이터 오브젝트의 왼쪽문 자식 인덱스)
+            rightDoors[i - 1] = elevator.transform.GetChild(1).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장(38: 엘리베이터 오브젝트의 오른쪽문 자식 인덱스)
         }
     }
 
@@ -54,8 +54,8 @@ public class DoorManager : MonoBehaviour
         {
             GameObject elevator = GameObject.FindWithTag("Elevator_S").transform.GetChild(i - 1).gameObject; //현재 맵의 엘리베이터를 설정
 
-            leftDoors[i - 1] = elevator.transform.GetChild(26).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장(26: 엘리베이터 오브젝트의 왼쪽문 자식 인덱스)
-            rightDoors[i - 1] = elevator.transform.GetChild(38).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장(38: 엘리베이터 오브젝트의 오른쪽문 자식 인덱스)
+            leftDoors[i - 1] = elevator.transform.GetChild(0).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장(26: 엘리베이터 오브젝트의 왼쪽문 자식 인덱스)
+            rightDoors[i - 1] = elevator.transform.GetChild(1).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장(38: 엘리베이터 오브젝트의 오른쪽문 자식 인덱스)
         }
     }
 
