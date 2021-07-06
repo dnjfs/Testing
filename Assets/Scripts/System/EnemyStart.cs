@@ -62,6 +62,7 @@ public class EnemyStart : MonoBehaviour
 
             if (distance < shortDis) //기준 거리보다 거리가 가까우면
             {
+
                 //더 가까운 거리가 있는지 확인
                 for (int j = i + 1; j < doors.Count; j++)
                 {
@@ -72,9 +73,12 @@ public class EnemyStart : MonoBehaviour
                         shortDis = distance;    //가까운 거리 갱신
                         shortDoor = doors[i];  //가까운 문의 좌표 갱신
                         shortDoorIndex = i; //가까운 문 인덱스
+                        break;
                     }
                 }
+
             }
+
         }
 
         
@@ -87,9 +91,9 @@ public class EnemyStart : MonoBehaviour
             case 5:
                 shortDoorIndex += 4; break;
             case 6:
-                shortDoorIndex += 4;    break;
+                shortDoorIndex += 5;    break;
             case 7:
-                shortDoorIndex += 4; break;
+                shortDoorIndex += 6; break;
             default:
                 break;
         }

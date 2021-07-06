@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 0;
 
-        Invoke("SetMoveDirection", 2f); //생성되고 2초 후 이동
+        //Invoke("SetMoveDirection", 2f); //생성되고 2초 후 이동
     }
 
     void Update()
