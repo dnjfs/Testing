@@ -47,7 +47,7 @@ public class writtenOath : MonoBehaviour
 
             //서약서에 값 입력(이름과 날짜를 사용자의 이름과 플레이한 날짜의 일주일 전으로 설정)
             oathContent.transform.GetChild(5).gameObject.GetComponent<Text>().text = writeDate.year + "년 " + writeDate.month + "월 " + writeDate.day + "일" + "\n\n" +
-                GameManager.instance.nickName;
+                "서명: " + GameManager.instance.nickName;
 
             //서약서가 페이드 효과로 나온다.
             theOath.gameObject.SetActive(true);  //서약서 이미지 활성화

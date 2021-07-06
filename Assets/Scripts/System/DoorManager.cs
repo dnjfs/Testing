@@ -77,6 +77,25 @@ public class DoorManager : MonoBehaviour
         }
     }
 
+    //해당 번째의 문 열기(Enemy 문) -> 자동 닫힘 없음
+    public void OpenEnemyDoor(int leftIndex, int rightIndex)
+    {
+        if (!isMoving && isCloseDoor)  //지금 문이 닫혀있고 움직이지 않는 상태라면
+        {
+            StartCoroutine(cOpenEnemyDoor(leftIndex, rightIndex));   //문 여는 코루틴 함수 실행
+        }
+    }
+
+    //해당 인덱스 문 닫기(Enemy 문) -> Enemy가 나가면 닫기
+    public void CloseEnemyDoor(int leftIndex, int rightIndex)
+    {
+        if (!isMoving && !isCloseDoor)  //지금 문이 닫혀있지 않고 움직이지 않는 상태라면
+        {
+            StartCoroutine(cCloseEnemyDoor(leftIndex, rightIndex));
+        }
+    }
+
+
     //문 여는 코루틴 함수
     IEnumerator cOpenDoor(int leftIndex, int rightIndex)
     {
@@ -111,6 +130,35 @@ public class DoorManager : MonoBehaviour
         yield return null;
     }
 
+
+    //Enemy문 여는 코루틴 함수(자동 닫힘 없음)
+    IEnumerator cOpenEnemyDoor(int leftIndex, int rightIndex)
+    {
+        isMoving = true;    //문이 움직이는 중 설정
+        isCloseDoor = false;    //문이 닫혀있지 않음으로 설정
+        leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+
+        yield return new WaitForSeconds(3f);    //3초 뒤
+        isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
+        isCloseDoor = false;    //3초 뒤 문이 열려있음으로 설정
+
+        yield return null;
+    }
+
+    //Enemy문 닫는 코루틴 함수(Enemy와 충돌시 닫기)
+    IEnumerator cCloseEnemyDoor(int leftIndex, int rightIndex)
+    {
+        isMoving = true;    //문이 움직이는 중 설정
+        leftDoors[leftIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+
+        yield return new WaitForSeconds(3f);    //3초 뒤
+        isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
+        isCloseDoor = true;    //3초 뒤 문이 닫혀있음으로 설정
+
+        yield return null;
+    }
 
     //플레이어 좌표에서 가장 가까운 탈출 엘리베이터 지정하는 함수
     public void SetPlayerElevator(Vector3 playerPosition)

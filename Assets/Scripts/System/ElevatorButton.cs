@@ -66,7 +66,7 @@ public class ElevatorButton : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴
 
-            if (Physics.Raycast(ray, out hit, 3f))          //Mathf.Infinity를 사용하면 무한대 거리에서 측정(멀리서 눌러도 인식됨) -> 3f 거리에서 측정되도록 설정
+            if (Physics.Raycast(ray, out hit, 5f))          //Mathf.Infinity를 사용하면 무한대 거리에서 측정(멀리서 눌러도 인식됨) -> 3f 거리에서 측정되도록 설정
             {
                 if (hit.collider.tag == "ElevatorOpenButton")   //터치한 오브젝트가 엘리베이터 버튼이라면
                 {
@@ -89,7 +89,7 @@ public class ElevatorButton : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴
 
-            if (Physics.Raycast(ray, out hit, 3f))
+            if (Physics.Raycast(ray, out hit, 5f))
             {
                 if (hit.collider.tag == "FirstFloorButton")   //터치한 오브젝트가 1층 버튼이라면
                 {
@@ -112,7 +112,7 @@ public class ElevatorButton : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //터치한 지점을 가져옴
 
-            if (Physics.Raycast(ray, out hit, 3f))
+            if (Physics.Raycast(ray, out hit, 5f))
             {
                 if (hit.collider.tag == "ElevatorCloseButton")   //터치한 오브젝트가 엘리베이터 버튼이라면
                 {
