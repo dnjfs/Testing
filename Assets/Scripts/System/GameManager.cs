@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         mazeType = null;
         playTime = timeScore = average = 0f;
         repetitionCount = 0;    //길 중복횟수 초기화
+        chaseCount = 0;
         isFinished = isPass = false;
         agility = accuracy = predictability = 'F';  //등급 F로 초기화
     }
