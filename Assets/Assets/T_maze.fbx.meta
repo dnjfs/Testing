@@ -3,7 +3,117 @@ guid: 1fcc4b66e4c3c474cb1cf6d14a19caf0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_aiStandardSurface12
+    second: {fileID: 2100000, guid: 5eb6e139775dbf94fb999e6f580ee4f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_aiStandardSurface4
+    second: {fileID: 2100000, guid: 4452d9ae197abb7469f2d79667e979f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_aiStandardSurface7
+    second: {fileID: 2100000, guid: d0d0a7d802cf04c4eb65f2448495d442, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_maze_elevator_modeling1_aiStandardSurface4
+    second: {fileID: 2100000, guid: 5065a8a6d07031f46b6cc63185ec6c40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_maze_elevator_modeling1_aiStandardSurface5
+    second: {fileID: 2100000, guid: 7a57a5d085bdd3546ab309be751c0614, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_maze_elevator_modeling1_aiStandardSurface6
+    second: {fileID: 2100000, guid: 7d299238b007bda4fb9f7a23c11c99e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_maze_elevator_modeling1_door
+    second: {fileID: 2100000, guid: ed09d97d4177aff42b2f097d2b5eeb1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_maze_elevator_modeling1_door1
+    second: {fileID: 2100000, guid: 307d7229cd7cf4e469b5e4a88cf4c805, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_maze_elevator_modeling1_ele
+    second: {fileID: 2100000, guid: 5e4982db159b92449bb08a6c1ccf9c5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator8_maze_elevator_modeling1_floor
+    second: {fileID: 2100000, guid: 2ace124eb681937478783d92a0b6dc4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor_modeling_aiStandardSurface1
+    second: {fileID: 2100000, guid: 3c5c58823c7ca8941848da570abc80e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 59ad17d9a2da6d346ae5e52aebb7f8db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_wall_modeling_tex_object_aiStandardSurface1
+    second: {fileID: 2100000, guid: 48adf32198a9ec048a1fb45f1d9b9bbd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_wall_modeling_tex_object_aiStandardSurface5
+    second: {fileID: 2100000, guid: 70a6554994a31ca4893d10143c3a577f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_wall_modeling_tex_object_aiStandardSurface6
+    second: {fileID: 2100000, guid: 0f83dd5b90e0b414c8833826c53aacc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_wall_modeling_tex_object_light
+    second: {fileID: 2100000, guid: e8c3284b5fcb5ea4491411660cbda90a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_wall_modeling_tex_object_obj
+    second: {fileID: 2100000, guid: 2fcaddd862057714882cc3c3306f9e15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__blinn1
+    second: {fileID: 2100000, guid: 02873a16fc45ceb4b8aeb41a092ab591, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__pasted__pasted__aiStandardSurface1
+    second: {fileID: 2100000, guid: 16451068a36807047bc52feb27b58b6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_01
+    second: {fileID: 2100000, guid: 0629793ab988158498c66a589ea050c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_02
+    second: {fileID: 2100000, guid: 631a923dc6329a5408a15a3533c752ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_04
+    second: {fileID: 2100000, guid: 985438aa65cc88c4bb8e35e0c98b2c77, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -85,7 +195,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.35
+    globalScale: 35
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
