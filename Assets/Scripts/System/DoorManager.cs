@@ -247,9 +247,9 @@ public class DoorManager : MonoBehaviour
     {
         GameObject elevator = GameObject.FindWithTag("Elevator_"+GameManager.instance.mazeType).transform.GetChild(GameManager.instance.elevatorIndex).gameObject;
         Debug.Log(elevator.name);
-        GameObject enter = Instantiate(Enter, elevator.transform.position, Quaternion.identity, elevator.transform);
+        GameObject enter = Instantiate(Enter, elevator.transform.position, elevator.transform.rotation, elevator.transform);
         //enter.transform.parent = elevator.transform; //Instantiate에서 설정됨
-        enter.transform.rotation = elevator.transform.rotation; //부모의 rotation과 맞춰야 로컬 좌표계의 rotation이 0,0,0으로 됨
+        //enter.transform.rotation = elevator.transform.rotation; //부모의 rotation과 맞춰야 로컬 좌표계의 rotation이 0,0,0으로 됨
         enter.transform.Translate(new Vector3(0, -4f, 4f));
     }
 }

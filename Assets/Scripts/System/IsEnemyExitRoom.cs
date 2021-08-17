@@ -9,11 +9,12 @@ public class IsEnemyExitRoom : MonoBehaviour
     void OnTriggerExit (Collider other)
     {
         //충돌한 오브젝트가 Enemy라면
-        if (other.tag == "Enemy")
+        if (other.tag == "Monster")
         {
-            other.gameObject.GetComponent<NavMeshAgent>().enabled = true; //NavMesh 활성화
+            //other.gameObject.GetComponent<NavMeshAgent>().enabled = true; //NavMesh 활성화
+            other.GetComponent<Enemy>().agent.speed = 0;
 
-            GameObject.FindWithTag("System").GetComponent<EnemyStart>().ExitEnemyDoor();  //문을 닫는다
+            GameObject.FindWithTag("GameSystem").GetComponent<EnemyStart>().ExitEnemyDoor();  //문을 닫는다
         }
     }
 }

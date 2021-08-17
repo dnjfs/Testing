@@ -43,7 +43,7 @@ Camera:
   m_GameObject: {fileID: 1222732440985259039}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -459,6 +459,5 @@ MonoBehaviour:
   currentSpeed: 0
   NearEnemyNum: 0
   CloseEnemyNum: 0
-  staminaBar: {fileID: 3048225243427207637, guid: 6d92993b972d29b4dafd30f48ca64b56, type: 3}
   stamina: 0
   maxStamina: 0
