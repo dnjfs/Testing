@@ -30,8 +30,8 @@ public class DoorManager : MonoBehaviour
         {
             GameObject elevator = GameObject.FindWithTag("Elevator_T").transform.GetChild(i - 1).gameObject; //현재 맵의 엘리베이터를 설정
 
-            leftDoors[i - 1] = elevator.transform.GetChild(0).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장(26: 엘리베이터 오브젝트의 왼쪽문 자식 인덱스)
-            rightDoors[i - 1] = elevator.transform.GetChild(1).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장(38: 엘리베이터 오브젝트의 오른쪽문 자식 인덱스)
+            leftDoors[i - 1] = elevator.transform.GetChild(0).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장
+            rightDoors[i - 1] = elevator.transform.GetChild(1).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장
         }
     }
 
@@ -66,6 +66,7 @@ public class DoorManager : MonoBehaviour
         {
             StartCoroutine(cOpenDoor(leftIndex, rightIndex));   //문 여는 코루틴 함수 실행
         }
+        
     }
 
     //해당 인덱스 문 닫기
@@ -101,8 +102,8 @@ public class DoorManager : MonoBehaviour
     {
         isMoving = true;    //문이 움직이는 중 설정
         isCloseDoor = false;    //문이 닫혀있지 않음으로 설정
-        leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
-        rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+        leftDoors[leftIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
 
         yield return new WaitForSeconds(3f);    //3초 뒤
         isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
@@ -120,8 +121,8 @@ public class DoorManager : MonoBehaviour
     IEnumerator cCloseDoor(int leftIndex, int rightIndex)
     {
         isMoving = true;    //문이 움직이는 중 설정
-        leftDoors[leftIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
-        rightDoors[rightIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
 
         yield return new WaitForSeconds(3f);    //3초 뒤
         isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
@@ -136,8 +137,8 @@ public class DoorManager : MonoBehaviour
     {
         isMoving = true;    //문이 움직이는 중 설정
         isCloseDoor = false;    //문이 닫혀있지 않음으로 설정
-        leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
-        rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+        leftDoors[leftIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
 
         yield return new WaitForSeconds(3f);    //3초 뒤
         isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정
@@ -150,8 +151,8 @@ public class DoorManager : MonoBehaviour
     IEnumerator cCloseEnemyDoor(int leftIndex, int rightIndex)
     {
         isMoving = true;    //문이 움직이는 중 설정
-        leftDoors[leftIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
-        rightDoors[rightIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        leftDoors[leftIndex].transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+        rightDoors[rightIndex].transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
 
         yield return new WaitForSeconds(3f);    //3초 뒤
         isMoving = false;   //3초 뒤 문이 움직이지 않는 중으로 설정

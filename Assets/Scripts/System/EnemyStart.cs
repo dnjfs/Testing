@@ -7,7 +7,7 @@ public class EnemyStart : MonoBehaviour
     public GameObject Enemy;    //Enemy 오브젝트
     Transform playerTransform;   //Enemy 생성 좌표의 기준이 될 Player의 좌표
 
-    //Enemy가 생성될 문 좌표 리스트
+    //Enemy가 생성될 좌표 리스트
     public List<Vector3> doors = new List<Vector3>();
 
     private float YPosition = -3.8f;    //Y좌표는 동일
@@ -21,7 +21,7 @@ public class EnemyStart : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
 
-        //맵 타입에 따라 Enemy가 나올 수 있는 문 좌표 추가
+        //맵 타입에 따라 Enemy가 나올 수 있는 엘리베이터 좌표 추가
         if (GameManager.instance.mazeType == "T")
         {
             doors.Add(new Vector3(-32f, YPosition, -8f));       //1번
@@ -52,7 +52,7 @@ public class EnemyStart : MonoBehaviour
         //플레이어 근처 문에서 Enemy 생성
 
         //플레이어에게서 가장 가까운 문 옆 문 찾기
-        float shortDis = Vector3.Distance(playerTransform.position, doors[0]);  //기준 거리(첫번째 엘리베이터 문과 플레이어 사이의 거리)
+        float shortDis = Vector3.Distance(playerTransform.position, doors[0]);  //기준 거리(Enemy 생성위치와 플레이어 사이의 거리)
         Vector3 shortDoor = doors[0];   //기준 거리의 문의 좌표를 기준 좌표로 설정
         int shortDoorIndex = 0; //가장 가까운 문 인덱스
 
@@ -71,7 +71,7 @@ public class EnemyStart : MonoBehaviour
                     if (tempDistance < shortDis) //더 가까운 거리가 있다면 현재 오브젝트로 가까운 거리 갱신(더 가까운 거리가 있기 때문에 플레이어에게서 가장 가까운 거리는 아님)
                     {
                         shortDis = distance;    //가까운 거리 갱신
-                        shortDoor = doors[i];  //가까운 문의 좌표 갱신
+                        shortDoor = doors[i];  //가까운 좌표 갱신
                         shortDoorIndex = i; //가까운 문 인덱스
                         break;
                     }

@@ -6,6 +6,7 @@ using DG.Tweening;
 public class ElevatorUp : MonoBehaviour
 {
     //엘리베이터가 올라가는 함수
+
     public GameObject exitElevator_leftDoor;    //탈출구 엘리베이터의 왼쪽 문
     public GameObject exitElevator_rightDoor;    //탈출구 엘리베이터의 오른쪽 문
 
@@ -34,9 +35,7 @@ public class ElevatorUp : MonoBehaviour
         else        //현재 미로가 S라면
         {
             elevator = GameObject.FindWithTag("Elevator_S").transform.GetChild(elevatorIndex).gameObject;
-        }
-
-        
+        }        
     }
 
     //1층까지 올라가는 함수 (엘리베이터가 도착하면 플레이어 순간이동(이때 엘리베이터 깜빡거림)
