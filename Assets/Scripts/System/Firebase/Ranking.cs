@@ -38,41 +38,46 @@ public class Ranking : MonoBehaviour
         //reference의 자식(RANK)를 task로 받음
         reference.Child("RANK").GetValueAsync().ContinueWith(task =>
         {
+            if (task.IsCanceled)
+            {
+                Debug.Log("DataLoad was canceled");
+                return;
+            }
             if (task.IsFaulted)
             {
-                Debug.Log("error");
+                Debug.Log("Load error");
+                return;
             }
-            else if (task.IsCompleted) //task가 성공적이면
+
+            //if (task.IsCompleted) //task가 성공적이면
+            DataSnapshot snapshot = task.Result; //DataSnapshot 변수를 선언하여 task의 결과 값을 받음
+            Debug.Log("저장된 데이터 수: " + snapshot.ChildrenCount);
+            foreach (DataSnapshot data in snapshot.Children) //데이터베이스에서 값들을 불러와 UserRank 리스트에 저장
+                UserRank.Add((IDictionary)data.Value);
+
+            //점수와 시간으로 정렬
+            UserRank.Sort(delegate (IDictionary x, IDictionary y)
             {
-                DataSnapshot snapshot = task.Result; //DataSnapshot 변수를 선언하여 task의 결과 값을 받음
-                Debug.Log("저장된 데이터 수: " + snapshot.ChildrenCount);
-                foreach (DataSnapshot data in snapshot.Children) //데이터베이스에서 값들을 불러와 UserRank 리스트에 저장
-                    UserRank.Add((IDictionary)data.Value);
+                string X = x["score"].ToString();
+                string Y = y["score"].ToString();
+                int xScore = int.Parse(X);
+                int yScore = int.Parse(Y);
 
-                //점수와 시간으로 정렬
-                UserRank.Sort(delegate (IDictionary x, IDictionary y)
+                if (xScore == yScore) //점수가 같은 경우
                 {
-                    string X = x["score"].ToString();
-                    string Y = y["score"].ToString();
-                    int xScore = int.Parse(X);
-                    int yScore = int.Parse(Y);
+                    if (xScore == 0) //탈출 실패 시
+                        return int.Parse(x["time"].ToString()) < int.Parse(y["time"].ToString()) ? 1 : -1; //내림차순으로 정렬 (시간이 긴 순서대로)
+                    return int.Parse(x["time"].ToString()) < int.Parse(y["time"].ToString()) ? -1 : 1; //오름차순으로 정렬 (시간이 짧은 순서대로)
+                }
 
-                    if (xScore == yScore) //점수가 같은 경우
-                    {
-                        if (xScore == 0) //탈출 실패 시
-                            return int.Parse(x["time"].ToString()) < int.Parse(y["time"].ToString()) ? 1 : -1; //내림차순으로 정렬 (시간이 긴 순서대로)
-                        return int.Parse(x["time"].ToString()) < int.Parse(y["time"].ToString()) ? -1 : 1; //오름차순으로 정렬 (시간이 짧은 순서대로)
-                    }
+                return int.Parse(X) < int.Parse(Y) ? 1 : -1; //내림차순으로 정렬 (점수가 높은 순서대로)
+            });
 
-                    return int.Parse(X) < int.Parse(Y) ? 1 : -1; //내림차순으로 정렬 (점수가 높은 순서대로)
-                });
+            int rank = 1;
+            foreach (IDictionary temp in UserRank)
+                Debug.Log(rank++ + "등 name: " + temp["username"] + ", score: " + temp["score"] + ", time: " + temp["time"]);
 
-                int rank = 1;
-                foreach (IDictionary temp in UserRank)
-                    Debug.Log(rank++ + "등 name: " + temp["username"] + ", score: " + temp["score"] + ", time: " + temp["time"]);
-
-                isLoaded = true; //쓰레드가 끝나는 타이밍을 플래그로 설정
-            }
+            isLoaded = true; //쓰레드가 끝나는 타이밍을 플래그로 설정
         });
     }
 

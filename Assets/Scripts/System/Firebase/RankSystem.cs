@@ -40,17 +40,22 @@ public class RankSystem : MonoBehaviour
         //덮어씌워질 수 있으므로 불러오고 저장하는 것을 한 번에 처리
         reference.Child("RANK").GetValueAsync().ContinueWith(task =>
         {
+            if (task.IsCanceled)
+            {
+                Debug.Log("DataWrite was canceled");
+                return;
+            }
             if (task.IsFaulted)
             {
-                Debug.Log("서버 접속 불가");
+                Debug.Log("Write error");
+                return;
             }
-            else if (task.IsCompleted) //task가 성공적이면
-            {
-                int count = (int)task.Result.ChildrenCount;
-                Debug.Log("불러온 데이터 수: " + count);
+            
+            //if (task.IsCompleted) //task가 성공적이면
+            int count = (int)task.Result.ChildrenCount;
+            Debug.Log("불러온 데이터 수: " + count);
 
-                AddDatabase(name, score, time, count + 1);
-            }
+            AddDatabase(name, score, time, count + 1);
         });
     }
     private void AddDatabase(string name, int score, int time, int turn) //파이어베이스에 기록
