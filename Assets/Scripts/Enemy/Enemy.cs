@@ -16,8 +16,13 @@ public class Enemy : MonoBehaviour
     Direction nextDirection;
     Vector3 moveDirection; //실제 이동방향 벡터
 
+    //생성 Enemy 번호(몇 번째 Enemy인지)
+    public int EnemyNumber;
+
     void Start()
     {
+        EnemyNumber = GameObject.FindWithTag("GameSystem").GetComponent<EnemyStart>().createEnemy;  //Enemy 번호 지정
+
         SetEnemyLevel();
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();

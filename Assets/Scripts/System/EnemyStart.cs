@@ -12,11 +12,14 @@ public class EnemyStart : MonoBehaviour
 
     private float YPosition = -3.8f;    //Y좌표는 동일
     public int openDoorIndex; //Enemy 생성 문 인덱스
+    public int createEnemy;    //생성된 Enemy 수
 
     public GameObject EnemyExitCollider;  //Enemy가 문 밖을 나갔는지 확인할 콜라이더
 
     void Start()
     {
+        createEnemy = 0;
+
         //Player의 좌표를 가져올 컴포넌트
         playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
@@ -50,6 +53,8 @@ public class EnemyStart : MonoBehaviour
     public void CreateEnemy()
     {
         //플레이어 근처 문에서 Enemy 생성
+
+        createEnemy++;  //생성된 Enemy 수 증가
 
         //플레이어에게서 가장 가까운 문 옆 문 찾기
         float shortDis = Vector3.Distance(playerTransform.position, doors[0]);  //기준 거리(Enemy 생성위치와 플레이어 사이의 거리)
