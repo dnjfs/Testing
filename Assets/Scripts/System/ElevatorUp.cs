@@ -13,6 +13,8 @@ public class ElevatorUp : MonoBehaviour
 
     GameObject elevator;    //탈출구 엘리베이터
     GameObject player;   //플레이어 오브젝트)
+    GameObject maze; //플레이 중인 미로
+    public GameObject corridor; //엔딩 복도
 
     int elevatorIndex;
 
@@ -46,11 +48,17 @@ public class ElevatorUp : MonoBehaviour
         mySequence.Append(elevator.transform.DOLocalMoveY(100f, 20f));  //엘리베이터 올라감
         //엘리베이터 조명 깜빡거림
 
+        maze = GameObject.Find(GameManager.instance.mazeType+"_maze(Clone)");
+        //corridor = GameObject.Find("hallway_modeling");
+        corridor.SetActive(true); //복도 객체 활성화
+
         mySequence.OnComplete(() => {
             //엘리베이터가 도착하면
             //엘리베이터 조명 꺼짐
             player.gameObject.transform.position = new Vector3(152.0f, 8.32f, 495f);    //플레이어 순간이동
             player.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);    //플레이어 방향 조정
+
+            maze.SetActive(false); //미로 객체 비활성화
 
             //엘리베이터 문 열림(영구)
             exitElevator_leftDoor.transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동

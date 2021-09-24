@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13015562, g: 0.09557039, b: 0.12492945, a: 1}
+  m_IndirectSpecularColor: {r: 0.13060763, g: 0.09482264, b: 0.12541854, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2008,6 +2008,48 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5313022574023165220, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
   m_PrefabInstance: {fileID: 937917583}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &941033442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 941033444}
+  - component: {fileID: 941033443}
+  m_Layer: 0
+  m_Name: Occlusion Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!192 &941033443
+OcclusionArea:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941033442}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+  m_IsViewVolume: 1
+--- !u!4 &941033444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941033442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &955789377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5027917563511914588, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
@@ -2562,6 +2604,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066658778}
   m_CullTransparentMesh: 1
+--- !u!1 &1072678335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5660198784020454118, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
+  m_PrefabInstance: {fileID: 937917583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1074074122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4056,6 +4103,7 @@ MonoBehaviour:
   Enemy: {fileID: 4634533778592988930, guid: 6da9f1bba262d174bbdbe0641f38158d, type: 3}
   doors: []
   openDoorIndex: 0
+  createEnemy: 0
   EnemyExitCollider: {fileID: 4451753581358470435, guid: ca347cda0edca5a428049f1ff9c5f3ba, type: 3}
 --- !u!114 &1586769809
 MonoBehaviour:
@@ -4131,6 +4179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitElevator_leftDoor: {fileID: 937917586}
   exitElevator_rightDoor: {fileID: 1114785229}
+  corridor: {fileID: 1072678335}
 --- !u!114 &1586769812
 MonoBehaviour:
   m_ObjectHideFlags: 0
