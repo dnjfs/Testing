@@ -2063,7 +2063,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 5
-  isInElevator: 1
+  agent: {fileID: 0}
+  EnemyNumber: 0
 --- !u!136 &5516982366051517007
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3002,7 +3003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &31518522030783299
 Transform:
   m_ObjectHideFlags: 0
