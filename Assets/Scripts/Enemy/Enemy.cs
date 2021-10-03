@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     enum Direction { Up, Right, Down, Left, None }; //이동방향 열거
     public float velocity; //이동속도
 
-    private bool isNear; //근처에 플레이어가 있는지
+    public bool isNear; //근처에 플레이어가 있는지
     public NavMeshAgent agent; //자신의 agent
     Rigidbody rigid;
 
@@ -25,11 +25,12 @@ public class Enemy : MonoBehaviour
 
         SetEnemyLevel();
         rigid = GetComponent<Rigidbody>();
+        isNear = false;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = velocity;
         agent.destination = GameObject.FindWithTag("Player").transform.position;
 
-        Invoke("SetMoveDirection", 3f); //생성되고 3초 후 이동
+        Invoke("SetMoveDirection", 5f); //생성되고 5초 후 이동
     }
 
     void Update()
