@@ -118,7 +118,7 @@ public class Repetition : MonoBehaviour
             GameManager.instance.timeScore = GameManager.instance.playTime; //플레이타임 저장
 
             //엘리베이터 생성 메시지 출력
-            this.gameObject.GetComponent<DialogManager>().CreateElevatorMessage();
+            this.gameObject.GetComponent<Dialog_Maze>().CreateElevatorMessage();
 
             //엘리베이터 열고 10초 뒤 닫음
             int elevatorIndex = GameManager.instance.elevatorIndex; //플레이어 엘리베이터 인덱스를 가져옴

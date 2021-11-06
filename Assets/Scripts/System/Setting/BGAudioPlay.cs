@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BGAudioPlay : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class BGAudioPlay : MonoBehaviour
         BGSound.volume = BGvol;
 
         PlayMazeBG();
+        if (SceneManager.GetActiveScene().name == "Corridor") //Corridor 씬의 배경음악 변경
+            PlayWhiteRoomBG();
     }
 
     //미로 배경음악으로 재생하는 함수
