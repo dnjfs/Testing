@@ -6,14 +6,12 @@ TagManager:
   tags:
   - Monster
   - GameSystem
-  - Elevator_T
-  - Elevator_S
-  - Elevator_E
   - CountBlocks
   - ElevatorOpenButton
   - ElevatorCloseButton
   - FirstFloorButton
   - WhiteDoorOpenBlock
+  - Elevators
   layers:
   - Default
   - TransparentFX

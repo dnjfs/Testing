@@ -65,9 +65,17 @@ public class Player : MonoBehaviour
         AttackAudio = GameObject.Find("VideoPlayer").GetComponent<AudioSource>();
         AttackVideo.Prepare(); //영상 준비
 
-        //플레이어 생성되면 시스템 시작메시지 출력
-        GameObject.FindWithTag("GameSystem").GetComponent<DialogManager>().StartMessage();
-        Invoke("SetPlayerLevel", 21f);
+        //만약 탈출 후 맵이 아니라면 21초(시작 메시지 출력 시간) 후 캐릭터 레벨 설정. 맞다면 바로 캐릭터 레벨 설정
+        if (SceneManager.GetActiveScene().name == "Corridor")
+        {
+            SetPlayerLevel();
+        }
+        else
+        {
+            //플레이어 생성되면 시스템 시작메시지 출력
+            GameObject.FindWithTag("GameSystem").GetComponent<Dialog_Maze>().StartMessage();
+            Invoke("SetPlayerLevel", 21f);
+        }
         //SetPlayerLevel();   //DialogManager에서 처리
     }
 
@@ -227,17 +235,18 @@ public class Player : MonoBehaviour
             increasingStamina = 1.5f;   //스태미나 회복 속도 1.5s
             decreasingStamina = 4.0f;   //스태미나 감소 속도 4s
         }
-        else if (GameManager.instance.gameLevel == "normal")   //게임 난이도가 normal면
-        {
-            //speed = 7f;  //Player의 속도는 7f
-            increasingStamina = 2.0f;   //스태미나 회복 속도 2s
-            decreasingStamina = 3.0f;   //스태미나 감소 속도 3s
-        }
         else if (GameManager.instance.gameLevel == "hard") //게임 난이도가 hard면
         {
             //speed = 5f;  //Player의 속도는 5f
             increasingStamina = 3.0f;   //스태미나 회복 속도 3s
             decreasingStamina = 2.0f;   //스태미나 감소 속도 2s
+        }
+        else
+        {
+            //그 외(기본: normal 모드)
+            //speed = 7f;  //Player의 속도는 7f
+            increasingStamina = 2.0f;   //스태미나 회복 속도 2s
+            decreasingStamina = 3.0f;   //스태미나 감소 속도 3s
         }
     }
 

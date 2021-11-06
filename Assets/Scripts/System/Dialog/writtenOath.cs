@@ -39,15 +39,15 @@ public class writtenOath : MonoBehaviour
         if (openNumber == 0)    //성적표가 처음 열리는 거라면
         {
             //대화창을 터치하면 대화창을 닫는다.
-            this.GetComponent<DialogManager>().CloseWhiteDialog();
+            this.GetComponent<Dialog_Corridor>().CloseWhiteDialog();
 
             //서약서의 날짜와 이름 변경
             OathAndReportDate writeDate;    //요일 객체 생성
             writeDate = GetDate();  //요일 계산해서 가져옴
 
             //서약서에 값 입력(이름과 날짜를 사용자의 이름과 플레이한 날짜의 일주일 전으로 설정)
-            oathContent.transform.GetChild(5).gameObject.GetComponent<Text>().text = writeDate.year + "년 " + writeDate.month + "월 " + writeDate.day + "일" + "\n\n" +
-                "서명: " + GameManager.instance.nickName;
+            oathContent.transform.GetChild(7).GetComponent<Text>().text = "날짜: " + writeDate.year + "년 " + writeDate.month + "월" + writeDate.day + "일\n\n" +
+                "성명 : " + GameManager.instance.nickName;
 
             //서약서가 페이드 효과로 나온다.
             theOath.gameObject.SetActive(true);  //서약서 이미지 활성화
@@ -95,16 +95,17 @@ public class writtenOath : MonoBehaviour
         GameManager.instance.isPass = isPass;
 
         //성적표에 값 입력(이름과 날짜를 사용자의 이름과 플레이한 날짜의 일주일 전으로 설정)
-        reportContent.transform.GetChild(0).GetComponent<Text>().text = "성명 : " + GameManager.instance.nickName + "\n" +
-            "날짜: " + writeDate.year + "년 " + writeDate.month + "월" + writeDate.day + "일";
+        reportContent.transform.GetChild(2).GetComponent<Text>().text = "성명 : " + GameManager.instance.nickName + "\n\n" +
+            "날짜: " + writeDate.year + "년 " + writeDate.month + "월" + writeDate.day + "일\n";
 
-        reportContent.gameObject.transform.GetChild(1).GetComponent<Text>().text = "민첩성: " + GameManager.instance.agility;   //민첩성 적용
-        reportContent.gameObject.transform.GetChild(2).GetComponent<Text>().text = "정확성: " + GameManager.instance.accuracy;   //정확성 적용
-        reportContent.gameObject.transform.GetChild(3).GetComponent<Text>().text = "예측성: " + GameManager.instance.predictability;   //예측성 적용
-        reportContent.gameObject.transform.GetChild(4).GetComponent<Text>().text = "평균: " + GameManager.instance.average.ToString("N1");   //평균 적용(소수점 한자리까지 표현)
+        reportContent.gameObject.transform.GetChild(3).GetComponent<Text>().text = "민첩성: " + GameManager.instance.agility;   //민첩성 적용
+        reportContent.gameObject.transform.GetChild(4).GetComponent<Text>().text = "정확성: " + GameManager.instance.accuracy;   //정확성 적용
+        reportContent.gameObject.transform.GetChild(5).GetComponent<Text>().text = "예측성: " + GameManager.instance.predictability;   //예측성 적용
+        reportContent.gameObject.transform.GetChild(6).GetComponent<Text>().text = "평균: " + GameManager.instance.average.ToString("N1");   //평균 적용(소수점 한자리까지 표현)
 
         string passOrFail = isPass == true ? "합격" : "불합격"; //합격, 불합격 여부 가져옴
-        reportContent.gameObject.transform.GetChild(5).GetComponent<Text>().text = passOrFail;   //합격여부 적용
+        Debug.Log(passOrFail);
+        reportContent.gameObject.transform.GetChild(7).GetComponent<Text>().text = passOrFail;   //합격여부 적용
 
         //성적표를 페이드 효과로 띄운다
         reportCard.gameObject.SetActive(true);  //서약서 이미지 활성화

@@ -30,10 +30,31 @@ public class SceneChange : MonoBehaviour
     public void ChangePlayingScene()
     {
         //loading씬 후 play 씬으로 이동
-        //(LoadManager.LoadScene이 아니라 LoadingManager 스크립트의 LoadScene)
         GameManager.instance.ResetGameManager();    //게임 기록 초기화
-        FadeEffects.FadeOutAndLoadScene(clearImage, "Playing", 0.5f);
-        //LoadingManager.LoadScene("Playing");
+
+        //맵 생성(1/3 확률로 T, E, S맵 생성)
+        int mapIndex = Random.Range(0, 3);
+        if (mapIndex == 0)
+        {
+            GameManager.instance.mazeType = "T";    //T맵 정보 저장
+            FadeEffects.FadeOutAndLoadScene(clearImage, "Maze_T", 0.5f);    //씬 이동
+        }
+        else if (mapIndex == 1)
+        {
+            GameManager.instance.mazeType = "E";    //E맵 정보 저장
+            FadeEffects.FadeOutAndLoadScene(clearImage, "Maze_E", 0.5f);    //씬 이동
+        }
+        else
+        {
+            GameManager.instance.mazeType = "S";    //S맵 정보 저장
+            FadeEffects.FadeOutAndLoadScene(clearImage, "Maze_S", 0.5f);    //씬 이동
+        }
+    }
+
+    public void ChangeCorridorScene()
+    {
+        //복도 씬으로 이동
+        FadeEffects.FadeOutAndLoadScene(clearImage, "Corridor", 0.5f);
     }
 
     public void ChangeRankingScene()
@@ -54,14 +75,7 @@ public class SceneChange : MonoBehaviour
     {
         //Exit 버튼을 누르면 게임 종료
         Application.Quit();
-    }
-    
-    void OnLevelWasLoade(int level)
-    {
-        //씬이 로드될 때마다 Fade In 효과
-        FadeEffects.FadeIn(blackImage, 0.5f);
-    }
-    
+    }  
 
 
 

@@ -49,16 +49,17 @@ public class DialogManager : MonoBehaviour
     public void EnterWhiteRoom()
     {
         //하얀방 입장 메시지
+        whiteRoomMessageText.text = ""; //텍스트 초기화
         whiteRoomMessageText.gameObject.SetActive(true);  //텍스트 활성화
         whiteRoomBackGround.gameObject.SetActive(true); //텍스트 배경 활성화
         talkerBakcGround.gameObject.SetActive(true); //연구원 배경 활성화
 
         Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성(Sequence: Tween들을 시간과 순서에 맞춰 배열하여 하나의 장면 구성)
-        seq.Append(whiteRoomBackGround.DOFade(1f, 1f));  //텍스트 배경 페이드 효과(1f 색깔로 1f동안 변경)
-        seq.Join(talkerBakcGround.DOFade(1f, 1f));  //연구원 배경 페이드 효과(1f 색깔로 1f동안 변경)
+        seq.Append(whiteRoomBackGround.DOFade(1f, 1f));  //텍스트 배경 페이드 효과(1f 색깔로 1f동안 변경)    -> 서서히 나타나기
+        seq.Join(talkerBakcGround.DOFade(1f, 1f));  //연구원 배경 페이드 효과(1f 색깔로 1f동안 변경) -> 서서히 나타나기
 
-        seq.Append(whiteRoomMessageText.DOText(theWhiteRoomDialogText, 5f));    //시퀀스 끝에 DOText 트윈을 저장
 
+        seq.Append(whiteRoomMessageText.DOText(theWhiteRoomDialogText, 5f));    //텍스트 출력
         whiteRoomSkipButton.onClick.AddListener(delegate { this.GetComponent<writtenOath>().OpenReportCard(); });  //스킵 버튼 이벤트 추가(서약서 없이 바로 성적표 나옴)
     }
 

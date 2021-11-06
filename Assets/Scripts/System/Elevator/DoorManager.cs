@@ -23,41 +23,30 @@ public class DoorManager : MonoBehaviour
         isCloseDoor = true; //문이 닫혀있는 상태로 초기화
     }
 
+    //문이 움직이는 중인지 상태를 반환하는 함수
+    public bool isDoorMoving()
+    {
+        return isMoving;
+    }
+
+    //문이 닫혔는지 상태를 반환하는 함수
+    public bool isDoorClose()
+    {
+        return isCloseDoor;
+    }
+
     //엘리베이터별 문 좌표 불러오기: T맵
-    public void T_DoorSetting()
+    public void DoorSetting()
     {
         for (int i = 1; i < 13; i++)
         {
-            GameObject elevator = GameObject.FindWithTag("Elevator_T").transform.GetChild(i - 1).gameObject; //현재 맵의 엘리베이터를 설정
+            GameObject elevator = GameObject.FindWithTag("Elevators").transform.GetChild(i - 1).gameObject; //현재 맵의 엘리베이터를 설정
 
             leftDoors[i - 1] = elevator.transform.GetChild(0).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장
             rightDoors[i - 1] = elevator.transform.GetChild(1).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장
         }
     }
 
-    //엘리베이터별 문 좌표 불러오기: E맵
-    public void E_DoorSetting()
-    {
-        for (int i = 1; i < 13; i++)
-        {
-            GameObject elevator = GameObject.FindWithTag("Elevator_E").transform.GetChild(i - 1).gameObject; //현재 맵의 엘리베이터를 설정
-
-            leftDoors[i - 1] = elevator.transform.GetChild(0).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장(26: 엘리베이터 오브젝트의 왼쪽문 자식 인덱스)
-            rightDoors[i - 1] = elevator.transform.GetChild(1).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장(38: 엘리베이터 오브젝트의 오른쪽문 자식 인덱스)
-        }
-    }
-
-    //엘리베이터별 문 좌표 불러오기: S맵
-    public void S_DoorSetting()
-    {
-        for (int i = 1; i < 13; i++)
-        {
-            GameObject elevator = GameObject.FindWithTag("Elevator_S").transform.GetChild(i - 1).gameObject; //현재 맵의 엘리베이터를 설정
-
-            leftDoors[i - 1] = elevator.transform.GetChild(0).gameObject;  //해당 인덱스 엘리베이터의 왼쪽문 저장(26: 엘리베이터 오브젝트의 왼쪽문 자식 인덱스)
-            rightDoors[i - 1] = elevator.transform.GetChild(1).gameObject; //해당 인덱스 엘리베이터의 오른쪽문 저장(38: 엘리베이터 오브젝트의 오른쪽문 자식 인덱스)
-        }
-    }
 
     //해당 번째의 문 열기
     public void OpenDoor(int leftIndex, int rightIndex)
@@ -205,7 +194,8 @@ public class DoorManager : MonoBehaviour
         string maze = GameManager.instance.mazeType;    //GameManager의 미로 타입을 가져옴
         int elevator = GameManager.instance.elevatorIndex;  //GameManager의 엘리베이터 번호를 가져옴
 
-        if (maze.Equals("T"))    //만약 미로가 T맵이라면
+        //맵 별로 엘리베이터 여는 버튼 생성(좌표 조금씩 다름)
+        if (maze.Equals("T"))    //만약 미로가 T맵이라면 
         {
             if (elevator == 3)  //만약 엘리베이터 인덱스가 3이라면
             {
@@ -246,7 +236,7 @@ public class DoorManager : MonoBehaviour
     }
     public void CreateEnterTrigger() //엘리베이터에 탑승했는지 검사하는 트리거 생성
     {
-        GameObject elevator = GameObject.FindWithTag("Elevator_"+GameManager.instance.mazeType).transform.GetChild(GameManager.instance.elevatorIndex).gameObject;
+        GameObject elevator = GameObject.FindWithTag("Elevators").transform.GetChild(GameManager.instance.elevatorIndex).gameObject;
         Debug.Log(elevator.name);
         GameObject enter = Instantiate(Enter, elevator.transform.position, elevator.transform.rotation, elevator.transform);
         //enter.transform.parent = elevator.transform; //Instantiate에서 설정됨

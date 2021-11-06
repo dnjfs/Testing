@@ -52,7 +52,7 @@ public class ElevatorButton : MonoBehaviour
                     /*
                     for (int i = 0; i < 12; i++)
                     {
-                        system.GetComponent<DoorManager>().OpenDoor(i, i);  //모든 탈출구 엘리베이터 열리기
+                        system.GetComponent<DoorManager>().OpenDoor(i, i);  //모든 탈출구 엘리베이터 열리기(문 제대로 열리는지 확인용)
                     }
                     */
                 }
@@ -72,10 +72,12 @@ public class ElevatorButton : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 5f))
             {
-                if (hit.collider.tag == "FirstFloorButton")   //터치한 오브젝트가 1층 버튼이라면
+                bool isDoorClose = system.GetComponent<DoorManager>().isDoorClose();
+
+                if (hit.collider.tag == "FirstFloorButton" && isDoorClose)   //터치한 오브젝트가 1층 버튼이고 엘리베이터 문이 닫힌 상태라면
                 {
                     //StartCoroutine(ButtonDown());   //버튼 들어갔다 나오는 움직임
-                    system.GetComponent<ElevatorUp>().UpToFirstFloor();  //탈출구 엘리베이터 열기
+                    system.GetComponent<ElevatorUp>().UpToFirstFloor();  //1층으로 올라가기
                 }
             }
         }
@@ -98,7 +100,7 @@ public class ElevatorButton : MonoBehaviour
                 if (hit.collider.tag == "ElevatorCloseButton")   //터치한 오브젝트가 엘리베이터 버튼이라면
                 {
                     //StartCoroutine(ButtonDown());   //버튼 들어갔다 나오는 움직임
-                    system.GetComponent<DoorManager>().CloseDoor(elevator, elevator);  //탈출구 엘리베이터 열기
+                    system.GetComponent<DoorManager>().CloseDoor(elevator, elevator);  //탈출구 엘리베이터 닫기
                 }
             }
         }

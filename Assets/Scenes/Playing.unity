@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13060763, g: 0.09482264, b: 0.12541854, a: 1}
+  m_IndirectSpecularColor: {r: 0.13015562, g: 0.09557039, b: 0.12492945, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2003,11 +2003,6 @@ PrefabInstance:
       objectReference: {fileID: 1148114853}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
---- !u!1 &937917586 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5313022574023165220, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
-  m_PrefabInstance: {fileID: 937917583}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &941033442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,11 +2599,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066658778}
   m_CullTransparentMesh: 1
---- !u!1 &1072678335 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5660198784020454118, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
-  m_PrefabInstance: {fileID: 937917583}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1074074122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,11 +2777,6 @@ CanvasRenderer:
 --- !u!1 &1095936211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8805020557406481317, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
-  m_PrefabInstance: {fileID: 937917583}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1114785229 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6217113679180679731, guid: 2adb53c81a6c1c0488ae1d967a11062c, type: 3}
   m_PrefabInstance: {fileID: 937917583}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1137778632
@@ -4037,12 +4022,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1222732441141516211, guid: 4599ba16f071bd14483a73c869f4110c, type: 3}
-  T_Map: {fileID: 7695707724462507328, guid: 8e6083c8f8469cf47b9cb498c77b012e, type: 3}
-  E_Map: {fileID: 6688515448914351625, guid: e11fd0986c3531141891dbb5d00f61ac, type: 3}
-  S_Map: {fileID: 316531794874504109, guid: 0a1ed701b98aa8a4e893d1a068184cff, type: 3}
-  T_Block: {fileID: 8823861289131299771, guid: 09b7bff506382464393491b9694f2c33, type: 3}
-  E_Block: {fileID: 1707099024589192250, guid: 4d2ae06ff149feb4889cfa37c9d03554, type: 3}
-  S_Block: {fileID: 7991676528608168337, guid: 693e56ebbed7680499fb7309c31d0107, type: 3}
 --- !u!114 &1586769805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4177,9 +4156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f003845ad974fe34aa45864a21569297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitElevator_leftDoor: {fileID: 937917586}
-  exitElevator_rightDoor: {fileID: 1114785229}
-  corridor: {fileID: 1072678335}
 --- !u!114 &1586769812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4193,6 +4169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joyStick: {fileID: 1148114853}
+  exitElevator_leftDoor: {fileID: 0}
+  exitElevator_rightDoor: {fileID: 0}
   endingLeftDoor: {fileID: 222462674}
   endingRightDoor: {fileID: 1095936211}
 --- !u!114 &1586769813

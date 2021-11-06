@@ -7,15 +7,28 @@ public class Ending : MonoBehaviour
 {
     //합격이면 탈출 애니메이션, 불합격이면 게임오버 씬으로 이동하는 스크립트
 
-    public GameObject joyStick; //플레이어 조이스틱
-
+    //Player Prefab을 받을 public 변수
+    public GameObject Player;
     GameObject player;
+
+    public GameObject exitElevator_leftDoor;    //탈출구 엘리베이터의 왼쪽 문
+    public GameObject exitElevator_rightDoor;    //탈출구 엘리베이터의 오른쪽 문
+
     public GameObject endingLeftDoor;   //탈출구 왼쪽 문
     public GameObject endingRightDoor;   //탈출구 오른쪽 문
 
+    void Awake()
+    {
+        //플레이어 기본 생성
+        player = (GameObject)Instantiate(Player, new Vector3(-50.3f, 7.56f, -2.24f), Quaternion.identity);
+    }
+
     void Start()
     {
-        player = GameObject.FindWithTag("Player").gameObject;
+        //씬이 시작되면 문을 연다.
+        exitElevator_leftDoor.transform.DOLocalMoveX(3f, 3f).SetRelative();  //3초간 X 방향으로 3만큼 이동
+        exitElevator_rightDoor.transform.DOLocalMoveX(-3f, 3f).SetRelative();  //3초간 X 방향으로 -3만큼 이동
+
     }
 
     public void FailOrPass()    //연구원 대화창 출력 후)
@@ -40,20 +53,20 @@ public class Ending : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성
         seq.OnStart(() => {
-            this.GetComponent<DialogManager>().CreatePassMessage(); //합격 메시지 출력
-            //화면 터치 기능 막기
-
             //출구가 열림
             endingLeftDoor.transform.DOLocalMoveX(5f, 3f).SetRelative();  //3초간 X 방향으로 5만큼 이동
             endingRightDoor.transform.DOLocalMoveX(-6.5f, 3f).SetRelative();  //3초간 X 방향으로 -5만큼 이동
+
+            this.GetComponent<Dialog_Corridor>().CreatePassMessage(); //합격 메시지 출력
+            //화면 터치 기능 막기
         });
 
         //밖으로 이동(플레이어 조작 막음 -> 조작 이미지 비활성화)
-        player.transform.DOLocalMoveZ(30f, 5f).SetRelative(); //3초간 Z 방향으로 30만큼 이동
-
+        player.transform.DOLocalMoveZ(30f, 5f).SetRelative(); //5초간 Z 방향으로 30만큼 이동
+        seq.AppendInterval(7f); //30초 딜레이
         seq.OnComplete(() => {
-            //랭킹 씬으로 이동(이 전에 랭킹 저장?)
-            //this.GetComponent<SceneChange>().ChangeRankingScene();    //텀 주고 이동 
+            //랭킹 씬으로 이동(이 전에 랭킹 저장)
+            this.GetComponent<SceneChange>().ChangeRankingScene();    //텀 주고 이동 
         });
     }
 
