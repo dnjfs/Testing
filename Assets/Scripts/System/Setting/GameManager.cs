@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     // 게임 시작과 동시에 싱글톤 구성
     void Awake()
     {
+        Application.targetFrameRate = 60; //60프레임 고정
         //싱글톤 변수 instance가 이미 있다면
         if (instance)
         {
