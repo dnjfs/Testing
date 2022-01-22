@@ -74,7 +74,9 @@ public class Player : MonoBehaviour
         {
             //플레이어 생성되면 시스템 시작메시지 출력
             GameObject.FindWithTag("GameSystem").GetComponent<Dialog_Maze>().StartMessage();
-            Invoke("SetPlayerLevel", 21f);
+
+            //플레이어 움직임은 시작 메시지가 모두 출력시 또는 시작 메시지 스킵 버튼 클릭시 설정
+            //Invoke("SetPlayerLevel", 21f); //플레이어 레벨 설정(움직임 제한 해제)
         }
         //SetPlayerLevel();   //DialogManager에서 처리
     }

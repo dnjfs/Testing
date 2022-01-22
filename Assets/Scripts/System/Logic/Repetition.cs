@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;  //Max()를 사용하기 위해 명시
 
 public class Repetition : MonoBehaviour
@@ -20,6 +21,8 @@ public class Repetition : MonoBehaviour
     //T맵은 중복성 체크 블록 47개
     //E, S맵은 중복성 체크 블록 65개
     int NumberOfBlock;  //중복성 체크 블록의 개수
+
+    public Text leftBlockText;    //남은 블록의 개수를 보여주는 UI Text
 
     void Start()
     {
@@ -44,6 +47,14 @@ public class Repetition : MonoBehaviour
         MaxValue = Count.Max(); //최댓값 반환
         Progress(); //진행률 계산
         ProgressEvent();    //진행률에 따라 이벤트
+
+        leftBlockText.text = setLeftBlockText();  //UI로 보여주는 남은 블록 개수 변경
+    }
+
+    public string setLeftBlockText()
+    {
+        string textStr = leftBlock.Count() + " / " + NumberOfBlock;
+        return textStr;
     }
 
     public void addCount(int index)
