@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
                 stamina = maxStamina;
         }
 
-        fog.color = new Color(1f, 1f, 1f, 0.5f - stamina); //남은 스태미너에 따라 안개의 투명도 조절 (스태미너가 절반 이하일 때부터 뿌옇게 됨)
+        fog.color = new Color(1f, 1f, 1f, (0.5f - stamina) * 2); //남은 스태미너에 따라 안개의 투명도 조절 (스태미너가 절반 이하일 때부터 뿌옇게 됨)
 
         if (NearEnemyNum > 0) //근처에 몬스터가 존재하면
         {
