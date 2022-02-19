@@ -53,7 +53,7 @@ public class Repetition : MonoBehaviour
 
     public string setLeftBlockText()
     {
-        string textStr = leftBlock.Count() + " / " + NumberOfBlock;
+        string textStr = leftBlock.Count().ToString();
         return textStr;
     }
 
