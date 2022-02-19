@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
         playTime += Time.deltaTime;
     }
 
+    public static GameManager GetGameManager()
+    {
+        return instance;
+    }
+
     //GameManager 변수 값 초기화
     public void ResetGameManager()
     {
