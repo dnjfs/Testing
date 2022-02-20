@@ -235,20 +235,20 @@ public class Player : MonoBehaviour
         {
             //speed = 10f;  //Player의 속도는 10f
             increasingStamina = 1.5f;   //스태미나 회복 속도 1.5s
-            decreasingStamina = 4.0f;   //스태미나 감소 속도 4s
+            decreasingStamina = 6.0f;   //스태미나 감소 속도 6s
         }
         else if (GameManager.instance.gameLevel == "hard") //게임 난이도가 hard면
         {
             //speed = 5f;  //Player의 속도는 5f
             increasingStamina = 3.0f;   //스태미나 회복 속도 3s
-            decreasingStamina = 2.0f;   //스태미나 감소 속도 2s
+            decreasingStamina = 4.0f;   //스태미나 감소 속도 4s
         }
         else
         {
             //그 외(기본: normal 모드)
             //speed = 7f;  //Player의 속도는 7f
             increasingStamina = 2.0f;   //스태미나 회복 속도 2s
-            decreasingStamina = 3.0f;   //스태미나 감소 속도 3s
+            decreasingStamina = 5.0f;   //스태미나 감소 속도 5s
         }
     }
 
