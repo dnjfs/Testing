@@ -48,7 +48,7 @@ public class FadeEffects : MonoBehaviour
 
         seq.OnComplete(() =>
         {
-            if (sceneName == "Playing")
+            if (sceneName == "Maze_T" || sceneName == "Maze_E" || sceneName == "Maze_S")
                 LoadingManager.LoadScene(sceneName);
             else        //Playing씬 외의 다른 씬으로 이동시 로딩화면 불필요
                 SceneManager.LoadScene(sceneName);
