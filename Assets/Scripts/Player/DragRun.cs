@@ -50,7 +50,9 @@ public class DragRun : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public void ControlJoystickLever(PointerEventData eventData)
     {
-        var inputVector = eventData.position - rectTransform.anchoredPosition;
+        // 스크린으로 입력된 지점을 캔버스의 조이스틱UI 기준으로 계산 (멀티 해상도 대응)
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out Vector2 localCursor);
+        var inputVector = localCursor;
 
         player.run = false;
         if (inputVector.y > leverRange + 80.0f) //레버를 위로 많이 당겼을 때 달리기
