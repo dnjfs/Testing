@@ -12,6 +12,12 @@ public class LoadingManager : MonoBehaviour
     public Image BlackImage;    //페이드 효과를 위한 검정 이미지
     public Image ClearImage;    //페이드 효과를 위한 투명 이미지
 
+    //시간 기반 로딩화면
+    private float time_loading = 5;
+    private float time_current;
+    private float time_start;
+    //private bool isEnded = true;
+
     private void Start()
     {
         FadeEffects.FadeIn(BlackImage, 0.5f); //페이드인 화면
@@ -32,9 +38,10 @@ public class LoadingManager : MonoBehaviour
         AsyncOperation op = SceneManager.LoadSceneAsync(changeScene);   
         op.allowSceneActivation = false;
 
-        float timer = 0.0f; //시간 초기화
+        //float timer = 0.0f; //시간 초기화
         ProgressBar.value = 0.0f;   //진행도 슬라이더 초기화
 
+        /*
         while (!op.isDone)
         {
             yield return null;
@@ -63,5 +70,29 @@ public class LoadingManager : MonoBehaviour
                 }
             }
         }
+        */
+
+        //5초 정도 로딩씬 게이지바 보여주기
+        time_current = time_loading;
+        time_start = Time.time;
+
+        while(!op.isDone)
+        {
+            yield return null;
+            time_current = Time.time - time_start;
+            if(time_current < time_loading)
+            {
+                ProgressBar.value = time_current / time_loading;
+            }
+            
+            if (ProgressBar.value >= 0.99f)
+            {
+                //준비가 다 되었다면
+                op.allowSceneActivation = true;
+                yield break;
+            }
+
+        }
+        FadeEffects.FadeOut(ClearImage, 0.5f); //페이드아웃 화면
     }
 }
