@@ -21,7 +21,8 @@ public class Dialog_Maze : MonoBehaviour
                                     "그럼 행운을 빕니다."};
 
     //모든 길을 다 돌았을 때 시스템 메시지
-    private string[] createElevatorText = { "출구가 열렸습니다." };
+    private string[] createElevatorText = { "출구가 열렸습니다.",
+                                    "엘리베이터 버튼을 눌러 이곳을 탈출하세요."};
 
     public void StartMessage()
     {
@@ -50,15 +51,12 @@ public class Dialog_Maze : MonoBehaviour
             Sequence closeSeq = DOTween.Sequence();  //DOTween Sequence 생성
             closeSeq.Append(backGround.DOFade(0f, 1f)); //메시지 페이드 효과
 
-            //메시지 글자 페이드
-            for (int i = 0; i < 6; i++)
-            {
-                closeSeq.Join(messageText.gameObject.GetComponent<Text>().DOFade(0f, 0.5f));    //메시지 글자 페이드
-            }
+            closeSeq.Join(messageText.gameObject.GetComponent<Text>().DOFade(0f, 0.5f));    //메시지 글자 페이드
 
             closeSeq.OnComplete(() => {
                 backGround.gameObject.SetActive(false);     //메시지 배경 비활성화
                 messageText.gameObject.SetActive(false);    //텍스트 비활성화
+                messageText.text = " ";//텍스트 초기화
                 player.GetComponent<Player>().SetPlayerLevel(); //플레이어 레벨 설정(움직임 제한 해제)
             });
         }
@@ -67,13 +65,14 @@ public class Dialog_Maze : MonoBehaviour
     void TypingEffect(string[] textArray)
     {
         //타이핑 효과
-
+        messageText.text = " ";//텍스트 초기화
         backGround.gameObject.SetActive(true);  //텍스트 배경 활성화
         messageText.gameObject.SetActive(true); //텍스트 활성화
         skipButton.gameObject.SetActive(true);  //스킵 버튼 활성화
 
         Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성(Sequence: Tween들을 시간과 순서에 맞춰 배열하여 하나의 장면 구성)
         seq.Append(backGround.DOFade(1f, 2f));  //텍스트 배경 페이드 효과(1f 색깔로 2f동안 변경)
+        seq.Join(messageText.gameObject.GetComponent<Text>().DOFade(1f, 2f));
 
         float typingTime = 5f;
         for (int i = 0; i < textArray.Length; i++)
@@ -89,6 +88,7 @@ public class Dialog_Maze : MonoBehaviour
         seq.OnComplete(() => {
             backGround.gameObject.SetActive(false); //텍스트 배경 비활성화
             messageText.gameObject.SetActive(false);    //텍스트 비활성화
+            messageText.text = " ";//텍스트 초기화
             player.GetComponent<Player>().SetPlayerLevel(); //플레이어 레벨 설정(움직임 제한 해제)
         });
     }

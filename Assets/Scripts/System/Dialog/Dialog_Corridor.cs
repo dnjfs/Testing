@@ -44,6 +44,7 @@ public class Dialog_Corridor : MonoBehaviour
     {
         backGround.gameObject.SetActive(false); //텍스트 배경 비활성화
         messageText.gameObject.SetActive(false);    //텍스트 비활성화
+        messageText.text = " ";    //메시지 초기화
     }
 
     //탈출 후 합격 메시지 출력

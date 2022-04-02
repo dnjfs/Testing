@@ -66,10 +66,10 @@ public class writtenOath : MonoBehaviour
         {
             //서약서를 페이드 효과로 닫는다.
             Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성
-            seq.Append(theOath.DOFade(0f, 1f)); //서약서 페이드 효과
+            seq.Append(theOath.DOFade(0f, 0.5f)); //서약서 페이드 효과
             
             //서약서 글자 페이드
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 8; i++)
             {
                 seq.Join(oathContent.gameObject.transform.GetChild(i).gameObject.GetComponent<Text>().DOFade(0f, 0.5f));    //서약서 글자 페이드
             }
@@ -83,6 +83,7 @@ public class writtenOath : MonoBehaviour
     //(스크롤을 모두 내리거나 스킵 버튼을 누르면) 성적표를 페이드 효과로 띄우는 함수(스크롤 이벤트, 스킵 버튼 이벤트)
     public void OpenReportCard()
     {
+
         //성적 계산(GameManager 싱글톤에 저장된 점수들을 가져옴)
         OathAndReportDate writeDate;    //요일 객체 생성
         writeDate = GetDate();  //요일 계산해서 가져옴
@@ -107,9 +108,13 @@ public class writtenOath : MonoBehaviour
         Debug.Log(passOrFail);
         reportContent.gameObject.transform.GetChild(7).GetComponent<Text>().text = passOrFail;   //합격여부 적용
 
-        //성적표를 페이드 효과로 띄운다
-        reportCard.gameObject.SetActive(true);  //서약서 이미지 활성화
-        reportCard.DOFade(1f, 1f); //서약서 페이드 효과
+        //성적표를 페이드 효과로 띄운다(딜레이 2초)
+        Sequence reportSeq = DOTween.Sequence();
+        reportSeq.SetDelay(2f);
+        reportCard.gameObject.SetActive(true);
+
+        //reportSeq.Append(reportCard.gameObject.SetActive(true));  //서약서 이미지 활성화
+        reportSeq.Append(reportCard.DOFade(1f, 1f)); //서약서 페이드 효과
     }
 
     //(스크롤을 모두 내리면) 성적표를 페이드 효과로 닫는 함수
@@ -117,10 +122,10 @@ public class writtenOath : MonoBehaviour
     {
         //성적표를 페이드 효과로 닫는다.
         Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성
-        seq.Append(reportCard.DOFade(0f, 1f)); //서약서 페이드 효과
+        seq.Append(reportCard.DOFade(0f, 0.5f)); //서약서 페이드 효과
 
         //성적표 글자 페이드
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 8; i++)
         {
             seq.Join(reportContent.gameObject.transform.GetChild(i).gameObject.GetComponent<Text>().DOFade(0f, 0.5f));    //서약서 글자 페이드
         }

@@ -24,7 +24,8 @@ public class DialogManager : MonoBehaviour
                                     "그럼 행운을 빕니다."};
 
     //모든 길을 다 돌았을 때 시스템 메시지
-    private string[] createElevatorText = { "출구가 열렸습니다." };
+    private string[] createElevatorText = { "출구가 열렸습니다.",
+                                    "엘리베이터 버튼을 눌러 이곳을 탈출하세요"};
 
     //하얀방 메시지
     private string theWhiteRoomDialogText =  "탈출을 축하합니다. 그러나 아직 끝은 아닙니다. " +
@@ -74,6 +75,7 @@ public class DialogManager : MonoBehaviour
         seq.OnComplete(() => {
             whiteRoomBackGround.gameObject.SetActive(false); //텍스트 배경 비활성화
             whiteRoomMessageText.gameObject.SetActive(false);    //텍스트 비활성화
+            whiteRoomMessageText.text = " ";    //메시지 초기화
             talkerBakcGround.gameObject.SetActive(false); //연구원 배경 비활성화
 
         });
@@ -109,7 +111,7 @@ public class DialogManager : MonoBehaviour
     void TypingEffect(string[] textArray)
     {
         //타이핑 효과
-
+        messageText.text = " ";//텍스트 초기화
         backGround.gameObject.SetActive(true);  //텍스트 배경 활성화
         messageText.gameObject.SetActive(true); //텍스트 활성화
 
