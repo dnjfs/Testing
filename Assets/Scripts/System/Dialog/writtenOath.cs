@@ -23,11 +23,45 @@ public class writtenOath : MonoBehaviour
     public GameObject reportContent;    //성적표 스크롤뷰 컨텐츠
     public GameObject dialog;   //대화창
 
+    //스크롤바
+    public Scrollbar oathScrollBar;
+    public Scrollbar reportScrollBar;
+    //스크롤 닫은지 여부
+    private bool isColseOath;
+    private bool isCloseReport;
+
     int openNumber = 0; //성적표 열린 횟수
 
     void Start()
     {
         openNumber = 0;
+
+        isColseOath = false;
+        isCloseReport = false;
+    }
+
+    void Update()
+    {
+        if (!isColseOath)
+        {
+            if (oathScrollBar.GetComponent<Scrollbar>().value == 0)
+            {
+                Invoke("CloseOath", 1.5f);
+                Invoke("OpenReportCard", 1.5f);
+
+                isColseOath = true;
+            }
+        }
+
+        if (!isCloseReport)
+        {
+            if (reportScrollBar.GetComponent<Scrollbar>().value == 0)
+            {
+                Invoke("CloseReportCard", 1.5f);
+
+                isCloseReport = true;
+            }
+        }
     }
 
     //연구원과의 대화를 끝내면 서약서를 페이드 효과로 띄우는 함수(대화창 터치 이벤트)
@@ -58,7 +92,7 @@ public class writtenOath : MonoBehaviour
     }
 
     //(스크롤을 모두 내리거나 스킵 버튼을 누르면) 서약서를 페이드 효과로 닫는 함수(스크롤 이벤트, 스킵 버튼 이벤트)
-    public void CloasOath()
+    public void CloseOath()
     {
         bool isOathActive = theOath.gameObject.activeSelf; //서약서가 활성화 되어있는지 여부
 

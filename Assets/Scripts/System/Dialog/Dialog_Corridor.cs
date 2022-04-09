@@ -9,6 +9,8 @@ public class Dialog_Corridor : MonoBehaviour
     //출력할 메시지
     public Text messageText;
     public Image backGround;
+    public Image talker;
+    public Text talkerText;
 
     public Button whiteRoomSkipButton;  //대화창 스킵 버튼
 
@@ -34,7 +36,9 @@ public class Dialog_Corridor : MonoBehaviour
         backGround.gameObject.SetActive(true); //텍스트 배경 활성화
 
         Sequence seq = DOTween.Sequence();  //DOTween Sequence 생성
-        //seq.Append(backGround.DOFade(1f, 1f));  //텍스트 배경 페이드 효과
+        seq.Append(backGround.DOFade(1f, 1f));  //텍스트 배경 페이드 효과
+        seq.Join(talker.DOFade(1f, 1f));
+        seq.Join(talkerText.DOFade(1f, 1f));
         seq.Append(messageText.DOText(theWhiteRoomDialogText, 5f));    //텍스트 출력
         //whiteRoomSkipButton.onClick.AddListener(delegate { this.GetComponent<writtenOath>().OpenReportCard(); });  //스킵 버튼 이벤트 추가(서약서 없이 바로 성적표 나옴)
     }
@@ -59,8 +63,13 @@ public class Dialog_Corridor : MonoBehaviour
 
         seq.Append(messageText.DOText(passDialogText, 5f));    //대사 타이핑 효과
         seq.AppendInterval(2f); //2초 딜레이
-        seq.Append(messageText.DOText("", 1f));    //대사 초기화
+        seq.Append(messageText.DOFade(0f, 0.5f)); //메시지 페이드 효과
+        seq.Append(backGround.DOFade(0f, 0.5f)); //배경 페이드 효과
+        seq.Join(talker.DOFade(0f, 0.5f));
+        seq.Join(talkerText.DOFade(0f, 0.5f));
 
+        seq.Append(messageText.DOText("", 0.5f));    //대사 초기화
+        seq.AppendInterval(1f); //1초 딜레이
 
         seq.OnComplete(() => {
             messageText.gameObject.SetActive(false);  //텍스트 비활성화

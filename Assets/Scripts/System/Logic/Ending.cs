@@ -63,7 +63,7 @@ public class Ending : MonoBehaviour
 
         //밖으로 이동(플레이어 조작 막음 -> 조작 이미지 비활성화)
         player.transform.DOLocalMoveZ(30f, 5f).SetRelative(); //5초간 Z 방향으로 30만큼 이동
-        seq.AppendInterval(7f); //30초 딜레이
+        seq.AppendInterval(9f); //9초 딜레이
         seq.OnComplete(() => {
             //랭킹 씬으로 이동(이 전에 랭킹 저장)
             this.GetComponent<SceneChange>().ChangeRankingScene();    //텀 주고 이동 
